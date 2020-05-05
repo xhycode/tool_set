@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from message import serial_tool
 from ui import ui
 import debug
+import cfg
 
 CONNRCT_NONE = None
 CONNTET_SERIAL = 1
@@ -41,9 +42,20 @@ class Message():
             temp['btn'] = getattr(ui, 'b_extend_send_' + str(i + 1))
             temp['data'] = getattr(ui, 'e_extend_send_' + str(i + 1))
             temp['select'] = getattr(ui, 'c_extend_send_' + str(i + 1))
+            last_data = cfg.get('extend_data_' + str(i+1))
+            temp['data'].setText(last_data)
+            last_select = cfg.get('extend_selsct_' + str(i+1), '0')
+            temp['select'].setCheckState(int(last_select))
+            temp['btn'].pressed.connect(self._event_extend_send)  # 按键按下未抬起时就发送
+            temp['data'].editingFinished.connect(self.extend_send_save)
+            temp['select'].stateChanged.connect(self.extend_send_save)
             self.extend_send_info.append(temp)
-        for extend in self.extend_send_info:
-            extend['btn'].pressed.connect(self._event_extend_send)  # 按键按下未抬起时就发送         
+
+    def extend_send_save(self):
+        print(len(self.extend_send_info))
+        for i in range(self.extend_count):
+            cfg.set('extend_data_' + str(i+1), self.extend_send_info[i]['data'].displayText())
+            cfg.set('extend_selsct_' + str(i+1), self.extend_send_info[i]['select'].checkState())
 
     def get_next_extend_data(self):
         index = self.extend_send_index

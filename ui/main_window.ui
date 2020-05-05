@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1295</width>
+    <width>1296</width>
     <height>832</height>
    </rect>
   </property>
@@ -154,8 +154,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>131</width>
-                    <height>99</height>
+                    <width>98</width>
+                    <height>28</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -301,6 +301,19 @@
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="Line" name="line_5">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
                    </property>
                   </widget>
                  </item>
@@ -542,7 +555,7 @@
                          <x>0</x>
                          <y>0</y>
                          <width>98</width>
-                         <height>511</height>
+                         <height>28</height>
                         </rect>
                        </property>
                        <widget class="QCheckBox" name="checkBox_2">
@@ -602,6 +615,22 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
+              <widget class="QFrame" name="frame">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>70</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QScrollArea" name="scrollArea_5">
                <property name="tabletTracking">
                 <bool>false</bool>
@@ -660,8 +689,8 @@
                 <widget class="QCheckBox" name="c_entend_enter">
                  <property name="geometry">
                   <rect>
-                   <x>90</x>
-                   <y>490</y>
+                   <x>10</x>
+                   <y>460</y>
                    <width>71</width>
                    <height>16</height>
                   </rect>
@@ -673,11 +702,23 @@
                 <widget class="QPushButton" name="b_extend_send_all">
                  <property name="geometry">
                   <rect>
-                   <x>20</x>
-                   <y>520</y>
-                   <width>131</width>
-                   <height>23</height>
+                   <x>90</x>
+                   <y>480</y>
+                   <width>80</width>
+                   <height>30</height>
                   </rect>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>30</height>
+                  </size>
                  </property>
                  <property name="text">
                   <string>发送按顺序</string>
@@ -686,11 +727,14 @@
                 <widget class="QCheckBox" name="c_all_exend_send">
                  <property name="geometry">
                   <rect>
-                   <x>10</x>
+                   <x>90</x>
                    <y>460</y>
                    <width>71</width>
                    <height>16</height>
                   </rect>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::RightToLeft</enum>
                  </property>
                  <property name="text">
                   <string>全选</string>
@@ -1465,23 +1509,25 @@
                   <string>22</string>
                  </property>
                 </widget>
+                <widget class="QLabel" name="label_6">
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>520</y>
+                   <width>121</width>
+                   <height>16</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>8</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>发送间隔在发送区设置</string>
+                 </property>
+                </widget>
                </widget>
-              </widget>
-             </item>
-             <item>
-              <widget class="QFrame" name="frame">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>70</height>
-                </size>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
               </widget>
              </item>
             </layout>
@@ -1770,22 +1816,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>c_display_font</sender>
-   <signal>currentTextChanged(QString)</signal>
-   <receiver>e_recv</receiver>
-   <slot>setFontFamily(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>815</x>
-     <y>554</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>778</x>
-     <y>420</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

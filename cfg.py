@@ -19,3 +19,4 @@ def get(name):
 
 def set(name, var):
     config[name] = var
+    config.write()

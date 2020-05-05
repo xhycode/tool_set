@@ -34,7 +34,13 @@
 
 1.  Qt Designer版本：5.11.1  https://build-system.fman.io/qt-designer-download
 2.  小部件使用：https://doc.qt.io/qtforpython/PySide2/QtWidgets/
-3.  xxxx
+3.  python 测试过的版本： 3.8.2
+4.  测试过的系统： win10
+5.  依赖库：
+        * pip install serial
+        * pip install configobj
+        * pip install pyqt5
+        * pip install pyinstaller  # 打包成exe
 
 #### 版本说明
 

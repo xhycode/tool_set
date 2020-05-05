@@ -21,6 +21,7 @@ class Message():
     def bind(self):
         ui.b_send.clicked.connect(self._event_send)
         ui.b_open.clicked.connect(self._event_open_serial)
+        ui.b_clear_send.clicked.connect(self._event_clean_send)
         ui.b_status_control.clicked.connect(self._event_status_control)
         ui.c_auto_send.stateChanged.connect(self._event_auto_send)        
 
@@ -109,7 +110,8 @@ class Message():
         pass
 
     def _event_clean_send(self):
-        pass
+        ui.lcd_send_len.display(0)
+        ui.e_send.clear()
 
     def _event_clean_recv(self):
         pass

@@ -14,8 +14,13 @@ if len(config) == 0:
 
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 
-def get(name):
-    return config[name]
+def get(name, default=''):
+    if config.get(name):
+        return config[name]
+    else:
+        config[name] = default
+        config.write()
+        return default
 
 def set(name, var):
     config[name] = var

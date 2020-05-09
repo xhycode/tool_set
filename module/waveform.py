@@ -23,6 +23,12 @@ class _curve():
     def clear(self):
         self.data = []
 
+    def append(self, data):
+        if len(self.data) >= self.data_cnt:
+            self.data = self.data[1:]
+        self.data.append(data)
+
+
 class Waveform(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
@@ -73,7 +79,7 @@ class Waveform(QThread, ModuleBase):
     def append(self, chn, data):
         '''添加一个数据到通道 data是数字'''
         d = self._get_chn_info(chn)
-        d.data.append(data)
+        d.append(data)
 
     def set_data(self, chn, data=[]):
         '''直接赋值数据到对应通道，data是列表'''
@@ -113,9 +119,7 @@ class Waveform(QThread, ModuleBase):
 
     def parse(self, data):
         ch = data.decode()
-        print(ch)
         if ch is '\n':
-            print(type(self.line_data))
             debug.info_ln(self.line_data)
             name = self._between_str(self.line_data, '<', '>')
             d = self._between_str(self.line_data, '[', ']')

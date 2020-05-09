@@ -32,19 +32,9 @@ class _curve():
 class Waveform(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
-        self.plot = ui.g_waveform
-        self.plot.addLegend()  # 不添加就显示不了图例 ，一定要放在plot前调用
-        self._coordinate_config('y', 'x', 'y/x')
         self.curves = {}
         self.line_data = ''
         self.start()
-
-    def _coordinate_config(self, lift, bottom, title):
-        self.plot.showGrid(x=True, y=True, alpha=0.5)
-        self.plot.setLabels(left=lift, bottom=bottom,
-                            title=title)  # left纵坐标名 bottom横坐标名
-        label = pg.TextItem()
-        self.plot.addItem(label)
 
     def get_frame(self):
         '''获取帧，方便嵌入到其他窗口显示'''

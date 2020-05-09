@@ -15,6 +15,7 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
     serial_port_signal = QtCore.pyqtSignal(list, int)
     g_waveform_signal = QtCore.pyqtSignal(str, list)
     g_waveform_clear_signal = QtCore.pyqtSignal(str)
+    set_lcd_recv_len_signal = QtCore.pyqtSignal(bool, int)
     def __init__(self):
         super().__init__()
         self.setupUi(self)  # 执行类中的setupUi函数
@@ -25,10 +26,11 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
         self.serial_port_signal.connect(self.renew_serial_port)
         self.g_waveform_clear_signal.connect(self.clear_curves)
         self.g_waveform_signal.connect(self.set_waveform_data)
+        self.set_lcd_recv_len_signal.connect(self.set_lcd_recv_len)
 
     def renew_recv_dispay(self, data):
         self.e_recv.moveCursor(QtGui.QTextCursor.End)
-        self.e_recv.insertPlainText(data);
+        self.e_recv.insertPlainText(data)
     
     def renew_serial_port(self, port_list, cur):
         self.serial_port.clear()
@@ -42,7 +44,13 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
 
     def debug_dispay(self, data):
         self.e_debug_info.moveCursor(QtGui.QTextCursor.End)
-        self.e_debug_info.insertPlainText(data);
+        self.e_debug_info.insertPlainText(data)
+
+    def set_lcd_recv_len(self, flag, num):
+        if flag:
+            self.lcd_recv_len.display(self.lcd_recv_len.value() + num)
+        else:
+            self.lcd_recv_len.display(num)
 
     ############# 波形界面相关方法 ##################
 

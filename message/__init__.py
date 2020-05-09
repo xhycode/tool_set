@@ -114,6 +114,8 @@ class Message():
             ui.lcd_send_len.display(send_len + ui.lcd_send_len.intValue())
             print("send len:" + str(send_len))
             return send_len
+        else:
+            debug.info_ln('当前没有连接')
         return None
 
     def status(self):
@@ -126,6 +128,7 @@ class Message():
                 data = extend['data'].displayText()
                 if ui.c_entend_enter.checkState():
                     data += '\n'
+                print(data)
                 self.send(data.encode())
 
     def _event_extend_all_select(self):

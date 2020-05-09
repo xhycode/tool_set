@@ -1,5 +1,7 @@
 
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('./')
 from module.module_base import ModuleBase
 from ui import ui
 from PyQt5.QtCore import QThread
@@ -29,7 +31,6 @@ class Waveform(QThread, ModuleBase):
         self._coordinate_config('y', 'x', 'y/x')
         self.curves = {}
         self.line_data = ''
-        ui.c_all_chn.stateChanged.connect(self.test)
         self.start()
 
     def _coordinate_config(self, lift, bottom, title):

@@ -3,14 +3,15 @@ from PyQt5 import QtCore
 from serial.tools import list_ports
 from ui import ui
 import debug
+import cfg
 
 
 class SerialMesssge():
     def __init__(self):
         self._finish = False
         self.serial = serial.Serial(timeout=1)  # 设置1秒超时
-        self.cur_port = None
-        self.cur_baudrate = '115200'
+        self.cur_port = cfg.get(cfg.SERIAL_PORT, 'None')
+        self.cur_baudrate = cfg.get(cfg.SERIAL_BAUDRATE, '115200')
         self.serial_renew = QtCore.QTimer()
         self.serial_renew.timeout.connect(self._renew_port_list)
         self.serial_renew.start()
@@ -49,13 +50,14 @@ class SerialMesssge():
     def _open(self, port, baudrate):
         self.serial.port = port
         self.serial.baudrate = baudrate
+        self.cur_port = port
         try:
             self.serial.open()
         except:
             debug.info_ln('串口打开失败')
 
     def _event_change_serial_info(self, idx):
-        if self.status():
+        if self.status() and ui.serial_port.currentText() != '':
             self.event_open()
 
     def event_open(self):
@@ -64,6 +66,8 @@ class SerialMesssge():
         port = ui.serial_port.currentText()
         baudrate = ui.baudrate.currentText()
         self._open(port, int(baudrate))
+        cfg.set(cfg.SERIAL_PORT, port)
+        cfg.set(cfg.SERIAL_BAUDRATE, baudrate)
         debug.info_ln('串口 {} {} {}'.format(port, baudrate, self.status()))
 
     def _init_baudrate_list(self):
@@ -72,18 +76,17 @@ class SerialMesssge():
         ui.baudrate.setCurrentText(self.cur_baudrate)
 
     def _is_port_list(self, ports):
+        # 串口数量变化了就刷新
         if len(ports) != ui.serial_port.count():
             return True
+        # 有新的串口加入也刷新界面
         for p in ports:
             if ui.serial_port.findText(p) == -1:
                 return True
-        return False
+        return False  # 没有变化不刷新
 
     def _renew_port_list(self):
         port_list = self.port_list()
         if self._is_port_list(port_list):
-            ui.serial_port.clear()
-            ui.serial_port.addItems(port_list)
-            cur = self.cur_port
-            ui.serial_port_signal.emit(port_list, cur)
+            ui.serial_port_signal.emit(port_list, self.cur_port)
         self.serial_renew.start(1000)

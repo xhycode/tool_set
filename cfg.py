@@ -4,6 +4,7 @@ CFG_FILE = "cfg.ini"
 SERIAL_PORT = 'serial_port'
 SERIAL_BAUDRATE = 'serial_baudrate'
 DATA_FONT_SIZE = 'data_font_size'
+WAVEFORM_CACHE = 'waveform_cache_size'
 
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 if len(config) == 0:

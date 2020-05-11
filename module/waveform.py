@@ -6,6 +6,7 @@ from module.module_base import ModuleBase
 from ui import ui
 from PyQt5.QtCore import QThread
 import debug
+import cfg
 
 
 WAVEFOR_CHN_CNT = 8
@@ -37,7 +38,7 @@ class _curve():
     def set_cache(self, size):
         self.cache_size = size
         if len(self.data) >= self.cache_size:
-            self.data = self.data[self.cache_size - len(self.data):]
+            self.data = self.data[len(self.data) - self.cache_size:]
 
     def renew_diaplay(self):
         if self.c_chn.checkState():
@@ -53,12 +54,24 @@ class Waveform(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
         self.channal_count = 0
-        self.channal_cache = 1000
+        self.channal_cache = int(cfg.get(cfg.WAVEFORM_CACHE, '1000'))
+        ui.e_chn_cache.setText(str(self.channal_cache))
+        ui.e_chn_cache.textChanged.connect(self.set_cache_size)
         self.curves = {}
         self.line_data = ''
         ui.c_chn_all.stateChanged.connect(self.all_show)
         ui.b_chn_clear_all.clicked.connect(self.all_clear)
         self.start()
+
+    def set_cache_size(self, text):
+        if text.isdigit():
+            self.channal_cache = int(text)
+            for curve in self.curves.values():
+                curve.set_cache(self.channal_cache)
+            cfg.set(cfg.WAVEFORM_CACHE, text)
+        else:
+            ui.e_chn_cache.setText(str(self.channal_cache))
+            debug.info_ln('缓存只能设置正整数')
 
     def new_chn_num(self):
         if self.channal_count >= MAX_CHANNAL_COUNT:

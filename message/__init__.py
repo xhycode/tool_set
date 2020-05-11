@@ -13,6 +13,7 @@ AUTO_SEND_NONE = 0
 AUTO_SEND_MAIN = 1
 AUTO_SEND_EXTEND = 2
 
+
 class Message():
     def __init__(self):
         self.serial = serial_tool.SerialMesssge()
@@ -54,8 +55,10 @@ class Message():
     def extend_send_save(self):
         print(len(self.extend_send_info))
         for i in range(self.extend_count):
-            cfg.set('extend_data_' + str(i+1), self.extend_send_info[i]['data'].displayText())
-            cfg.set('extend_selsct_' + str(i+1), self.extend_send_info[i]['select'].checkState())
+            cfg.set('extend_data_' + str(i+1),
+                    self.extend_send_info[i]['data'].displayText())
+            cfg.set('extend_selsct_' + str(i+1),
+                    self.extend_send_info[i]['select'].checkState())
 
     def get_next_extend_data(self):
         index = self.extend_send_index
@@ -82,7 +85,7 @@ class Message():
                     data += '\n'
                 self.extend_send_index = index + 1
                 return data.encode()
-            index =  index + 1
+            index = index + 1
         if self.extend_send_index == 0:
             return None  # 没有选中的项
         return None
@@ -92,7 +95,7 @@ class Message():
             return self.cur_connect.recv_line()
         return None
 
-    def recv(self, count = 1):
+    def recv(self, count=1):
         try:
             if self.cur_connect.status():
                 return self.cur_connect.recv(count)
@@ -140,7 +143,6 @@ class Message():
         self.auto_send_mode = AUTO_SEND_NONE
         self.auto_send.stop()
         ui.b_extend_send_all.setText('发送按顺序')
-        
 
     def _event_extend_all_send(self):
         if self.auto_send_mode == AUTO_SEND_MAIN:
@@ -169,7 +171,7 @@ class Message():
                     self.auto_send.stop()
                     debug.info_ln('数据格式错误')
         else:
-            debug.info_ln('当前没有连接')     
+            debug.info_ln('当前没有连接')
 
     def _event_status_control(self):
         if self.cur_connect.status():
@@ -225,7 +227,7 @@ class Message():
             self.auto_send.start()
             self.auto_send_mode = AUTO_SEND_MAIN
         else:
-           self._stop_main_auto_send()
+            self._stop_main_auto_send()
 
     def _event_auto_send_timer(self):
         t = ui.e_auto_send_time.value() * 1000  # ms

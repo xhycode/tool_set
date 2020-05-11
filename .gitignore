@@ -1,0 +1,14 @@
+.vscode/settings.json
+__pycache__/cfg.cpython-36.pyc
+__pycache__/control.cpython-36.pyc
+__pycache__/control.cpython-37.pyc
+__pycache__/debug.cpython-36.pyc
+message/__pycache__/__init__.cpython-36.pyc
+message/__pycache__/serial_tool.cpython-36.pyc
+module/__pycache__/__init__.cpython-36.pyc
+module/__pycache__/data_display.cpython-36.pyc
+module/__pycache__/module_base.cpython-36.pyc
+module/__pycache__/waveform.cpython-36.pyc
+ui/__pycache__/__init__.cpython-36.pyc
+ui/__pycache__/global_ui.cpython-36.pyc
+ui/__pycache__/main_window.cpython-36.pyc

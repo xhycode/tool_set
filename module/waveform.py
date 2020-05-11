@@ -5,14 +5,15 @@ sys.path.append('./')
 from module.module_base import ModuleBase
 from ui import ui
 from PyQt5.QtCore import QThread
-import pyqtgraph as pg
 import debug
+
 
 WAVEFOR_CHN_CNT = 8
 PLOT_INDEX = 0
 DATA_INDEX = 1
 STATU_INDEX = 2
 COLOR = ['b', 'g', 'r', 'c', 'm', 'y', 'w', 'k']
+
 
 class _curve():
     def __init__(self, chn_name, chn_num, cache_size=1000):
@@ -46,6 +47,7 @@ class _curve():
 
 
 MAX_CHANNAL_COUNT = 16
+
 
 class Waveform(QThread, ModuleBase):
     def __init__(self):
@@ -93,7 +95,6 @@ class Waveform(QThread, ModuleBase):
         for curve in self.curves.values():
             if curve.b_clean.isDown():
                 curve.clear_data()
-        
 
     def all_clear(self, chn):
         for curve in self.curves.values():

@@ -2,13 +2,13 @@
 from PyQt5.QtCore import QThread
 from message import Message
 from module import ModuleManage
-from ui import ui
 
 
 class Control(QThread):  # 继承类
     '''
         控制数据与各个模块间的通信
     '''
+
     def __init__(self):
         super().__init__()
         self.msg = Message()  # 消息处理
@@ -29,6 +29,3 @@ class Control(QThread):  # 继承类
                     self.md.parse(data)
             else:
                 self.msleep(10)
-
-
-

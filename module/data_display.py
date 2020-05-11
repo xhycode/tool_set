@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QWidget
 from module.module_base import ModuleBase
 from ui import ui
 import cfg
@@ -89,4 +88,3 @@ class DataDisplay(QtCore.QThread, ModuleBase):
                 self.data = []
                 self.mutex.unlock()
             self.msleep(10)
-

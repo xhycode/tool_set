@@ -974,7 +974,7 @@ class Ui_ToolSet(object):
 
         self.retranslateUi(ToolSet)
         self.tool_cfg.setCurrentIndex(0)
-        self.mode_manage.setCurrentIndex(1)
+        self.mode_manage.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(ToolSet)
 
     def retranslateUi(self, ToolSet):

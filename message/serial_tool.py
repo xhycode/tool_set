@@ -45,7 +45,11 @@ class SerialMesssge():
         return self.serial.read_until()
 
     def send(self, data):
-        return self.serial.write(data)
+        try:
+            return self.serial.write(data)
+        except:
+            debug.info_ln('发送失败,串口未连接')
+            return 0
 
     def _open(self, port, baudrate):
         self.serial.port = port
@@ -58,7 +62,13 @@ class SerialMesssge():
 
     def _event_change_serial_info(self, idx):
         if self.status() and ui.serial_port.currentText() != '':
-            self.event_open()
+            isport = ui.serial_port.currentText() != self.cur_port  # 串口
+            isbaudrate = ui.baudrate.currentText() != self.cur_baudrate
+            isonline = self.cur_port in self.port_list()
+            # 串口或波特率被手动改变则重新打开, 
+            # 如果当前端口不在了, 则是设备不在了,不重新连接
+            if (isport or isbaudrate) and isonline:
+                self.event_open()
 
     def event_open(self):
         if self.status():

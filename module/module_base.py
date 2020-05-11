@@ -6,6 +6,3 @@ class ModuleBase():
 
     def parse(self, data):
         pass
-
-    def hex_mode(self, ishex):
-        pass

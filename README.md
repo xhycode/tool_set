@@ -13,7 +13,7 @@
         * __init__.py           ->> 里边的 ui 变量可以用来访问所有的小部件
         * global.py             ->> 将窗口部件封装一层，并添加信号提供外出使用
         * main_window.py        ->> 使用 pyuic5 -o .\main_window.py .\main_window.ui 生成的文件。不能在里边添加自己的代码，重新生生成会覆盖
-        * main_window.ui        ->> QT Designer 工程文件
+        * main_window.ui        ->> Qt Designer 工程文件
     - module                ->> 功能相关的模块
         * __init__.py           ->> 管理模块的切换
         * data_display.py       ->> 数据显示面板模块
@@ -32,9 +32,15 @@
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  Qt Designer版本：5.11.1  https://build-system.fman.io/qt-designer-download
+2.  小部件使用：https://doc.qt.io/qtforpython/PySide2/QtWidgets/
+3.  python 测试过的版本： 3.8.2
+4.  测试过的系统： win10
+5.  依赖库：
+        * pip install serial
+        * pip install configobj
+        * pip install pyqt5
+        * pip install pyinstaller  # 打包成exe
 
 #### 版本说明
 
@@ -45,5 +51,5 @@
     * 数据显示方式支持全局 hex 显示切换
     * 自动发送功能
     * 可设置字体大小及字体选择
-    
+
 

@@ -5,7 +5,9 @@ SERIAL_PORT = 'serial_port'
 SERIAL_BAUDRATE = 'serial_baudrate'
 DATA_FONT_SIZE = 'data_font_size'
 WAVEFORM_CACHE = 'waveform_cache_size'
-
+LAST_MODULE_INDEX = 'module_index'
+EXTEND_ENTER_STATE = 'extend_enter_state'
+EXTEND_CYCLIC = 'extend_cyclic'
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 
 

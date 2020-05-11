@@ -32,7 +32,10 @@ class Message():
         ui.b_status_control.clicked.connect(self._event_status_control)
         ui.c_auto_send.stateChanged.connect(self._event_auto_send)
         ui.c_all_exend_send.stateChanged.connect(self._event_extend_all_select)
+        ui.c_entend_enter.stateChanged.connect(self.extend_enter_status_save)
+        ui.c_extend_cyclic_send.stateChanged.connect(self.extend_cyclic_status_save)
         ui.b_extend_send_all.clicked.connect(self._event_extend_all_send)
+
 
     def extend_send_init(self):
         self.extend_send_index = 0
@@ -51,9 +54,16 @@ class Message():
             temp['data'].editingFinished.connect(self.extend_send_save)
             temp['select'].stateChanged.connect(self.extend_send_save)
             self.extend_send_info.append(temp)
+        ui.c_entend_enter.setCheckState(int(cfg.get(cfg.EXTEND_ENTER_STATE, '0')))
+        ui.c_extend_cyclic_send.setCheckState(int(cfg.get(cfg.EXTEND_CYCLIC, '0')))
+
+    def extend_enter_status_save(self):
+        cfg.set(cfg.EXTEND_ENTER_STATE, ui.c_entend_enter.checkState())
+
+    def extend_cyclic_status_save(self):
+        cfg.set(cfg.EXTEND_CYCLIC, ui.c_extend_cyclic_send.checkState())
 
     def extend_send_save(self):
-        print(len(self.extend_send_info))
         for i in range(self.extend_count):
             cfg.set('extend_data_' + str(i+1),
                     self.extend_send_info[i]['data'].displayText())
@@ -180,7 +190,6 @@ class Message():
             self.state = False
         else:
             index = ui.tool_cfg.currentIndex()
-            print(index)
             if index == 0:
                 self._event_open_serial()
             elif index == 1:

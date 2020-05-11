@@ -21,7 +21,6 @@ class DataDisplay(QtCore.QThread, ModuleBase):
 
     def font_init(self):
         self.font = ui.c_display_font
-        print(self.text.currentFont())
         self.font.setCurrentFont(self.text.currentFont())
         self.font.currentFontChanged.connect(self._event_font)
         self.font_size = ui.c_font_size
@@ -41,7 +40,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self.mutex.unlock()
 
     def hex_mode(self, ishex):
-        '''第一次切换时候调用'''
+        '''所有数据进行转换'''
         self.ishex = ishex
         self.text.clear()
         if ishex:

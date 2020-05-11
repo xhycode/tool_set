@@ -7,13 +7,6 @@ DATA_FONT_SIZE = 'data_font_size'
 WAVEFORM_CACHE = 'waveform_cache_size'
 
 config = ConfigObj(CFG_FILE, encoding='UTF8')
-if len(config) == 0:
-    config[SERIAL_PORT] = 'COM3'
-    config[SERIAL_BAUDRATE] = '115200'
-    config[DATA_FONT_SIZE] = '9'
-    config.write()
-
-config = ConfigObj(CFG_FILE, encoding='UTF8')
 
 
 def get(name, default=''):

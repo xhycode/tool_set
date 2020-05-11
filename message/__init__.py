@@ -18,12 +18,10 @@ class Message():
     def __init__(self):
         self.serial = serial_tool.SerialMesssge()
         self.cur_connect = self.serial
-        self.state = False
-        self.auto_send_mode = AUTO_SEND_NONE
-        self.auto_send = QtCore.QTimer()
-        self.auto_send.timeout.connect(self._event_auto_send_timer)
-        self.bind()
+        self.state = False  # 连接状态
+        self.send_init()
         self.extend_send_init()
+        self.bind()
 
     def bind(self):
         ui.b_send.clicked.connect(self._event_send)
@@ -35,6 +33,8 @@ class Message():
         ui.c_entend_enter.stateChanged.connect(self.extend_enter_status_save)
         ui.c_extend_cyclic_send.stateChanged.connect(self.extend_cyclic_status_save)
         ui.b_extend_send_all.clicked.connect(self._event_extend_all_send)
+        ui.e_auto_send_time.valueChanged.connect(self.auto_send_time_save)
+        ui.c_hex_send.stateChanged.connect(self.hex_send_state_save)
 
 
     def extend_send_init(self):
@@ -57,6 +57,13 @@ class Message():
         ui.c_entend_enter.setCheckState(int(cfg.get(cfg.EXTEND_ENTER_STATE, '0')))
         ui.c_extend_cyclic_send.setCheckState(int(cfg.get(cfg.EXTEND_CYCLIC, '0')))
 
+    def send_init(self):
+        self.auto_send_mode = AUTO_SEND_NONE
+        self.auto_send = QtCore.QTimer()
+        self.auto_send.timeout.connect(self._event_auto_send_timer)
+        ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
+        ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SELD_TIME, '1.0')))
+
     def extend_enter_status_save(self):
         cfg.set(cfg.EXTEND_ENTER_STATE, ui.c_entend_enter.checkState())
 
@@ -69,6 +76,12 @@ class Message():
                     self.extend_send_info[i]['data'].displayText())
             cfg.set('extend_selsct_' + str(i+1),
                     self.extend_send_info[i]['select'].checkState())
+
+    def hex_send_state_save(self, state):
+        cfg.set(cfg.HEX_SEND_STATE, str(state))
+    
+    def auto_send_time_save(self, new_time):
+        cfg.set(cfg.AUTO_SELD_TIME, '{:.3f}'.format(new_time))
 
     def get_next_extend_data(self):
         index = self.extend_send_index

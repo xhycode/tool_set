@@ -8,6 +8,8 @@ WAVEFORM_CACHE = 'waveform_cache_size'
 LAST_MODULE_INDEX = 'module_index'
 EXTEND_ENTER_STATE = 'extend_enter_state'
 EXTEND_CYCLIC = 'extend_cyclic'
+HEX_SEND_STATE = 'hex_send'
+AUTO_SELD_TIME = 'auto_send_time'
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 
 

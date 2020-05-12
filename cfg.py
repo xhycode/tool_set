@@ -1,5 +1,6 @@
 from configobj import ConfigObj
 
+
 CFG_FILE = "cfg.ini"
 SERIAL_PORT = 'serial_port'
 SERIAL_BAUDRATE = 'serial_baudrate'
@@ -10,6 +11,9 @@ EXTEND_ENTER_STATE = 'extend_enter_state'
 EXTEND_CYCLIC = 'extend_cyclic'
 HEX_SEND_STATE = 'hex_send'
 AUTO_SELD_TIME = 'auto_send_time'
+MSG_CONNRET_MODE = 'connect_mode'
+TCP_CLIENT_IP = 'tcp_client_ip'
+TCP_CLIENT_PORT = 'tcp_client_port'
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 
 

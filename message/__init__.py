@@ -1,31 +1,33 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from message import serial_tool
+from message import tcp_client
+from message import tcp_server
 from ui import ui
 import debug
 import cfg
 
-CONNRCT_NONE = None
-CONNTET_SERIAL = 1
-CONNECT_TCP_CLINE = 2
+CONNTET_SERIAL = '0'
+CONNECT_TCP_CLINET = '1'
+CONNECT_TCP_SERVER = '2'
 
-AUTO_SEND_NONE = 0
-AUTO_SEND_MAIN = 1
-AUTO_SEND_EXTEND = 2
+AUTO_SEND_NONE = '0'
+AUTO_SEND_MAIN = '1'
+AUTO_SEND_EXTEND = '2'
 
 
 class Message():
     def __init__(self):
-        self.serial = serial_tool.SerialMesssge()
-        self.cur_connect = self.serial
-        self.state = False  # 连接状态
+        self.connect_init()
         self.send_init()
         self.extend_send_init()
         self.bind()
 
     def bind(self):
         ui.b_send.clicked.connect(self._event_send)
-        ui.b_open.clicked.connect(self._event_open_serial)
+        ui.b_open_serial.clicked.connect(self._event_open_serial)
+        ui.b_connect_client.clicked.connect(self._event_tcp_client_connect)
+        ui.b_connect_server.clicked.connect(self._event_tcp_server_connect)
         ui.b_clear_send.clicked.connect(self._event_clean_send)
         ui.b_status_control.clicked.connect(self._event_status_control)
         ui.c_auto_send.stateChanged.connect(self._event_auto_send)
@@ -36,6 +38,26 @@ class Message():
         ui.e_auto_send_time.valueChanged.connect(self.auto_send_time_save)
         ui.c_hex_send.stateChanged.connect(self.hex_send_state_save)
 
+    def connect_init(self):
+        self.serial = serial_tool.SerialMesssge()
+        self.client = tcp_client.TCPClinet()
+        self.server = tcp_server.TCPServer()
+        self.connect_mode = cfg.get(cfg.MSG_CONNRET_MODE, CONNTET_SERIAL)
+        self.set_connect_mode(self.connect_mode)
+        self.state = False  # 连接状态
+
+    def set_connect_mode(self, connect):
+        self.connect_mode = connect
+        if connect == CONNTET_SERIAL:
+            self.cur_connect = self.serial
+            ui.t_connect_type.setText('串口')
+        elif connect == CONNECT_TCP_CLINET:
+            self.cur_connect = self.client
+            ui.t_connect_type.setText('TCP客户端')
+        elif connect == CONNECT_TCP_SERVER:
+            self.cur_connect = self.server
+            ui.t_connect_type.setText('TCP服务器')
+        cfg.set(cfg.MSG_CONNRET_MODE, self.connect_mode)
 
     def extend_send_init(self):
         self.extend_send_index = 0
@@ -201,14 +223,17 @@ class Message():
             ui.b_status_control.setText('未连接')
             self.state = False
         else:
-            index = ui.tool_cfg.currentIndex()
-            if index == 0:
+            if self.connect_mode == CONNTET_SERIAL:
                 self._event_open_serial()
-            elif index == 1:
-                self._event_tcp_connect()
+            elif self.connect_mode == CONNECT_TCP_CLINET:
+                self._event_tcp_client_connect()
+            elif self.connect_mode == CONNECT_TCP_SERVER:
+                self._event_tcp_client_connect()
             self.state = True
 
     def _event_open_serial(self):
+        if self.connect_mode != CONNTET_SERIAL:
+            self.cur_connect.close()
         self.serial.event_open()
         if self.serial.status():
             ui.b_status_control.setText('串口已连接')
@@ -216,9 +241,31 @@ class Message():
         else:
             ui.b_status_control.setText('串口打开失败')
             self.state = False
+        self.set_connect_mode(CONNTET_SERIAL)
 
-    def _event_tcp_connect(self):
-        pass
+    def _event_tcp_client_connect(self):
+        if self.connect_mode != CONNECT_TCP_CLINET:
+            self.cur_connect.close()
+        self.client.event_open()
+        if self.client.status():
+            ui.b_status_control.setText('断开连接')
+            self.state = True
+        else:
+            ui.b_status_control.setText('连接服务器失败')
+            self.state = False
+        self.set_connect_mode(CONNECT_TCP_CLINET)
+
+    def _event_tcp_server_connect(self):
+        if self.connect_mode != CONNECT_TCP_SERVER:
+            self.cur_connect.close()
+        self.server.event_open()
+        if self.server.status():
+            ui.b_status_control.setText('关闭服务器')
+            self.state = True
+        else:
+            ui.b_status_control.setText('服务器启动失败')
+            self.state = False
+        self.set_connect_mode(CONNECT_TCP_SERVER)
 
     def _event_clean_send(self):
         ui.lcd_send_len.display(0)
@@ -241,7 +288,7 @@ class Message():
         ui.c_auto_send.setCheckState(False)
         self.auto_send_mode = AUTO_SEND_NONE
 
-    def _event_auto_send(self,state):
+    def _event_auto_send(self, state):
         if state:
             if self.auto_send_mode == AUTO_SEND_EXTEND:
                 self._stop_extend_send()

@@ -94,9 +94,9 @@ class Waveform(QThread, ModuleBase):
                 return None
         return self.curves[chn]
 
-    def all_show(self):
+    def all_show(self, state):
         for curve in self.curves.values():
-            curve.c_chn.setCheckState(ui.c_chn_all.checkState())
+            curve.c_chn.setCheckState(state)
 
     def append(self, chn, data):
         '''添加一个数据到通道 data是数字'''

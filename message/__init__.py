@@ -64,11 +64,11 @@ class Message():
         ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
         ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SELD_TIME, '1.0')))
 
-    def extend_enter_status_save(self):
-        cfg.set(cfg.EXTEND_ENTER_STATE, ui.c_entend_enter.checkState())
+    def extend_enter_status_save(self, state):
+        cfg.set(cfg.EXTEND_ENTER_STATE, state)
 
-    def extend_cyclic_status_save(self):
-        cfg.set(cfg.EXTEND_CYCLIC, ui.c_extend_cyclic_send.checkState())
+    def extend_cyclic_status_save(self, state):
+        cfg.set(cfg.EXTEND_CYCLIC, state)
 
     def extend_send_save(self):
         for i in range(self.extend_count):
@@ -157,8 +157,7 @@ class Message():
                 print(data)
                 self.send(data.encode())
 
-    def _event_extend_all_select(self):
-        state = ui.c_all_exend_send.checkState()
+    def _event_extend_all_select(self, state):
         for extend in self.extend_send_info:
             extend['select'].setCheckState(state)
 
@@ -242,8 +241,8 @@ class Message():
         ui.c_auto_send.setCheckState(False)
         self.auto_send_mode = AUTO_SEND_NONE
 
-    def _event_auto_send(self):
-        if ui.c_auto_send.checkState():
+    def _event_auto_send(self,state):
+        if state:
             if self.auto_send_mode == AUTO_SEND_EXTEND:
                 self._stop_extend_send()
             self.auto_send.start()

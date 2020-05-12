@@ -69,8 +69,8 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self.text.selectAll()
         self.text.setFont(self.font.currentFont())
 
-    def _event_hex_show(self):
-        self.hex_mode(ui.c_hex_show.checkState())
+    def _event_hex_show(self, state):
+        self.hex_mode(state)
 
     def run(self):
         while True:

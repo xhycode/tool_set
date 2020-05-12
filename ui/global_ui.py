@@ -43,6 +43,10 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
             self.serial_port.setCurrentText(port_list[0])
 
     def debug_dispay(self, data):
+        text = self.e_debug_info.toPlainText()
+        if len(text) > 4096:  # 大小现在在4k，超过就砍半
+            self.e_debug_info.clear()
+            self.e_debug_info.insertPlainText(text[2048:])
         self.e_debug_info.moveCursor(QtGui.QTextCursor.End)
         self.e_debug_info.insertPlainText(data)
 

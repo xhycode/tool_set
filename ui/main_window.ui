@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1452</width>
-    <height>768</height>
+    <width>1102</width>
+    <height>762</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,202 +71,292 @@
                   <x>0</x>
                   <y>0</y>
                   <width>128</width>
-                  <height>540</height>
+                  <height>534</height>
                  </rect>
                 </property>
-                <widget class="QToolBox" name="tool_cfg">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>50</y>
-                   <width>131</width>
-                   <height>151</height>
-                  </rect>
-                 </property>
-                 <property name="currentIndex">
-                  <number>0</number>
-                 </property>
-                 <widget class="QWidget" name="serial_cfg">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>131</width>
-                    <height>99</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>串口配置</string>
-                  </attribute>
-                  <widget class="QPushButton" name="b_open">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>60</y>
-                     <width>75</width>
-                     <height>23</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>打开</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>10</x>
-                     <y>0</y>
-                     <width>54</width>
-                     <height>22</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>端口</string>
-                   </property>
-                   <property name="buddy">
-                    <cstring>serial_port</cstring>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_3">
-                   <property name="geometry">
-                    <rect>
-                     <x>10</x>
-                     <y>30</y>
-                     <width>54</width>
-                     <height>22</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>波特率</string>
-                   </property>
-                   <property name="buddy">
-                    <cstring>baudrate</cstring>
-                   </property>
-                  </widget>
-                  <widget class="QComboBox" name="serial_port">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>0</y>
-                     <width>69</width>
-                     <height>22</height>
-                    </rect>
-                   </property>
-                  </widget>
-                  <widget class="QComboBox" name="baudrate">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>30</y>
-                     <width>69</width>
-                     <height>22</height>
-                    </rect>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="tcp_cfg">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>131</width>
-                    <height>99</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>TCP/IP配置</string>
-                  </attribute>
-                  <widget class="QLabel" name="label_5">
-                   <property name="geometry">
-                    <rect>
-                     <x>10</x>
-                     <y>30</y>
-                     <width>61</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>端口</string>
-                   </property>
-                   <property name="buddy">
-                    <cstring>e_tcp_port</cstring>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_4">
-                   <property name="geometry">
-                    <rect>
-                     <x>10</x>
-                     <y>0</y>
-                     <width>54</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>IP</string>
-                   </property>
-                   <property name="buddy">
-                    <cstring>e_ipaddr</cstring>
-                   </property>
-                  </widget>
-                  <widget class="QLineEdit" name="e_tcp_port">
-                   <property name="geometry">
-                    <rect>
-                     <x>40</x>
-                     <y>30</y>
-                     <width>81</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="b_connect">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>60</y>
-                     <width>75</width>
-                     <height>23</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>连接</string>
-                   </property>
-                  </widget>
-                  <widget class="QLineEdit" name="e_ipaddr">
-                   <property name="geometry">
-                    <rect>
-                     <x>40</x>
-                     <y>0</y>
-                     <width>81</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                  </widget>
-                 </widget>
-                </widget>
-                <widget class="Line" name="line">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>300</y>
-                   <width>131</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
                 <widget class="QPushButton" name="b_status_control">
                  <property name="geometry">
                   <rect>
                    <x>10</x>
-                   <y>20</y>
+                   <y>440</y>
                    <width>111</width>
                    <height>23</height>
                   </rect>
                  </property>
                  <property name="text">
                   <string>连接</string>
+                 </property>
+                </widget>
+                <widget class="QGroupBox" name="groupBox_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>20</y>
+                   <width>131</width>
+                   <height>121</height>
+                  </rect>
+                 </property>
+                 <property name="title">
+                  <string>串口配置</string>
+                 </property>
+                 <widget class="QPushButton" name="b_open_serial">
+                  <property name="geometry">
+                   <rect>
+                    <x>50</x>
+                    <y>80</y>
+                    <width>75</width>
+                    <height>23</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>打开</string>
+                  </property>
+                 </widget>
+                 <widget class="QComboBox" name="serial_port">
+                  <property name="geometry">
+                   <rect>
+                    <x>50</x>
+                    <y>20</y>
+                    <width>69</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_2">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>54</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>端口</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>serial_port</cstring>
+                  </property>
+                 </widget>
+                 <widget class="QComboBox" name="baudrate">
+                  <property name="geometry">
+                   <rect>
+                    <x>50</x>
+                    <y>50</y>
+                    <width>69</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_3">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>54</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>波特率</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>baudrate</cstring>
+                  </property>
+                 </widget>
+                </widget>
+                <widget class="QGroupBox" name="groupBox_7">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>150</y>
+                   <width>131</width>
+                   <height>111</height>
+                  </rect>
+                 </property>
+                 <property name="title">
+                  <string>TCP客户端</string>
+                 </property>
+                 <widget class="QPushButton" name="b_connect_client">
+                  <property name="geometry">
+                   <rect>
+                    <x>50</x>
+                    <y>80</y>
+                    <width>75</width>
+                    <height>23</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>连接</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_5">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>61</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>端口</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>e_tcp_client_port</cstring>
+                  </property>
+                 </widget>
+                 <widget class="QLineEdit" name="e_tcp_client_ip">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>20</y>
+                    <width>91</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_4">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>54</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>IP</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>e_tcp_client_ip</cstring>
+                  </property>
+                 </widget>
+                 <widget class="QLineEdit" name="e_tcp_client_port">
+                  <property name="geometry">
+                   <rect>
+                    <x>40</x>
+                    <y>50</y>
+                    <width>81</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </widget>
+                <widget class="QGroupBox" name="groupBox_8">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>270</y>
+                   <width>131</width>
+                   <height>111</height>
+                  </rect>
+                 </property>
+                 <property name="title">
+                  <string>TCP服务器</string>
+                 </property>
+                 <widget class="QPushButton" name="b_connect_server">
+                  <property name="geometry">
+                   <rect>
+                    <x>50</x>
+                    <y>80</y>
+                    <width>75</width>
+                    <height>23</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>连接</string>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_13">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>61</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>端口</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>e_tcp_client_port</cstring>
+                  </property>
+                 </widget>
+                 <widget class="QLineEdit" name="e_local_ipaddr">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>20</y>
+                    <width>91</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_14">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>54</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>IP</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>e_tcp_client_ip</cstring>
+                  </property>
+                 </widget>
+                 <widget class="QLineEdit" name="e_local_port">
+                  <property name="geometry">
+                   <rect>
+                    <x>40</x>
+                    <y>50</y>
+                    <width>81</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                 </widget>
+                </widget>
+                <widget class="QLabel" name="t_connect_type">
+                 <property name="geometry">
+                  <rect>
+                   <x>13</x>
+                   <y>470</y>
+                   <width>101</width>
+                   <height>20</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>串口</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
                </widget>
@@ -1857,7 +1947,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>216</width>
-                  <height>548</height>
+                  <height>542</height>
                  </rect>
                 </property>
                 <widget class="QLineEdit" name="e_extend_send_1">

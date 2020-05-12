@@ -24,7 +24,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self.font.currentFontChanged.connect(self._event_font)
         self.font_size = ui.c_font_size
         self.font_size.valueChanged.connect(self._event_font_size)
-        self.font_size.setValue(int(cfg.get(cfg.DATA_FONT_SIZE)))
+        self.font_size.setValue(int(cfg.get(cfg.DATA_FONT_SIZE, '9')))
         self._event_font_size()
 
     def push(self, data):

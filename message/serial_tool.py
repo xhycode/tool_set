@@ -4,9 +4,11 @@ from serial.tools import list_ports
 from ui import ui
 import debug
 import cfg
+import sys
+sys.path.append('./')
+from message.message_base import MessageBase
 
-
-class SerialMesssge():
+class SerialMesssge(MessageBase):
     def __init__(self):
         self._finish = False
         self.serial = serial.Serial(timeout=1)  # 设置1秒超时

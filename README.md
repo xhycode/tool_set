@@ -37,10 +37,17 @@
 3.  python 测试过的版本： 3.8.2
 4.  测试过的系统： win10
 5.  依赖库：
-        * pip install serial
-        * pip install configobj
-        * pip install pyqt5
-        * pip install pyinstaller  # 打包成exe
+        - windows
+            * pip install serial
+            * pip install configobj
+            * pip install pyqt5
+            * pip install pyqtgraph
+            * pip install pyinstaller  # 打包成exe
+        - 树莓派
+            * pip3 install serial
+            * pip3 install configobj
+            * pip3 install pyqtgraph
+            * sudo apt-get install python3-pyqt5
 
 #### 版本说明
 

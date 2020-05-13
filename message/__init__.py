@@ -85,6 +85,19 @@ class Message():
         self.auto_send.timeout.connect(self._event_auto_send_timer)
         ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
         ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SELD_TIME, '1.0')))
+        self.send_encode_init()
+
+    def send_encode_init(self):
+        self.cur_encode = cfg.get(cfg.SEND_ENCODE, 'UTF-8')
+        table = ['UTF-8', 'GB2312', 'ASCLL', 'ANSI', 'GBK', 'UNICODE', 'GB18030']
+        ui.c_send_encode.addItems(table)
+        ui.c_send_encode.setCurrentText(self.cur_encode)
+        ui.c_send_encode.currentTextChanged.connect(self.change_encode)
+
+    def change_encode(self, encode):
+        self.cur_encode = encode
+        cfg.set(cfg.SEND_ENCODE, encode)
+        debug.info_ln('发送编码：' + encode)
 
     def extend_enter_status_save(self, state):
         cfg.set(cfg.EXTEND_ENTER_STATE, state)
@@ -113,7 +126,7 @@ class Message():
                 if ui.c_entend_enter.checkState():
                     data += '\n'
                 self.extend_send_index = index + 1
-                return data.encode()
+                return data.encode(self.cur_encode)
             index = (index + 1) % self.extend_count
             if index == self.extend_send_index:
                 debug.info_ln('没有选中的数据')
@@ -129,7 +142,7 @@ class Message():
                 if ui.c_entend_enter.checkState():
                     data += '\n'
                 self.extend_send_index = index + 1
-                return data.encode()
+                return data.encode(self.cur_encode)
             index = index + 1
         if self.extend_send_index == 0:
             return None  # 没有选中的项
@@ -177,7 +190,7 @@ class Message():
                 if ui.c_entend_enter.checkState():
                     data += '\n'
                 print(data)
-                self.send(data.encode())
+                self.send(data.encode(self.cur_encode))
 
     def _event_extend_all_select(self, state):
         for extend in self.extend_send_info:
@@ -210,7 +223,7 @@ class Message():
                     if ui.c_hex_send.checkState():
                         self.send((bytes.fromhex(data)))
                     else:
-                        self.send(data.encode())
+                        self.send(data.encode('GB2312'))
                 except:
                     self.auto_send.stop()
                     debug.info_ln('数据格式错误')

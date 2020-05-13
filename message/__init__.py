@@ -223,7 +223,7 @@ class Message():
                     if ui.c_hex_send.checkState():
                         self.send((bytes.fromhex(data)))
                     else:
-                        self.send(data.encode('GB2312'))
+                        self.send(data.encode(self.cur_encode))
                 except:
                     self.auto_send.stop()
                     debug.info_ln('数据格式错误')

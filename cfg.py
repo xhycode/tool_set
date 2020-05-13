@@ -14,6 +14,8 @@ AUTO_SELD_TIME = 'auto_send_time'
 MSG_CONNRET_MODE = 'connect_mode'
 TCP_CLIENT_IP = 'tcp_client_ip'
 TCP_CLIENT_PORT = 'tcp_client_port'
+SEND_ENCODE = 'send_encode'
+DISPLAY_ENCODE = 'display_encode'
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 
 

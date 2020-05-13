@@ -106,12 +106,9 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self.hex_mode(state)
 
     def run(self):
-        encode_err = False
-        lase_encode = self.cur_encode
+        renew_time = 20
         while True:
             if len(self.data) > 0:
-                if encode_err and lase_encode == self.cur_encode:
-                    continue
                 try:
                     self.mutex.lock()
                     if self.ishex:
@@ -128,11 +125,10 @@ class DataDisplay(QtCore.QThread, ModuleBase):
                     ui.set_lcd_recv_len_signal.emit(True, len(self.data))
                     self.data = []
                     self.mutex.unlock()
-                    encode_err = False
+                    renew_time = 20
                 except:
-                    encode_err = True
-                    lase_encode = self.cur_encode
                     debug.info_ln('解码失败：' + self.cur_encode)
                     debug.info_ln('请切换数据面板编码')
                     self.mutex.unlock()
-            self.msleep(20)
+                    renew_time = 1000
+            self.msleep(renew_time)

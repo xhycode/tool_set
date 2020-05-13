@@ -57,6 +57,7 @@ class TCPClinet(MessageBase):
         except:
             debug.info_ln('连接断开')
             self.clint_socket.close()
+            self.state = False
             return None
 
     def send(self, data):

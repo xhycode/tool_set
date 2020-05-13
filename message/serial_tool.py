@@ -8,6 +8,7 @@ import sys
 sys.path.append('./')
 from message.message_base import MessageBase
 
+
 class SerialMesssge(MessageBase):
     def __init__(self):
         self._finish = False

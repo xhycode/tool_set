@@ -1,12 +1,15 @@
 
 # -*- coding: utf-8 -*-
 import sys
+import time
 sys.path.append('./')
 from module.module_base import ModuleBase
 from ui import ui
 from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QTimer
 import debug
 import cfg
+from cache import Cache
 
 
 WAVEFOR_CHN_CNT = 8
@@ -48,6 +51,7 @@ class _curve():
 
 
 MAX_CHANNAL_COUNT = 16
+CACHE_FILE = 'waveform'
 
 
 class Waveform(QThread, ModuleBase):
@@ -59,9 +63,23 @@ class Waveform(QThread, ModuleBase):
         ui.e_chn_cache.textChanged.connect(self.set_cache_size)
         self.curves = {}
         self.line_data = ''
+        self.data_cache_init()
         ui.c_chn_all.stateChanged.connect(self.all_show)
         ui.b_chn_clear_all.clicked.connect(self.all_clear)
         self.start()
+
+    def data_cache_init(self):
+        self.data_cache = []
+        self.cache = Cache('.', CACHE_FILE, clear=True)
+        self.write_cache_timer = QTimer()
+        self.write_cache_timer.timeout.connect(self.data_write_cache)
+        self.write_cache_timer.start(5000)
+        
+
+    
+    def data_write_cache(self):
+        self.cache.write_lines(self.data_cache)
+        self.data_cache = []
 
     def set_cache_size(self, text):
         if text.isdigit():
@@ -121,6 +139,17 @@ class Waveform(QThread, ModuleBase):
         else:
             return None
 
+    def cut_time_str(self):
+        t = time.localtime()
+        ms = int(time.time() * 100 % 100)
+        return "{}.{}.{}.{}.{}.{}.{}".format(t.tm_year,
+                                          t.tm_mon,
+                                          t.tm_mday,
+                                          t.tm_hour,
+                                          t.tm_min,
+                                          t.tm_sec,
+                                          ms)
+
     def parse(self, data):
         ch = data.decode()
         if ch == '\n':
@@ -130,6 +159,7 @@ class Waveform(QThread, ModuleBase):
                 d = self._between_str(self.line_data, '[', ']')
                 if name and d:
                     self.append(name, float(d))
+                    self.data_cache.append("{} {} {}".format(name, d, self.cut_time_str()))
                 self.line_data = ''
             except:
                 debug.info_ln('数据解析错误')

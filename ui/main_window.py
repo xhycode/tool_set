@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '.\main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -624,6 +624,12 @@ class Ui_ToolSet(object):
         self.e_chn_cache.setObjectName("e_chn_cache")
         self.horizontalLayout_9.addWidget(self.e_chn_cache)
         self.verticalLayout_9.addWidget(self.frame_32)
+        self.b_open_waveform_file = QtWidgets.QPushButton(self.frame_13)
+        self.b_open_waveform_file.setObjectName("b_open_waveform_file")
+        self.verticalLayout_9.addWidget(self.b_open_waveform_file)
+        self.b_save_waveform_data = QtWidgets.QPushButton(self.frame_13)
+        self.b_save_waveform_data.setObjectName("b_save_waveform_data")
+        self.verticalLayout_9.addWidget(self.b_save_waveform_data)
         self.verticalLayout_4.addWidget(self.frame_13)
         self.horizontalLayout_4.addWidget(self.groupBox_5)
         self.g_waveform = PlotWidget(self.frame_2)
@@ -1020,7 +1026,7 @@ class Ui_ToolSet(object):
         self.label_14.setBuddy(self.e_tcp_client_ip)
 
         self.retranslateUi(ToolSet)
-        self.mode_manage.setCurrentIndex(0)
+        self.mode_manage.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(ToolSet)
 
     def retranslateUi(self, ToolSet):
@@ -1071,6 +1077,8 @@ class Ui_ToolSet(object):
         self.b_chn_clear_all.setText(_translate("ToolSet", "..."))
         self.c_chn_all.setText(_translate("ToolSet", "全部"))
         self.label_12.setText(_translate("ToolSet", "缓存"))
+        self.b_open_waveform_file.setText(_translate("ToolSet", "打开文件"))
+        self.b_save_waveform_data.setText(_translate("ToolSet", "保存数据"))
         self.mode_manage.setTabText(self.mode_manage.indexOf(self.wearform), _translate("ToolSet", "示波器"))
         self.groupBox_3.setTitle(_translate("ToolSet", "快捷发送"))
         self.c_extend_send_1.setText(_translate("ToolSet", "1"))

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QThread
 from message import serial_tool
 from message import tcp_client
 from message import tcp_server
 from ui import ui
 import debug
 import cfg
+import queue
 
 CONNTET_SERIAL = '0'
 CONNECT_TCP_CLINET = '1'
@@ -16,8 +18,9 @@ AUTO_SEND_MAIN = '1'
 AUTO_SEND_EXTEND = '2'
 
 
-class Message():
+class Message(QThread):
     def __init__(self):
+        super().__init__()
         self.connect_init()
         self.send_init()
         self.extend_send_init()
@@ -80,12 +83,14 @@ class Message():
         ui.c_extend_cyclic_send.setCheckState(int(cfg.get(cfg.EXTEND_CYCLIC, '0')))
 
     def send_init(self):
+        self.send_queue = queue.Queue()  # 存放bytes类型数据
         self.auto_send_mode = AUTO_SEND_NONE
         self.auto_send = QtCore.QTimer()
         self.auto_send.timeout.connect(self._event_auto_send_timer)
         ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
         ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SELD_TIME, '1.0')))
         self.send_encode_init()
+        self.start()  # 开启发送线程
 
     def send_encode_init(self):
         self.cur_encode = cfg.get(cfg.SEND_ENCODE, 'UTF-8')
@@ -168,16 +173,20 @@ class Message():
                 debug.info_ln('连接被断开')
             return None
 
-    def send(self, data):
-        '''data 是 bytes 类型'''
-        if self.cur_connect.status():
-            send_len = self.cur_connect.send(data)
-            ui.lcd_send_len.display(send_len + ui.lcd_send_len.intValue())
-            print("send len:" + str(send_len))
-            return send_len
-        else:
-            debug.info_ln('当前没有连接')
-        return None
+    def send(self, data, encode, ishex=False):
+        try:
+            if ishex:
+                b_data = bytes.fromhex(data)
+            else:
+                b_data = data.encode(encode)
+        except:
+            self.auto_send.stop()
+            debug.info_ln('数据格式错误')
+            return False
+        self.send_queue.put(b_data)
+        if not self.cur_connect.status():
+            debug.info_ln('未连接,连接后会继续发送')
+        return True
 
     def status(self):
         return self.cur_connect.status()
@@ -190,7 +199,7 @@ class Message():
                 if ui.c_entend_enter.checkState():
                     data += '\n'
                 print(data)
-                self.send(data.encode(self.cur_encode))
+                self.send(data, self.cur_encode, 0)
 
     def _event_extend_all_select(self, state):
         for extend in self.extend_send_info:
@@ -218,15 +227,14 @@ class Message():
     def _event_send(self):
         if self.cur_connect.status():
             data = ui.e_send.toPlainText()
-            if len(data) > 0:
-                try:
-                    if ui.c_hex_send.checkState():
-                        self.send((bytes.fromhex(data)))
-                    else:
-                        self.send(data.encode(self.cur_encode))
-                except:
-                    self.auto_send.stop()
-                    debug.info_ln('数据格式错误')
+            if ui.c_hex_send.checkState():
+                ret = self.send(data, self.cur_encode, ishex=True)
+            else:
+                ret = self.send(data, self.cur_encode, ishex=False)
+            if not ret:
+                debug.info_ln('数据格式错误')
+                if ui.c_auto_send.checkState():
+                    self._stop_main_auto_send()
         else:
             debug.info_ln('当前没有连接')
 
@@ -320,5 +328,20 @@ class Message():
             if data is None:
                 self._stop_extend_send()
             else:
-                self.send(data)
+                self.send(data, self.cur_encode, ishex=False)
                 self.auto_send.start(t)
+
+    def run(self):
+        ''' 线程用于发送队列的数据 '''
+        while True:
+            if self.send_queue.empty() or not self.cur_connect.status():
+                self.msleep(20)
+                continue
+            try:
+                data = self.send_queue.get()
+                send_len = self.cur_connect.send(data)
+                ui.lcd_send_len.display(send_len + ui.lcd_send_len.intValue())
+            except:
+                debug.info_ln('发送失败')
+
+            

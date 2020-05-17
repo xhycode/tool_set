@@ -28,4 +28,6 @@ class ModuleManage(module_base.ModuleBase):
     def parse(self, data):
         self._cur_module.parse(data)
 
+    def send_pop(self):
+        return self._cur_module.send_pop()
 

@@ -43,5 +43,8 @@ class Control():  # 继承类
 
     def send(self):
         while(True):
-            print('send')
-            QThread.msleep(500)
+            data = self.md.send_pop()
+            if data:
+                self.msg.send(data)
+            else:
+                QThread.msleep(20)

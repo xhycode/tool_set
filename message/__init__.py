@@ -131,7 +131,7 @@ class Message(QThread):
                 if ui.c_entend_enter.checkState():
                     data += '\n'
                 self.extend_send_index = index + 1
-                return data.encode(self.cur_encode)
+                return data
             index = (index + 1) % self.extend_count
             if index == self.extend_send_index:
                 debug.info_ln('没有选中的数据')
@@ -140,18 +140,6 @@ class Message(QThread):
                 if not ui.c_extend_cyclic_send.checkState():
                     debug.info_ln('顺序发送结束')
                     return None
-
-        while index < self.extend_count:
-            if self.extend_send_info[index]['select'].checkState():
-                data = self.extend_send_info[index]['data'].displayText()
-                if ui.c_entend_enter.checkState():
-                    data += '\n'
-                self.extend_send_index = index + 1
-                return data.encode(self.cur_encode)
-            index = index + 1
-        if self.extend_send_index == 0:
-            return None  # 没有选中的项
-        return None
 
     def recv_line(self):
         if self.cur_connect.status():
@@ -327,9 +315,11 @@ class Message(QThread):
             data = self.get_next_extend_data()
             if data is None:
                 self._stop_extend_send()
-            else:
-                self.send(data, self.cur_encode, ishex=False)
+                return
+            if self.send(data, self.cur_encode, ishex=False):
                 self.auto_send.start(t)
+            else:
+                self._stop_extend_send()
 
     def run(self):
         ''' 线程用于发送队列的数据 '''

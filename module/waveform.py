@@ -57,6 +57,7 @@ CACHE_FILE = 'waveform'
 class Waveform(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
+        ModuleBase.__init__(self)
         self.channal_count = 0
         self.channal_cache = int(cfg.get(cfg.WAVEFORM_CACHE, '1000'))
         ui.e_chn_cache.setText(str(self.channal_cache))

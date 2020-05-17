@@ -9,6 +9,7 @@ import debug
 class DataDisplay(QtCore.QThread, ModuleBase):
     def __init__(self):
         super().__init__()
+        ModuleBase.__init__(self)
         self.text = ui.e_recv
         self.ishex = False
         self.data = []
@@ -121,6 +122,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
                         for d in self.data:
                             temp += d
                         data = temp.decode(self.cur_encode)
+                        
                     ui.e_recv_signal.emit(data)
                     ui.set_lcd_recv_len_signal.emit(True, len(self.data))
                     self.data = []

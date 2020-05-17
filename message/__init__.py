@@ -93,7 +93,7 @@ class Message(QThread):
         self.start()  # 开启发送线程
 
     def send_encode_init(self):
-        self.cur_encode = cfg.get(cfg.SEND_ENCODE, 'UTF-8')
+        self.cur_encode = cfg.get(cfg.SEND_ENCODE, 'GB2312')
         table = ['UTF-8', 'GB2312', 'ASCLL', 'ANSI', 'GBK', 'UNICODE', 'GB18030']
         ui.c_send_encode.addItems(table)
         ui.c_send_encode.setCurrentText(self.cur_encode)
@@ -161,7 +161,7 @@ class Message(QThread):
                 debug.info_ln('连接被断开')
             return None
 
-    def send(self, data, encode, ishex=False):
+    def send(self, data, encode='GB2312', ishex=False):
         try:
             if ishex:
                 b_data = bytes.fromhex(data)

@@ -30,7 +30,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self._event_font_size()
 
     def display_encode_init(self):
-        self.cur_encode = cfg.get(cfg.DISPLAY_ENCODE, 'UTF-8')
+        self.cur_encode = cfg.get(cfg.DISPLAY_ENCODE, 'GB2312')
         table = ['UTF-8', 'GB2312', 'ASCLL', 'ANSI', 'GBK', 'UNICODE', 'GB18030']
         ui.c_display_encode.addItems(table)
         ui.c_display_encode.setCurrentText(self.cur_encode)

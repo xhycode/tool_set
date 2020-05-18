@@ -60,6 +60,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
             d = self.data_buf.decode(self.cur_encode)
             self.text.clear()
             ui.e_recv_signal.emit(d)
+            ui.set_lcd_recv_len_signal.emit(False, len(self.data_buf))
             return True
         except:
             debug.info_ln('切换失败，请更换编码后再尝试')
@@ -69,6 +70,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         d = ''.join(['%02x ' % b for b in self.data_buf])
         self.text.clear()
         ui.e_recv_signal.emit(d)
+        ui.set_lcd_recv_len_signal.emit(False, len(self.data_buf))
         return True
 
     def hex_mode(self, ishex):
@@ -106,31 +108,48 @@ class DataDisplay(QtCore.QThread, ModuleBase):
     def _event_hex_show(self, state):
         self.hex_mode(state)
 
+    def _data_to_hex(self, data):
+        temp = []
+        for d in self.data:
+            temp.append(d.hex() + ' ')
+            data = ''.join(temp)
+        return data
+
+    def _data_decode(self, data):
+        temp = bytearray()
+        for d in self.data:
+            temp += d
+        try:
+            data = temp.decode(self.cur_encode)
+        except:
+            data = None
+        return data
+
+    def _get_diaplay_data(self):
+        if len(self.data) == 0:
+            return ''
+        self.mutex.lock()
+        if self.ishex:
+            data = self._data_to_hex(self.data)
+        else:
+            data = self._data_decode(self.data)
+        self.mutex.unlock()
+        if data:
+            self.data = []
+        return data
+
     def run(self):
-        renew_time = 20
+        err_time = 0
         while True:
-            if len(self.data) > 0:
-                try:
-                    self.mutex.lock()
-                    if self.ishex:
-                        temp = []
-                        for d in self.data:
-                            temp.append(d.hex() + ' ')
-                            data = ''.join(temp)
-                    else:
-                        temp = bytearray()
-                        for d in self.data:
-                            temp += d
-                        data = temp.decode(self.cur_encode)
-                        
-                    ui.e_recv_signal.emit(data)
-                    ui.set_lcd_recv_len_signal.emit(True, len(self.data))
-                    self.data = []
-                    self.mutex.unlock()
-                    renew_time = 20
-                except:
+            data = self._get_diaplay_data()
+            if data is not None:
+                ui.e_recv_signal.emit(data)
+                ui.set_lcd_recv_len_signal.emit(True, len(self.data))
+            else:
+                err_time += 1
+                if err_time % 50 == 0:
+                    self.data = []  # 有全局保存的数据，切换时会显示
                     debug.info_ln('解码失败：' + self.cur_encode)
-                    debug.info_ln('请切换数据面板编码')
-                    self.mutex.unlock()
-                    renew_time = 1000
-            self.msleep(renew_time)
+                    debug.info_ln('请切换数据面板编码-')
+                    err_time = 0
+            self.msleep(20)

@@ -26,7 +26,7 @@ class Cache():
                 fd.write(data + end)
                 fd.close()
         except:
-            debug.info_ln(self.outfile + ' 写失败')
+            debug.err(self.outfile + ' 写失败')
 
 
     def write_lines(self, data, enter=True):

@@ -993,7 +993,7 @@ class Ui_ToolSet(object):
         self.groupBox_6.setObjectName("groupBox_6")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.groupBox_6)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.e_debug_info = QtWidgets.QPlainTextEdit(self.groupBox_6)
+        self.e_debug_info = QtWidgets.QTextEdit(self.groupBox_6)
         self.e_debug_info.setObjectName("e_debug_info")
         self.verticalLayout_6.addWidget(self.e_debug_info)
         self.horizontalLayout_3.addWidget(self.groupBox_6)

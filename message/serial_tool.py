@@ -51,7 +51,7 @@ class SerialMesssge(MessageBase):
         try:
             return self.serial.write(data)
         except:
-            debug.info_ln('发送失败,串口未连接')
+            debug.err('发送失败,串口未连接')
             return 0
 
     def _open(self, port, baudrate):
@@ -61,7 +61,7 @@ class SerialMesssge(MessageBase):
         try:
             self.serial.open()
         except:
-            debug.info_ln('串口打开失败')
+            debug.err('串口打开失败')
 
     def _event_change_serial_info(self, idx):
         if self.status() and ui.serial_port.currentText() != '':
@@ -81,7 +81,7 @@ class SerialMesssge(MessageBase):
         self._open(port, int(baudrate))
         cfg.set(cfg.SERIAL_PORT, port)
         cfg.set(cfg.SERIAL_BAUDRATE, baudrate)
-        debug.info_ln('串口 {} {} {}'.format(port, baudrate, self.status()))
+        debug.info('串口 {} {} {}'.format(port, baudrate, self.status()))
 
     def _init_baudrate_list(self):
         baudrate_list = self.baudrate_list()

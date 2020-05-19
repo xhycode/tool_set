@@ -23,7 +23,7 @@ class TCPServer(QThread, MessageBase):
             self.ex = futures.ThreadPoolExecutor(max_workers=3)
             self.tcpServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.tcpServerSocket.bind(self.ADDRESS)
-            debug.info_ln("Server start, listen port{}...".format(self.ADDRESS))
+            debug.info("Server start, listen port{}...".format(self.ADDRESS))
             self.tcpServerSocket.listen(5)
 
     def get_host_ip(self):

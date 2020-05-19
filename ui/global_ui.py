@@ -12,7 +12,7 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
     app = QApplication(sys.argv)
     '''外部在线程里边调用的小部件,需要提供一个自定义信号供外部使用，不然会出错'''
     e_recv_signal = QtCore.pyqtSignal(str)
-    e_debug_info_signal = QtCore.pyqtSignal(str)
+    e_debug_info_signal = QtCore.pyqtSignal(str, bool)
     serial_port_signal = QtCore.pyqtSignal(list, str)
     g_waveform_signal = QtCore.pyqtSignal(str, list)
     g_waveform_clear_signal = QtCore.pyqtSignal(str)
@@ -71,13 +71,16 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
         elif len(port_list) > 0:
             self.serial_port.setCurrentText(port_list[0])
 
-    def debug_dispay(self, data):
+    def debug_dispay(self, data, is_html):
         text = self.e_debug_info.toPlainText()
         if len(text) > 4096:  # 大小现在在4k，超过就砍半
             self.e_debug_info.clear()
             self.e_debug_info.insertPlainText(text[2048:])
         self.e_debug_info.moveCursor(QtGui.QTextCursor.End)
-        self.e_debug_info.insertPlainText(data)
+        if is_html:
+            self.e_debug_info.insertHtml(data)
+        else:
+            self.e_debug_info.insertPlainText(data)
 
     def set_lcd_recv_len(self, flag, num):
         if flag:

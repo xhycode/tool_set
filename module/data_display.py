@@ -49,7 +49,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
     def change_encode(self, encode):
         self.cur_encode = encode
         cfg.set(cfg.SEND_ENCODE, encode)
-        debug.info_ln('显示编码：' + encode)
+        debug.info('显示编码：' + encode)
         if not self.ishex:
             self.display_to_text()
 
@@ -72,7 +72,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
             ui.set_lcd_recv_len_signal.emit(False, len(self.data_buf))
             return True
         except:
-            debug.info_ln('切换失败，请更换编码后再尝试')
+            debug.err('切换失败，请更换编码后再尝试')
             return False
 
     def display_to_hex(self):
@@ -158,7 +158,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
                 err_time += 1
                 if err_time % 50 == 0:
                     self.data = []  # 有全局保存的数据，切换时会显示
-                    debug.info_ln('解码失败：' + self.cur_encode)
-                    debug.info_ln('请切换数据面板编码-')
+                    debug.err('解码失败：' + self.cur_encode)
+                    debug.info('请切换数据面板编码-')
                     err_time = 0
             self.msleep(20)

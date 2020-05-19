@@ -90,7 +90,7 @@ class Waveform(QThread, ModuleBase):
             cfg.set(cfg.WAVEFORM_CACHE, text)
         else:
             ui.e_chn_cache.setText(str(self.channal_cache))
-            debug.info_ln('缓存只能设置正整数')
+            debug.err('缓存只能设置正整数')
 
     def new_chn_num(self):
         if self.channal_count >= MAX_CHANNAL_COUNT:
@@ -155,7 +155,7 @@ class Waveform(QThread, ModuleBase):
         ch = data.decode()
         if ch == '\n':
             try:
-                debug.info_ln(self.line_data)
+                debug.data(self.line_data + '\n')
                 name = self._between_str(self.line_data, '<', '>')
                 d = self._between_str(self.line_data, '[', ']')
                 if name and d:
@@ -163,7 +163,7 @@ class Waveform(QThread, ModuleBase):
                     self.data_cache.append("{} {} {}".format(name, d, self.cut_time_str()))
                 self.line_data = ''
             except:
-                debug.info_ln('数据解析错误')
+                debug.err('数据解析错误')
         else:
             self.line_data += ch
 

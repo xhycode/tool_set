@@ -25,10 +25,10 @@ class TCPClinet(MessageBase):
         ip = ui.e_tcp_client_ip.displayText()
         port = ui.e_tcp_client_port.displayText()
         if not self.check_ip(ip):
-            debug.info_ln('ip地址格式错误')
+            debug.err('ip地址格式错误')
             return False
         if not port.isdigit():
-            debug.info_ln('端口格式错误')
+            debug.err('端口格式错误')
             return False
         cfg.set(cfg.TCP_CLIENT_IP, ip)
         cfg.set(cfg.TCP_CLIENT_PORT, port)
@@ -36,10 +36,10 @@ class TCPClinet(MessageBase):
         try:
             self.clint_socket.connect(self.ADDRESS)
             self.state = True
-            debug.info_ln('连接服务器成功')
+            debug.info('连接服务器成功')
         except:
             self.state = False
-            debug.info_ln('连接服务器失败')
+            debug.err('连接服务器失败')
 
     def close(self):
         if self.state:
@@ -55,7 +55,7 @@ class TCPClinet(MessageBase):
                 data = self.clint_socket.recv(count)
             return data
         except:
-            debug.info_ln('连接断开')
+            debug.err('连接断开')
             self.clint_socket.close()
             self.state = False
             return None
@@ -64,7 +64,7 @@ class TCPClinet(MessageBase):
         try:
             return self.clint_socket.send(data)
         except:
-            debug.info_ln('发送失败')
+            debug.err('发送失败')
             return 0
 
     def check_ip(self, ipaddr):

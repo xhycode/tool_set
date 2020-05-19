@@ -3144,7 +3144,7 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
-                 <widget class="QPlainTextEdit" name="e_debug_info"/>
+                 <widget class="QTextEdit" name="e_debug_info"/>
                 </item>
                </layout>
               </widget>

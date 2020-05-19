@@ -102,7 +102,7 @@ class Message(QThread):
     def change_encode(self, encode):
         self.cur_encode = encode
         cfg.set(cfg.SEND_ENCODE, encode)
-        debug.info_ln('发送编码：' + encode)
+        debug.info('发送编码：' + encode)
 
     def extend_enter_status_save(self, state):
         cfg.set(cfg.EXTEND_ENTER_STATE, state)
@@ -134,11 +134,11 @@ class Message(QThread):
                 return data
             index = (index + 1) % self.extend_count
             if index == self.extend_send_index:
-                debug.info_ln('没有选中的数据')
+                debug.err('没有选中的数据')
                 return None
             if index == 0:
                 if not ui.c_extend_cyclic_send.checkState():
-                    debug.info_ln('顺序发送结束')
+                    debug.info('顺序发送结束')
                     return None
 
     def recv_line(self):
@@ -158,7 +158,7 @@ class Message(QThread):
                 self.cur_connect.event_open()
             if not self.cur_connect.status():
                 ui.b_status_control.setText('连接断开')
-                debug.info_ln('连接被断开')
+                debug.err('连接被断开')
             return None
 
     def send(self, data, encode='GB2312', ishex=False):
@@ -169,11 +169,11 @@ class Message(QThread):
                 b_data = data.encode(encode)
         except:
             self.auto_send.stop()
-            debug.info_ln('数据格式错误')
+            debug.err('数据格式错误')
             return False
         self.send_queue.put(b_data)
         if not self.cur_connect.status():
-            debug.info_ln('未连接,连接后会继续发送')
+            debug.err('未连接,连接后会继续发送')
         return True
 
     def status(self):
@@ -205,7 +205,7 @@ class Message(QThread):
             self._stop_extend_send()
         else:
             if not self.cur_connect.status():
-                debug.info_ln('当前没有连接')
+                debug.err('当前没有连接')
             else:
                 self.auto_send_mode = AUTO_SEND_EXTEND
                 self.extend_send_index = 0
@@ -220,11 +220,11 @@ class Message(QThread):
             else:
                 ret = self.send(data, self.cur_encode, ishex=False)
             if not ret:
-                debug.info_ln('数据格式错误')
+                debug.err('数据格式错误')
                 if ui.c_auto_send.checkState():
                     self._stop_main_auto_send()
         else:
-            debug.info_ln('当前没有连接')
+            debug.err('当前没有连接')
 
     def _event_status_control(self):
         if self.cur_connect.status():
@@ -332,6 +332,6 @@ class Message(QThread):
                 send_len = self.cur_connect.send(data)
                 ui.lcd_send_len.display(send_len + ui.lcd_send_len.intValue())
             except:
-                debug.info_ln('发送失败')
+                debug.err('发送失败')
 
             

@@ -48,7 +48,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
 
     def change_encode(self, encode):
         self.cur_encode = encode
-        cfg.set(cfg.SEND_ENCODE, encode)
+        cfg.set(cfg.DISPLAY_ENCODE, encode)
         debug.info('显示编码：' + encode)
         if not self.ishex:
             self.display_to_text()

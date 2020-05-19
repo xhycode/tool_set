@@ -7,6 +7,8 @@ from module.module_base import ModuleBase
 from ui import ui
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QMutex
+from PyQt5.QtWidgets import QFileDialog
 import debug
 import cfg
 from cache import Cache
@@ -65,6 +67,7 @@ class Waveform(QThread, ModuleBase):
         self.curves = {}
         self.line_data = ''
         self.data_cache_init()
+        self.data_lock = QMutex()
         ui.c_chn_all.stateChanged.connect(self.all_show)
         ui.b_chn_clear_all.clicked.connect(self.all_clear)
         self.start()
@@ -74,9 +77,16 @@ class Waveform(QThread, ModuleBase):
         self.cache = Cache('.', CACHE_FILE, clear=True)
         self.write_cache_timer = QTimer()
         self.write_cache_timer.timeout.connect(self.data_write_cache)
+        ui.b_save_waveform_data.clicked.connect(self.data_save)
         self.write_cache_timer.start(5000)
         
-
+    def data_save(self):
+        self.data_write_cache()
+        filename=QFileDialog.getSaveFileName(ui)
+        print(filename)
+        lines = self.cache.readlines()
+        with open(filename[0], 'w') as f:
+            f.writelines(lines)
     
     def data_write_cache(self):
         self.cache.write_lines(self.data_cache)
@@ -104,11 +114,12 @@ class Waveform(QThread, ModuleBase):
         if not ui.get_curves(chn):
             chn_num = self.new_chn_num()
             if chn_num is not None:
+                self.data_lock.lock()
                 ui.add_curves(chn)
                 self.curves[chn] = _curve(chn, chn_num, self.channal_cache)
                 # 放到类中子类中不能触发信号，所以放在这里了
                 self.curves[chn].b_clean.pressed.connect(self.chn_clear_data)
-
+                self.data_lock.unlock()
             else:
                 return None
         return self.curves[chn]
@@ -169,6 +180,8 @@ class Waveform(QThread, ModuleBase):
 
     def run(self):
         while True:
+            self.data_lock.lock()
             for curve in self.curves.values():
                 curve.renew_diaplay()
+            self.data_lock.unlock()
             QThread.msleep(20)

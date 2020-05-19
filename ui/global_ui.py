@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtGui import QTextCharFormat, QTextDocument, QTextCursor, QColor
 from ui.main_window import Ui_ToolSet
 import pyqtgraph
 import sys
@@ -32,6 +33,34 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
     def renew_recv_dispay(self, data):
         self.e_recv.moveCursor(QtGui.QTextCursor.End)
         self.e_recv.insertPlainText(data)
+
+    def highlight_selection(self, text_edit, format):
+        cursor = text_edit.textCursor()
+        if not cursor.hasSelection():
+            cursor.select(QTextCursor.WordUnderCursor)
+        cursor.mergeCharFormat(format)
+        text_edit.mergeCurrentCharFormat(format)
+    
+    def text_all_black(self, text_edit):
+        col = QColor('black')
+        fmt = QTextCharFormat()
+        fmt.setForeground(col)
+        text_edit.selectAll()
+        text_edit.setCurrentCharFormat(fmt)
+
+    def highlight_text(self, text_edit, text, color):
+        self.text_all_black(text_edit)
+        col = QColor(color)
+        fmt = QTextCharFormat()
+        fmt.setForeground(col)
+        if not text:
+            return
+        if not col.isValid():
+            return
+        # 先把光标移动到开头
+        text_edit.moveCursor(QTextCursor.Start)
+        while text_edit.find(text):  # 查找所有文字
+            self.highlight_selection(text_edit, fmt)
 
     def renew_serial_port(self, port_list, cur):
         self.serial_port.clear()

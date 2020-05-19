@@ -16,6 +16,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self.data_buf = bytes()
         self.font_init()
         self.display_encode_init()
+        self.find_text_init()
         ui.c_hex_show.stateChanged.connect(self._event_hex_show)
         ui.b_clean_recv.clicked.connect(self._event_clean)
         self.mutex = QtCore.QMutex()
@@ -36,6 +37,14 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         ui.c_display_encode.addItems(table)
         ui.c_display_encode.setCurrentText(self.cur_encode)
         ui.c_display_encode.currentTextChanged.connect(self.change_encode)
+
+    def find_text_init(self):
+        ui.b_find_text.clicked.connect(self.highlight_text)
+        ui.e_find_data.textChanged.connect(self.highlight_text)
+
+    def highlight_text(self):
+        text = ui.e_find_data.displayText()
+        ui.highlight_text(self.text, text, 'red')
 
     def change_encode(self, encode):
         self.cur_encode = encode

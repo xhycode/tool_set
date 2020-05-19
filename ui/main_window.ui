@@ -484,7 +484,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="b_up_data">
+                  <widget class="QToolButton" name="b_find_text">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -497,33 +497,8 @@
                      <height>16777215</height>
                     </size>
                    </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::LeftToRight</enum>
-                   </property>
                    <property name="text">
-                    <string>上</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="b_down_data">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>20</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="contextMenuPolicy">
-                    <enum>Qt::NoContextMenu</enum>
-                   </property>
-                   <property name="text">
-                    <string>下</string>
+                    <string>...</string>
                    </property>
                   </widget>
                  </item>

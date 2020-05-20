@@ -1,5 +1,5 @@
-import serial
-from PyQt5 import QtCore
+from serial import Serial
+from PyQt5.QtCore import QTimer
 from serial.tools import list_ports
 from ui import ui
 import debug
@@ -12,10 +12,10 @@ from message.message_base import MessageBase
 class SerialMesssge(MessageBase):
     def __init__(self):
         self._finish = False
-        self.serial = serial.Serial(timeout=1)  # 设置1秒超时
+        self.serial = Serial(timeout=1)  # 设置1秒超时
         self.cur_port = cfg.get(cfg.SERIAL_PORT, 'None')
         self.cur_baudrate = cfg.get(cfg.SERIAL_BAUDRATE, '115200')
-        self.serial_renew = QtCore.QTimer()
+        self.serial_renew = QTimer()
         self.serial_renew.timeout.connect(self._renew_port_list)
         self.serial_renew.start()
         self._init_baudrate_list()

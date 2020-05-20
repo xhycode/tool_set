@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from PyQt5 import QtCore
+from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QMutex
 from module.module_base import ModuleBase
 from ui import ui
 import cfg
 import debug
 
 
-class DataDisplay(QtCore.QThread, ModuleBase):
+class DataDisplay(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
         ModuleBase.__init__(self)
@@ -19,7 +20,7 @@ class DataDisplay(QtCore.QThread, ModuleBase):
         self.find_text_init()
         ui.c_hex_show.stateChanged.connect(self._event_hex_show)
         ui.b_clean_recv.clicked.connect(self._event_clean)
-        self.mutex = QtCore.QMutex()
+        self.mutex = QMutex()
         self.start()
 
     def font_init(self):

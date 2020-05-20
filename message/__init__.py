@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QTimer
 from message import serial_tool
 from message import tcp_client
 from message import tcp_server
@@ -85,7 +85,7 @@ class Message(QThread):
     def send_init(self):
         self.send_queue = queue.Queue()  # 存放bytes类型数据
         self.auto_send_mode = AUTO_SEND_NONE
-        self.auto_send = QtCore.QTimer()
+        self.auto_send = QTimer()
         self.auto_send.timeout.connect(self._event_auto_send_timer)
         ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
         ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SELD_TIME, '1.0')))

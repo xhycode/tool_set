@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtWidgets import QApplication
-from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtGui import QTextCharFormat, QTextDocument, QTextCursor, QColor
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtGui import QTextCharFormat
+from PyQt5.QtGui import QTextDocument
+from PyQt5.QtGui import QTextCursor
+from PyQt5.QtGui import QColor
 from ui.main_window import Ui_ToolSet
-import pyqtgraph
 import sys
 
 TOOL_VERSIONS = 'V1.1.0'
 
-class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
+class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     app = QApplication(sys.argv)
     '''外部在线程里边调用的小部件,需要提供一个自定义信号供外部使用，不然会出错'''
     e_recv_signal = QtCore.pyqtSignal(str)
@@ -31,7 +34,7 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
         self.set_lcd_recv_len_signal.connect(self.set_lcd_recv_len)
 
     def renew_recv_dispay(self, data):
-        self.e_recv.moveCursor(QtGui.QTextCursor.End)
+        self.e_recv.moveCursor(QTextCursor.End)
         self.e_recv.insertPlainText(data)
 
     def highlight_selection(self, text_edit, format):
@@ -76,7 +79,7 @@ class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
         if len(text) > 4096:  # 大小现在在4k，超过就砍半
             self.e_debug_info.clear()
             self.e_debug_info.insertPlainText(text[2048:])
-        self.e_debug_info.moveCursor(QtGui.QTextCursor.End)
+        self.e_debug_info.moveCursor(QTextCursor.End)
         if is_html:
             self.e_debug_info.insertHtml(data)
         else:

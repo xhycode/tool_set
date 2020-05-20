@@ -153,8 +153,9 @@ class DataDisplay(QThread, ModuleBase):
         while True:
             data = self._get_diaplay_data()
             if data is not None:
-                ui.e_recv_signal.emit(data)
-                ui.set_lcd_recv_len_signal.emit(True, len(self.data))
+                if len(data) > 0:
+                    ui.e_recv_signal.emit(data)
+                    ui.set_lcd_recv_len_signal.emit(True, len(self.data))
             else:
                 err_time += 1
                 if err_time % 50 == 0:

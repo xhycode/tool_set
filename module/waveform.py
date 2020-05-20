@@ -78,16 +78,28 @@ class Waveform(QThread, ModuleBase):
         self.write_cache_timer = QTimer()
         self.write_cache_timer.timeout.connect(self.data_write_cache)
         ui.b_save_waveform_data.clicked.connect(self.data_save)
+        ui.b_open_waveform_file.clicked.connect(self.open_data)
         self.write_cache_timer.start(5000)
         
     def data_save(self):
         self.data_write_cache()
         filename=QFileDialog.getSaveFileName(ui)
-        print(filename)
         lines = self.cache.readlines()
         with open(filename[0], 'w') as f:
             f.writelines(lines)
     
+    def open_data(self):
+        filename=QFileDialog.getOpenFileName(ui)
+        self.all_clear()
+        with open(filename[0], 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                try:
+                    data = line.split(' ')
+                    self.append(data[0], float(data[1]))
+                except:
+                    debug.err(line)
+
     def data_write_cache(self):
         self.cache.write_lines(self.data_cache)
         self.data_cache = []
@@ -139,7 +151,7 @@ class Waveform(QThread, ModuleBase):
             if curve.b_clean.isDown():
                 curve.clear_data()
 
-    def all_clear(self, chn):
+    def all_clear(self):
         for curve in self.curves.values():
             curve.clear_data()
 

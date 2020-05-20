@@ -6,7 +6,7 @@ from ui.main_window import Ui_ToolSet
 import pyqtgraph
 import sys
 
-TOOL_VERSIONS = 'V1.0.0'
+TOOL_VERSIONS = 'V1.1.0'
 
 class GloabalUI(QtWidgets.QMainWindow, Ui_ToolSet):  # 继承类
     app = QApplication(sys.argv)

@@ -21,10 +21,16 @@ class Control():  # 继承类
     def __init__(self):
         self.msg = Message()  # 消息处理
         self.md = ModuleManage()  # 功能模块管理
-        self.recv_thread = ControlThread(self.recv)
+        self.recv_init()
+        self.send_init()
+
+    def send_init(self):
         self.send_thread = ControlThread(self.send)
-        self.recv_thread.start()
         self.send_thread.start()
+
+    def recv_init(self):
+        self.recv_thread = ControlThread(self.recv)
+        self.recv_thread.start()
 
     def recv(self):
         ''' 说明：线程 start 后调用的函数

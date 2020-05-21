@@ -6,6 +6,7 @@ from PyQt5.QtGui import QTextCharFormat
 from PyQt5.QtGui import QTextDocument
 from PyQt5.QtGui import QTextCursor
 from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QIcon
 from ui.main_window import Ui_ToolSet
 import sys
 
@@ -25,6 +26,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         super().__init__()
         self.setupUi(self)  # 执行类中的setupUi函数
         self.setWindowTitle("调试工具箱 " + TOOL_VERSIONS)
+        self.icon_init()
         self.init_waveform_ui()
         self.e_recv_signal.connect(self.renew_recv_dispay)
         self.e_debug_info_signal.connect(self.debug_dispay)
@@ -32,6 +34,9 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.g_waveform_clear_signal.connect(self.clear_curves)
         self.g_waveform_signal.connect(self.set_waveform_data)
         self.set_lcd_recv_len_signal.connect(self.set_lcd_recv_len)
+    
+    def icon_init(self):
+        self.setWindowIcon(QIcon('./ui/mao.png'))
 
     def renew_recv_dispay(self, data):
         self.e_recv.moveCursor(QTextCursor.End)

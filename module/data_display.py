@@ -155,7 +155,7 @@ class DataDisplay(QThread, ModuleBase):
             if data is not None:
                 if len(data) > 0:
                     ui.e_recv_signal.emit(data)
-                    ui.set_lcd_recv_len_signal.emit(True, len(self.data))
+                    ui.set_lcd_recv_len_signal.emit(True, len(data))
             else:
                 err_time += 1
                 if err_time % 50 == 0:

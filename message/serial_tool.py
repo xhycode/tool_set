@@ -26,7 +26,7 @@ class SerialMesssge(MessageBase):
         return [i[0] for i in list(list_ports.comports())]
 
     def baudrate_list(self):
-        return ['1200', '2400', '4800', '9600', '19200', '38400', '115200', '230400', '460800', '921600']
+        return ['1200', '2400', '4800', '9600', '19200', '38400', '115200', '230400', '250000', '460800', '921600']
 
     def status(self):
         return self.serial.is_open

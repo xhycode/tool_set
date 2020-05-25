@@ -43,11 +43,13 @@
             * pip install pyqt5
             * pip install pyqtgraph
             * pip install pyinstaller  # 打包成exe
-        - 树莓派
-            * pip3 install serial
-            * pip3 install configobj
-            * pip3 install pyqtgraph
+        - linux
+            * pip3 install serial -i https://pypi.douban.com/simple
+            * pip3 install pyserial -i https://pypi.douban.com/simple
+            * pip3 install configobj -i https://pypi.douban.com/simple
+            * pip3 install pyqtgraph -i https://pypi.douban.com/simple
             * sudo apt-get install python3-pyqt5
+            * alias pyuic5="python3 -m PyQt5.uic.pyuic"  # 添加pyuic5到快捷方式，就可以直接用了
 
 #### 版本说明
 

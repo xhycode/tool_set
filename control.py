@@ -48,6 +48,7 @@ class Control():  # 继承类
                 QThread.msleep(10)
 
     def send(self):
+        ''' 将模块要发送的数据转发出去 '''
         while(True):
             data = self.md.send_pop()
             if data:

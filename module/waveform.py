@@ -22,6 +22,7 @@ COLOR = ['b', 'g', 'r', 'c', 'm', 'y', 'w', 'k']
 
 
 class _curve():
+    ''' 每个 _curve 类管理一个曲线通道  '''
     def __init__(self, chn_name, chn_num, cache_size=1000):
         self.data = []
         self.cache_size = cache_size
@@ -70,7 +71,7 @@ class Waveform(QThread, ModuleBase):
         self.data_lock = QMutex()
         ui.c_chn_all.stateChanged.connect(self.all_show)
         ui.b_chn_clear_all.clicked.connect(self.all_clear)
-        self.start()
+        self.start()  # 继承的 QThread， 用来刷新数据显示
 
     def data_cache_init(self):
         self.data_cache = []
@@ -191,6 +192,7 @@ class Waveform(QThread, ModuleBase):
             self.line_data += ch
 
     def run(self):
+        ''' 刷新显示的线程函数 '''
         while True:
             self.data_lock.lock()
             for curve in self.curves.values():

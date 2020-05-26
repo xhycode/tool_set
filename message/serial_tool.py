@@ -64,6 +64,7 @@ class SerialMesssge(MessageBase):
             debug.err('串口打开失败')
 
     def _event_change_serial_info(self, idx):
+        ''' 串口或波特率改变了都会重新打开串口 '''
         if self.status() and ui.serial_port.currentText() != '':
             isport = ui.serial_port.currentText() != self.cur_port  # 串口
             isbaudrate = ui.baudrate.currentText() != self.cur_baudrate
@@ -99,6 +100,7 @@ class SerialMesssge(MessageBase):
         return False  # 没有变化不刷新
 
     def _renew_port_list(self):
+        ''' 在定时器中刷新串口列表 '''
         port_list = self.port_list()
         if self._is_port_list(port_list):
             ui.serial_port_signal.emit(port_list, self.cur_port)

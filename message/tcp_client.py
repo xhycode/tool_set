@@ -44,6 +44,7 @@ class TCPClinet(MessageBase):
     def close(self):
         if self.state:
             self.clint_socket.close()
+            self.state = False
 
     def recv(self, count=None):
         if not self.state:

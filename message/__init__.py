@@ -328,13 +328,17 @@ class Message(QThread):
         '''
         if self.connect_mode != CONNECT_TCP_CLINET:
             self.cur_connect.close()
-        self.client.event_open()
         if self.client.status():
-            ui.b_status_control.setText('断开连接')
-            self.state = True
+            self.client.close()
         else:
-            ui.b_status_control.setText('连接服务器失败')
+            self.client.event_open()
+        # 判断打开是否成功,并改变状态
+        if self.client.status():
+            self.state = True
+            ui.b_status_control.setText('断开')
+        else:
             self.state = False
+            ui.b_status_control.setText('连接')
         self.set_connect_mode(CONNECT_TCP_CLINET)
 
     def _event_tcp_server_connect(self):

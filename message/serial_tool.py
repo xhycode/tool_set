@@ -35,6 +35,9 @@ class SerialMesssge(MessageBase):
         self._finish = True
         if self.status():
             self.serial.close()
+        ui.b_open_serial.setText('打开')
+        debug.info('串口断开连接')
+        
 
     def recv(self, count=None):
         if not self.status():
@@ -60,6 +63,7 @@ class SerialMesssge(MessageBase):
         self.cur_port = port
         try:
             self.serial.open()
+            ui.b_open_serial.setText('关闭')
         except:
             debug.err('串口打开失败')
 

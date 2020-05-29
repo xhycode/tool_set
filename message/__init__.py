@@ -305,17 +305,19 @@ class Message(QThread):
 
     def _event_open_serial(self):
         ''' 点击串口连接事件
-            只有打开没有关闭功能
             会断开其他连接
         '''
         if self.connect_mode != CONNTET_SERIAL:
             self.cur_connect.close()
-        self.serial.event_open()
+        if not self.serial.status():
+            self.serial.event_open()
+        else:
+            self.serial.close()
         if self.serial.status():
-            ui.b_status_control.setText('串口已连接')
+            ui.b_status_control.setText('关闭串口')
             self.state = True
         else:
-            ui.b_status_control.setText('串口打开失败')
+            ui.b_status_control.setText('打开串口')
             self.state = False
         self.set_connect_mode(CONNTET_SERIAL)
 

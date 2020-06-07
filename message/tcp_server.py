@@ -29,6 +29,7 @@ class TCPServer(QThread, MessageBase):
             self.service.bind(self.ADDRESS)
             self.service.listen(1)  # 只接入一个
             self.statue = True
+            ui.b_connect_server.setText('打开')
             cfg.set(cfg.SERVER_PORT, port)
 
     def get_host_ip(self):
@@ -85,6 +86,7 @@ class TCPServer(QThread, MessageBase):
         if self.statue:
             self.sock.close()
             self.statue = STATUE_NONE
+            ui.b_connect_server.setText('连接')
             debug.info("客户端连接断开")
 
     def recv(self, count=1):

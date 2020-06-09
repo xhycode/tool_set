@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main_window.ui'
+# Form implementation generated from reading ui file '.\main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_ToolSet(object):
     def setupUi(self, ToolSet):
@@ -39,7 +41,7 @@ class Ui_ToolSet(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 130, 562))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 128, 584))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.b_status_control = QtWidgets.QPushButton(self.scrollAreaWidgetContents_2)
         self.b_status_control.setGeometry(QtCore.QRect(10, 460, 111, 23))
@@ -228,17 +230,13 @@ class Ui_ToolSet(object):
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         self.horizontalLayout_6.addWidget(self.label_7)
-        self.lcd_recv_len = QtWidgets.QLCDNumber(self.frame_3)
-        self.lcd_recv_len.setMinimumSize(QtCore.QSize(0, 20))
-        self.lcd_recv_len.setMaximumSize(QtCore.QSize(60, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(15)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lcd_recv_len.setFont(font)
-        self.lcd_recv_len.setDigitCount(10)
-        self.lcd_recv_len.setObjectName("lcd_recv_len")
-        self.horizontalLayout_6.addWidget(self.lcd_recv_len)
+        self.e_recv_len = QtWidgets.QLineEdit(self.frame_3)
+        self.e_recv_len.setEnabled(False)
+        self.e_recv_len.setMinimumSize(QtCore.QSize(0, 20))
+        self.e_recv_len.setMaximumSize(QtCore.QSize(100, 20))
+        self.e_recv_len.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.e_recv_len.setObjectName("e_recv_len")
+        self.horizontalLayout_6.addWidget(self.e_recv_len, 0, QtCore.Qt.AlignRight)
         self.b_clean_recv = QtWidgets.QPushButton(self.frame_3)
         self.b_clean_recv.setMinimumSize(QtCore.QSize(0, 20))
         self.b_clean_recv.setMaximumSize(QtCore.QSize(40, 16777215))
@@ -906,7 +904,7 @@ class Ui_ToolSet(object):
         self.scrollArea_5.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing)
         self.scrollArea_5.setObjectName("scrollArea_5")
         self.scrollAreaWidgetContents_5 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 216, 568))
+        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 216, 592))
         self.scrollAreaWidgetContents_5.setObjectName("scrollAreaWidgetContents_5")
         self.e_extend_send_1 = QtWidgets.QLineEdit(self.scrollAreaWidgetContents_5)
         self.e_extend_send_1.setGeometry(QtCore.QRect(40, 10, 101, 20))
@@ -1296,7 +1294,7 @@ class Ui_ToolSet(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 98, 132))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 98, 122))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.c_hex_send = QtWidgets.QCheckBox(self.scrollAreaWidgetContents)
         self.c_hex_send.setGeometry(QtCore.QRect(10, 10, 81, 20))
@@ -1464,6 +1462,7 @@ class Ui_ToolSet(object):
         self.label_10.setText(_translate("ToolSet", "查找"))
         self.b_find_text.setText(_translate("ToolSet", "..."))
         self.label_7.setText(_translate("ToolSet", "接收"))
+        self.e_recv_len.setText(_translate("ToolSet", "0"))
         self.b_clean_recv.setText(_translate("ToolSet", "清空"))
         self.label_9.setText(_translate("ToolSet", "字号"))
         self.label_17.setText(_translate("ToolSet", "字体"))
@@ -1556,5 +1555,4 @@ class Ui_ToolSet(object):
         self.actionopen.setToolTip(_translate("ToolSet", "<html><head/><body><p><span style=\" font-weight:600;\">open</span></p></body></html>"))
         self.actionOpen.setText(_translate("ToolSet", "Open"))
         self.action_Save.setText(_translate("ToolSet", "&Save"))
-
 from pyqtgraph import PlotWidget

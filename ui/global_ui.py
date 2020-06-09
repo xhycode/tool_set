@@ -67,9 +67,9 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         num: 更新的数字  类型:int
         '''
         if is_add:
-            self.lcd_recv_len.display(self.lcd_recv_len.value() + num)
+            self.e_recv_len.setText(str(int(self.e_recv_len.displayText()) + num))
         else:
-            self.lcd_recv_len.display(num)
+            self.e_recv_len.setText(str(num))
 
     def text_all_black(self, text_edit):
         ''' 将所有的字体都变成黑色

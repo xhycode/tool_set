@@ -3,12 +3,12 @@ import debug
 
 
 class Cache():
-    def __init__(self, path=None, fname="out", clear=False):
+    def __init__(self, path=None, dir_name='cache', fname="out", clear=False):
         if os.path.exists(path):
             curdir = path
         else:
             curdir = os.getcwd()
-        self._outdir = os.path.join(curdir, 'cache')
+        self._outdir = os.path.join(curdir, dir_name)
         if not os.path.exists(self._outdir):
             print("creating cache dir")
             os.mkdir(self._outdir)

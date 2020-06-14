@@ -87,7 +87,7 @@ class Waveform(QThread, ModuleBase):
 
     def data_cache_init(self):
         self.data_cache = []
-        self.cache = Cache('.', CACHE_FILE, clear=True)
+        self.cache = Cache('.', fname=CACHE_FILE, clear=True)
         self.write_cache_timer = QTimer()
         self.write_cache_timer.timeout.connect(self.data_write_cache)
         ui.b_save_waveform_data.clicked.connect(self.data_save)

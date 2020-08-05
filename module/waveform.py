@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QFileDialog
 import debug
 import cfg
 from cache import Cache
+import pyqtgraph as pg
 
 
 WAVEFOR_CHN_CNT = 8
@@ -71,7 +72,18 @@ class Waveform(QThread, ModuleBase):
         self.data_lock = QMutex()
         ui.c_chn_all.stateChanged.connect(self.all_show)
         ui.b_chn_clear_all.clicked.connect(self.all_clear)
+        self.init_slot()
         self.start()  # 继承的 QThread， 用来刷新数据显示
+
+    def init_slot(self):
+        self.k_plt = ui.g_waveform
+        self.vLine = pg.InfiniteLine(angle=90, movable=False, )  # 创建一个垂直线条
+        self.hLine = pg.InfiniteLine(angle=0, movable=False, )  # 创建一个水平线条
+        self.k_plt.addItem(self.vLine, ignoreBounds=True)  # 在图形部件中添加垂直线条
+        self.k_plt.addItem(self.hLine, ignoreBounds=True)  # 在图形部件中添加水平线条
+        self.label = pg.TextItem(color=(0,0,0))  # 创建一个文本项
+        self.k_plt.addItem(self.label, (0, 0))  # 在图形部件中添加文本项
+        self.move_slot = pg.SignalProxy(self.k_plt.scene().sigMouseMoved, rateLimit=60, slot=self.print_slot)
 
     def data_cache_init(self):
         self.data_cache = []
@@ -100,6 +112,27 @@ class Waveform(QThread, ModuleBase):
                     self.append(data[0], float(data[1]))
                 except:
                     debug.err(line)
+
+    # 响应鼠标移动绘制十字光标
+    def print_slot(self, event=None):
+        if event is None:
+            print("事件为空")
+        else:
+            pos = event[0]  # 获取事件的鼠标位置
+            try:
+                # 如果鼠标位置在绘图部件中
+                if self.k_plt.sceneBoundingRect().contains(pos):
+                    mousePoint = self.k_plt.plotItem.vb.mapSceneToView(pos)  # 转换鼠标坐标
+                    index = int(mousePoint.x())  # 鼠标所处的X轴坐标
+                    pos_y = int(mousePoint.y())  # 鼠标所处的Y轴坐标
+                    # 在label中写入HTML
+                    self.label.setText("({}, {})".format(index, pos_y))
+                    self.label.setPos(mousePoint.x(), mousePoint.y())  # 设置label的位置
+                    # 设置垂直线条和水平线条的位置组成十字光标
+                    self.vLine.setPos(mousePoint.x())
+                    self.hLine.setPos(mousePoint.y())
+            except Exception as e:
+                debug.err(e)
 
     def data_write_cache(self):
         self.cache.write_lines(self.data_cache)

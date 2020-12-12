@@ -209,7 +209,11 @@ class Waveform(QThread, ModuleBase):
                                           ms)
 
     def parse(self, data):
-        ch = data.decode()
+        try:
+            ch = data.decode()
+        except:
+            debug.err('数据编码错误')
+            return
         if ch == '\n':
             try:
                 debug.data(self.line_data + '\n')
@@ -221,6 +225,7 @@ class Waveform(QThread, ModuleBase):
                 self.line_data = ''
             except:
                 debug.err('数据解析错误')
+                self.line_data = ''
         else:
             self.line_data += ch
 

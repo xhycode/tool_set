@@ -60,6 +60,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         '''
         self.e_recv.moveCursor(QTextCursor.End)
         self.e_recv.insertPlainText(data)
+        self.e_recv.moveCursor(QTextCursor.End)
     
     def set_lcd_recv_len(self, is_add, num):
         ''' 设置接收数据长度的显示

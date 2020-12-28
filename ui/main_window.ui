@@ -71,7 +71,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>128</width>
-                  <height>584</height>
+                  <height>568</height>
                  </rect>
                 </property>
                 <widget class="QPushButton" name="b_status_control">
@@ -2458,7 +2458,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>216</width>
-                  <height>592</height>
+                  <height>576</height>
                  </rect>
                 </property>
                 <widget class="QLineEdit" name="e_extend_send_1">
@@ -3640,7 +3640,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>98</width>
-                  <height>122</height>
+                  <height>138</height>
                  </rect>
                 </property>
                 <widget class="QCheckBox" name="c_hex_send">
@@ -3829,33 +3829,6 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="c_auto_send">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>80</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>9</pointsize>
-                   </font>
-                  </property>
-                  <property name="layoutDirection">
-                   <enum>Qt::LeftToRight</enum>
-                  </property>
-                  <property name="text">
-                   <string>自动发送</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QFrame" name="frame_9">
                   <property name="maximumSize">
                    <size>
@@ -3908,6 +3881,40 @@
                     </widget>
                    </item>
                   </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="c_auto_send">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="text">
+                   <string>自动发送</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="c_is_pack">
+                  <property name="text">
+                   <string>打包协议</string>
+                  </property>
                  </widget>
                 </item>
                </layout>

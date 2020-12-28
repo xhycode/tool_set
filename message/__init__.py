@@ -4,6 +4,7 @@ from PyQt5.QtCore import QTimer
 from message import serial_tool
 from message import tcp_client
 from message import tcp_server
+from message.protocol import Protocol
 from ui import ui
 import debug
 import cfg
@@ -204,11 +205,12 @@ class Message(QThread):
                 debug.err('连接被断开')
             return None
 
-    def send(self, data, encode='GB2312', ishex=False):
+    def send(self, data, encode='GB2312', ishex=False, packet=False):
         ''' data ：类型 str
             这个发送不是立即发送，而是放到缓存区等待线程发送
         '''
         try:
+            debug.info(data)
             if ishex:
                 b_data = bytes.fromhex(data)
             else:
@@ -217,6 +219,9 @@ class Message(QThread):
             self.auto_send.stop()
             debug.err('数据格式错误')
             return False
+        if packet:
+            b_data = Protocol.pack(data=b_data)
+            print(b_data)
         self.send_queue.put(b_data)
         if not self.cur_connect.status():
             debug.err('未连接,连接后会继续发送')
@@ -229,6 +234,7 @@ class Message(QThread):
         ''' 扩展发送区的单个发送事件触发
             只发送被按下发送的数据框数据
         '''
+        is_packet = ui.c_is_pack.checkState()
         # 因为要循环检测哪个被按下了，所以事件要设置成按下触发
         # 如果设置成弹起触发，则无法分辨谁被按下了
         for extend in self.extend_send_info:
@@ -237,7 +243,7 @@ class Message(QThread):
                 if ui.c_entend_enter.checkState():
                     data += '\n'
                 print(data)
-                self.send(data, self.cur_encode, 0)
+                self.send(data, self.cur_encode, 0, is_packet)
 
     def _event_extend_all_select(self, state):
         ''' 扩展区的全选事件
@@ -275,10 +281,9 @@ class Message(QThread):
         ''' 发送区的数据发送 '''
         if self.cur_connect.status():
             data = ui.e_send.toPlainText()
-            if ui.c_hex_send.checkState():
-                ret = self.send(data, self.cur_encode, ishex=True)
-            else:
-                ret = self.send(data, self.cur_encode, ishex=False)
+            is_packet = ui.c_is_pack.checkState()
+            ishex = ui.c_hex_send.checkState()
+            ret = self.send(data, self.cur_encode, ishex=ishex, packet=is_packet)
             if not ret:
                 debug.err('数据格式错误')
                 if ui.c_auto_send.checkState():

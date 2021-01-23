@@ -14,7 +14,7 @@ class DataDisplay(QThread, ModuleBase):
         self.text = ui.e_recv
         self.ishex = False
         self.data = []
-        self.data_buf = bytes()
+        self.data_buf = []
         self.font_init()
         self.display_encode_init()
         self.find_text_init()
@@ -59,25 +59,21 @@ class DataDisplay(QThread, ModuleBase):
 
     def _event_clean(self):
         self.mutex.lock()
-        self.data_buf = bytes()
+        self.data_buf.clear()
         self.data = []
         self.text.clear()
         ui.set_lcd_recv_len_signal.emit(False, 0)
         self.mutex.unlock()
 
     def display_to_text(self):
-        try:
-            d = self.data_buf.decode(self.cur_encode)
-            self.text.clear()
-            ui.e_recv_signal.emit(d)
-            ui.set_lcd_recv_len_signal.emit(False, len(self.data_buf))
-            return True
-        except:
-            debug.err('切换失败，请更换编码后再尝试')
-            return False
+        d = self._data_decode(self.data_buf)
+        self.text.clear()
+        ui.e_recv_signal.emit(d)
+        ui.set_lcd_recv_len_signal.emit(False, len(self.data_buf))
+        return True
 
     def display_to_hex(self):
-        d = ''.join(['%02x ' % b for b in self.data_buf])
+        d = self._data_to_hex(self.data_buf)
         self.text.clear()
         ui.e_recv_signal.emit(d)
         ui.set_lcd_recv_len_signal.emit(False, len(self.data_buf))
@@ -101,7 +97,7 @@ class DataDisplay(QThread, ModuleBase):
         # print(data)
         self.mutex.lock()
         self.data.append(data)
-        self.data_buf += data
+        self.data_buf.append(data)
         self.mutex.unlock()
         # self.text.insertPlainText(data.decode())
 
@@ -120,20 +116,31 @@ class DataDisplay(QThread, ModuleBase):
 
     def _data_to_hex(self, data):
         temp = []
-        for d in self.data:
+        for d in data:
             temp.append(d.hex() + ' ')
             data = ''.join(temp)
         return data
 
     def _data_decode(self, data):
         temp = bytearray()
-        for d in self.data:
+        temp_err = bytearray()  # 记录不能编码的字节数
+        buf = []
+        for d in data:
             temp += d
-        try:
-            data = temp.decode(self.cur_encode)
-        except:
-            data = None
-        return data
+            try:
+                s = temp.decode(self.cur_encode)
+                if len(temp_err):
+                    buf.append('[::{}]'.format(len(temp_err)))
+                    temp_err.clear()
+                buf.append(s)
+                temp.clear()
+            except:
+                pass
+            if len(temp) == 3:  # 三个字节还是不能解码就丢掉头一个
+                temp_err += temp[0:1]
+                temp = temp[1:]
+
+        return ''.join(buf)
 
     def _get_diaplay_data(self):
         if len(self.data) == 0:
@@ -149,18 +156,9 @@ class DataDisplay(QThread, ModuleBase):
         return data
 
     def run(self):
-        err_time = 0
         while True:
             data = self._get_diaplay_data()
-            if data is not None:
-                if len(data) > 0:
-                    ui.e_recv_signal.emit(data)
-                    ui.set_lcd_recv_len_signal.emit(True, len(data))
-            else:
-                err_time += 1
-                if err_time % 50 == 0:
-                    self.data = []  # 有全局保存的数据，切换时会显示
-                    debug.err('解码失败：' + self.cur_encode)
-                    debug.info('请切换数据面板编码-')
-                    err_time = 0
+            if len(data) > 0:
+                ui.e_recv_signal.emit(data)
+                ui.set_lcd_recv_len_signal.emit(True, len(data))
             self.msleep(20)

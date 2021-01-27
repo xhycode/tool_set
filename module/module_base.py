@@ -14,13 +14,29 @@ class ModuleBase():
         '''
         pass
 
-    def send_push(self, data):
-        ''' 模块发送数据的接口，不需要重构 '''
+    def send_push(self, b_data, packet):
+        ''' 模块发送数据的接口，不需要重构
+            数据类型必须是字节型
+        '''
         if self.send_queue.full():
             return False
         else:
-            self.send_queue.put(data)
+            if packet:
+
+            self.send_queue.put((b_data, packet))
             return True
+
+    def send_bytes(self, b_data, packet=0):
+        """直接发送字节数据"""
+        return self.send_push(b_data)
+
+    def send_str(self, str, packet=0):
+        """发送字符串类型的数据"""
+        return self.send_push(b_data.encode(), packet)
+
+    def send_hex(self, hex_str, packet=0):
+        """hex_str:十六进制的字符串"""
+        return self.send_push(bytes.fromhex(b_data), packet)
 
     def send_pop(self):
         ''' 获取待发送的数据，给其他模块调用，帮助把这个包里模块的数据发出去

@@ -205,6 +205,16 @@ class Message(QThread):
                 debug.err('连接被断开')
             return None
 
+    def send_push(self, b_data, packet=0):
+        """b_data为字节类型"""
+        if packet:
+            b_data = Protocol.pack(data=b_data)
+        self.send_push(b_data)
+        self.send_queue.put(b_data)
+        if not self.cur_connect.status():
+            debug.err('未连接,连接后会继续发送')
+
+
     def send(self, data, encode='GB2312', ishex=False, packet=False):
         ''' data ：类型 str
             这个发送不是立即发送，而是放到缓存区等待线程发送
@@ -219,12 +229,7 @@ class Message(QThread):
             self.auto_send.stop()
             debug.err('数据格式错误')
             return False
-        if packet:
-            b_data = Protocol.pack(data=b_data)
-            print(b_data)
-        self.send_queue.put(b_data)
-        if not self.cur_connect.status():
-            debug.err('未连接,连接后会继续发送')
+        self.send_push(b_data, packet)
         return True
 
     def status(self):

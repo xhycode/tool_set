@@ -50,8 +50,8 @@ class Control():  # 继承类
     def send(self):
         ''' 将模块要发送的数据转发出去 '''
         while(True):
-            data = self.md.send_pop()
+            data , packet= self.md.send_pop()
             if data:
-                self.msg.send(data)
+                self.msg.send_push(data, packet)
             else:
                 QThread.msleep(20)

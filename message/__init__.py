@@ -209,7 +209,6 @@ class Message(QThread):
         """b_data为字节类型"""
         if packet:
             b_data = Protocol.pack(data=b_data)
-        self.send_push(b_data)
         self.send_queue.put(b_data)
         if not self.cur_connect.status():
             debug.err('未连接,连接后会继续发送')

@@ -3,6 +3,7 @@
 from module import module_base
 from module import waveform
 from module import data_display
+from module import snap_ctrl
 from ui import ui
 import cfg
 
@@ -12,7 +13,8 @@ class ModuleManage(module_base.ModuleBase):
         self._mode_win = ui.mode_manage
         self._mode_win.currentChanged.connect(self._event_chenge)
         self._module_table = {0: data_display.DataDisplay(),
-                             1: waveform.Waveform()}
+                             1: waveform.Waveform(),
+                             2: snap_ctrl.SnapControl()}
         self._set_cur_module()
 
     def _set_cur_module(self):

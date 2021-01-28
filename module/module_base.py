@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import queue
+import debug
 
 
 class ModuleBase():
@@ -21,8 +22,6 @@ class ModuleBase():
         if self.send_queue.full():
             return False
         else:
-            if packet:
-
             self.send_queue.put((b_data, packet))
             return True
 
@@ -30,12 +29,14 @@ class ModuleBase():
         """直接发送字节数据"""
         return self.send_push(b_data)
 
-    def send_str(self, str, packet=0):
+    def send_str(self, str_data, packet=0):
         """发送字符串类型的数据"""
-        return self.send_push(b_data.encode(), packet)
+        debug.info(str_data)
+        return self.send_push(str_data.encode(), packet)
 
     def send_hex(self, hex_str, packet=0):
         """hex_str:十六进制的字符串"""
+        debug.info(hex_str)
         return self.send_push(bytes.fromhex(b_data), packet)
 
     def send_pop(self):
@@ -43,7 +44,7 @@ class ModuleBase():
             不需要重构
         '''
         if self.send_queue.empty():
-            return None
+            return None, 0
         else:
             return self.send_queue.get()
 

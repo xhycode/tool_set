@@ -37,6 +37,9 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         super().__init__()
         self.setupUi(self)  # 执行类中的setupUi函数
         self.setWindowTitle("调试工具箱 " + TOOL_VERSIONS)
+        self.setWindowOpacity(0.96)
+        # self.setStyleSheet('background-color:#050505')
+        # self.setStyleSheet('foreground-color:#000000')
         self.icon_init()
         self.init_waveform_ui()
         self.signal_init()

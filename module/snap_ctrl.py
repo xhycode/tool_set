@@ -31,6 +31,22 @@ class SnapControl(QThread, ModuleBase):
         ui.b_home.clicked.connect(self.home_b)
         ui.all_home.clicked.connect(self.home_all)
         ui.speed_unit.stateChanged.connect(self.set_speed_unit)
+        # 按键颜色初始化
+        ui.x_add.setStyleSheet("background-color: #008000;font-weight:bold;")
+        ui.x_sub.setStyleSheet("background-color: #008000;font-weight:bold;")
+        ui.y_add.setStyleSheet("background-color: #008000;font-weight:bold;")
+        ui.y_sub.setStyleSheet("background-color: #008000;font-weight:bold;")
+        ui.z_add.setStyleSheet("background-color: #608000;font-weight:bold;")
+        ui.z_sub.setStyleSheet("background-color: #608000;font-weight:bold;")
+        ui.b_add.setStyleSheet("background-color: #008080;font-weight:bold;")
+        ui.b_sub.setStyleSheet("background-color: #008080;font-weight:bold;")
+        ui.e_add.setStyleSheet("background-color: #301080;font-weight:bold;")
+        ui.e_sub.setStyleSheet("background-color: #301080;font-weight:bold;")
+        ui.x_home.setStyleSheet("background-color: #502050;font-weight:bold;")
+        ui.y_home.setStyleSheet("background-color: #502050;font-weight:bold;")
+        ui.z_home.setStyleSheet("background-color: #502050;font-weight:bold;")
+        ui.b_home.setStyleSheet("background-color: #502050;font-weight:bold;")
+        ui.all_home.setStyleSheet("background-color: #802010;font-weight:bold;")
 
     def set_speed_unit(self, state):
         if state:

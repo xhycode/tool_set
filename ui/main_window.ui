@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1187</width>
+    <width>1204</width>
     <height>929</height>
    </rect>
   </property>
@@ -76,8 +76,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>128</width>
-                  <height>673</height>
+                  <width>130</width>
+                  <height>646</height>
                  </rect>
                 </property>
                 <widget class="QPushButton" name="b_status_control">
@@ -2484,9 +2484,15 @@
                     </item>
                     <item>
                      <widget class="QPushButton" name="set_fan_0">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="maximumSize">
                        <size>
-                        <width>20</width>
+                        <width>30</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2534,7 +2540,7 @@
                      <widget class="QPushButton" name="set_fan_1">
                       <property name="maximumSize">
                        <size>
-                        <width>20</width>
+                        <width>30</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2582,7 +2588,7 @@
                      <widget class="QPushButton" name="set_nozzle_temp">
                       <property name="maximumSize">
                        <size>
-                        <width>20</width>
+                        <width>30</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2630,7 +2636,7 @@
                      <widget class="QPushButton" name="set_bed_temp">
                       <property name="maximumSize">
                        <size>
-                        <width>20</width>
+                        <width>30</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2733,7 +2739,7 @@
                      <widget class="QPushButton" name="pushButton_3">
                       <property name="maximumSize">
                        <size>
-                        <width>20</width>
+                        <width>30</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2820,7 +2826,7 @@
                      <widget class="QPushButton" name="pushButton_4">
                       <property name="maximumSize">
                        <size>
-                        <width>20</width>
+                        <width>30</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -3501,7 +3507,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>206</width>
-                  <height>681</height>
+                  <height>652</height>
                  </rect>
                 </property>
                 <widget class="QLineEdit" name="e_extend_send_1">
@@ -4683,7 +4689,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>98</width>
-                  <height>144</height>
+                  <height>159</height>
                  </rect>
                 </property>
                 <widget class="QCheckBox" name="c_hex_send">

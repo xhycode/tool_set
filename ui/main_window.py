@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\ui\main_window.ui'
+# Form implementation generated from reading ui file 'ui/main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_ToolSet(object):
     def setupUi(self, ToolSet):
         ToolSet.setObjectName("ToolSet")
-        ToolSet.resize(1187, 929)
+        ToolSet.resize(1204, 929)
         self.centralwidget = QtWidgets.QWidget(ToolSet)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout_28 = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -42,7 +40,7 @@ class Ui_ToolSet(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 128, 673))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 130, 646))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.b_status_control = QtWidgets.QPushButton(self.scrollAreaWidgetContents_2)
         self.b_status_control.setGeometry(QtCore.QRect(10, 460, 111, 23))
@@ -923,7 +921,8 @@ class Ui_ToolSet(object):
         self.fan_0_target.setObjectName("fan_0_target")
         self.horizontalLayout_57.addWidget(self.fan_0_target)
         self.set_fan_0 = QtWidgets.QPushButton(self.frame_38)
-        self.set_fan_0.setMaximumSize(QtCore.QSize(20, 16777215))
+        self.set_fan_0.setMinimumSize(QtCore.QSize(0, 0))
+        self.set_fan_0.setMaximumSize(QtCore.QSize(30, 16777215))
         self.set_fan_0.setObjectName("set_fan_0")
         self.horizontalLayout_57.addWidget(self.set_fan_0)
         self.verticalLayout_8.addWidget(self.frame_38)
@@ -943,7 +942,7 @@ class Ui_ToolSet(object):
         self.fan_1_target.setObjectName("fan_1_target")
         self.horizontalLayout_58.addWidget(self.fan_1_target)
         self.set_fan_1 = QtWidgets.QPushButton(self.frame_39)
-        self.set_fan_1.setMaximumSize(QtCore.QSize(20, 16777215))
+        self.set_fan_1.setMaximumSize(QtCore.QSize(30, 16777215))
         self.set_fan_1.setObjectName("set_fan_1")
         self.horizontalLayout_58.addWidget(self.set_fan_1)
         self.verticalLayout_8.addWidget(self.frame_39)
@@ -963,7 +962,7 @@ class Ui_ToolSet(object):
         self.nozzle_temp_target.setObjectName("nozzle_temp_target")
         self.horizontalLayout_59.addWidget(self.nozzle_temp_target)
         self.set_nozzle_temp = QtWidgets.QPushButton(self.set_temp_lable)
-        self.set_nozzle_temp.setMaximumSize(QtCore.QSize(20, 16777215))
+        self.set_nozzle_temp.setMaximumSize(QtCore.QSize(30, 16777215))
         self.set_nozzle_temp.setObjectName("set_nozzle_temp")
         self.horizontalLayout_59.addWidget(self.set_nozzle_temp)
         self.verticalLayout_8.addWidget(self.set_temp_lable)
@@ -983,7 +982,7 @@ class Ui_ToolSet(object):
         self.bed_temp_target.setObjectName("bed_temp_target")
         self.horizontalLayout_60.addWidget(self.bed_temp_target)
         self.set_bed_temp = QtWidgets.QPushButton(self.frame_41)
-        self.set_bed_temp.setMaximumSize(QtCore.QSize(20, 16777215))
+        self.set_bed_temp.setMaximumSize(QtCore.QSize(30, 16777215))
         self.set_bed_temp.setObjectName("set_bed_temp")
         self.horizontalLayout_60.addWidget(self.set_bed_temp)
         self.verticalLayout_8.addWidget(self.frame_41)
@@ -1028,7 +1027,7 @@ class Ui_ToolSet(object):
         self.spinBox_6.setObjectName("spinBox_6")
         self.horizontalLayout_29.addWidget(self.spinBox_6)
         self.pushButton_3 = QtWidgets.QPushButton(self.frame_44)
-        self.pushButton_3.setMaximumSize(QtCore.QSize(20, 16777215))
+        self.pushButton_3.setMaximumSize(QtCore.QSize(30, 16777215))
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout_29.addWidget(self.pushButton_3)
         self.verticalLayout_13.addWidget(self.frame_44)
@@ -1065,7 +1064,7 @@ class Ui_ToolSet(object):
         self.spinBox_9.setObjectName("spinBox_9")
         self.horizontalLayout_32.addWidget(self.spinBox_9)
         self.pushButton_4 = QtWidgets.QPushButton(self.frame_47)
-        self.pushButton_4.setMaximumSize(QtCore.QSize(20, 16777215))
+        self.pushButton_4.setMaximumSize(QtCore.QSize(30, 16777215))
         self.pushButton_4.setObjectName("pushButton_4")
         self.horizontalLayout_32.addWidget(self.pushButton_4)
         self.verticalLayout_13.addWidget(self.frame_47)
@@ -1374,7 +1373,7 @@ class Ui_ToolSet(object):
         self.scrollArea_5.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing)
         self.scrollArea_5.setObjectName("scrollArea_5")
         self.scrollAreaWidgetContents_5 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 206, 681))
+        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 206, 652))
         self.scrollAreaWidgetContents_5.setObjectName("scrollAreaWidgetContents_5")
         self.e_extend_send_1 = QtWidgets.QLineEdit(self.scrollAreaWidgetContents_5)
         self.e_extend_send_1.setGeometry(QtCore.QRect(40, 10, 101, 20))
@@ -1763,7 +1762,7 @@ class Ui_ToolSet(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 98, 144))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 98, 159))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.c_hex_send = QtWidgets.QCheckBox(self.scrollAreaWidgetContents)
         self.c_hex_send.setGeometry(QtCore.QRect(10, 10, 81, 20))
@@ -2101,4 +2100,5 @@ class Ui_ToolSet(object):
         self.actionopen.setToolTip(_translate("ToolSet", "<html><head/><body><p><span style=\" font-weight:600;\">open</span></p></body></html>"))
         self.actionOpen.setText(_translate("ToolSet", "Open"))
         self.action_Save.setText(_translate("ToolSet", "&Save"))
+
 from pyqtgraph import PlotWidget

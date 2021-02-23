@@ -7,6 +7,7 @@ from PyQt5.QtGui import QTextDocument
 from PyQt5.QtGui import QTextCursor
 from PyQt5.QtGui import QColor
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 from ui.main_window import Ui_ToolSet
 import sys
 
@@ -14,6 +15,7 @@ TOOL_VERSIONS = 'V1.3.0'
 
 class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     app = QApplication(sys.argv)
+    app.setAttribute(Qt.AA_DisableHighDpiScaling)  # 禁止随系统缩放
 
     '''外部在线程里边调用的小部件,需要提供一个自定义信号供外部使用，不然会出错'''
     # 调试信号窗口输出信号 str:要显示的字符串  bool:True-html数据;False-纯字符串

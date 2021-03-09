@@ -43,13 +43,13 @@ class SnapControl(QThread, ModuleBase):
         ui.z_sub.setStyleSheet("background-color: #608000;font-weight:bold;")
         ui.b_add.setStyleSheet("background-color: #008080;font-weight:bold;")
         ui.b_sub.setStyleSheet("background-color: #008080;font-weight:bold;")
-        ui.e_add.setStyleSheet("background-color: #301080;font-weight:bold;")
-        ui.e_sub.setStyleSheet("background-color: #301080;font-weight:bold;")
-        ui.x_home.setStyleSheet("background-color: #502050;font-weight:bold;")
-        ui.y_home.setStyleSheet("background-color: #502050;font-weight:bold;")
-        ui.z_home.setStyleSheet("background-color: #502050;font-weight:bold;")
-        ui.b_home.setStyleSheet("background-color: #502050;font-weight:bold;")
-        ui.all_home.setStyleSheet("background-color: #802010;font-weight:bold;")
+        ui.e_add.setStyleSheet("background-color: #509030;font-weight:bold;")
+        ui.e_sub.setStyleSheet("background-color: #509030;font-weight:bold;")
+        ui.x_home.setStyleSheet("background-color: #909090;font-weight:bold;")
+        ui.y_home.setStyleSheet("background-color: #909090;font-weight:bold;")
+        ui.z_home.setStyleSheet("background-color: #909090;font-weight:bold;")
+        ui.b_home.setStyleSheet("background-color: #909090;font-weight:bold;")
+        ui.all_home.setStyleSheet("background-color: #806060;font-weight:bold;")
 
     def set_speed_unit(self, state):
         if state:

@@ -76,8 +76,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>130</width>
-                  <height>646</height>
+                  <width>128</width>
+                  <height>673</height>
                  </rect>
                 </property>
                 <widget class="QPushButton" name="b_status_control">
@@ -2921,12 +2921,12 @@
                   </widget>
                  </item>
                  <item row="3" column="2">
-                  <widget class="QPushButton" name="x_sub">
+                  <widget class="QPushButton" name="x_add">
                    <property name="autoFillBackground">
                     <bool>false</bool>
                    </property>
                    <property name="text">
-                    <string>X-</string>
+                    <string>X+</string>
                    </property>
                   </widget>
                  </item>
@@ -2961,12 +2961,12 @@
                   </widget>
                  </item>
                  <item row="3" column="0">
-                  <widget class="QPushButton" name="x_add">
+                  <widget class="QPushButton" name="x_sub">
                    <property name="autoFillBackground">
                     <bool>false</bool>
                    </property>
                    <property name="text">
-                    <string>X+</string>
+                    <string>X-</string>
                    </property>
                   </widget>
                  </item>
@@ -3507,7 +3507,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>206</width>
-                  <height>652</height>
+                  <height>681</height>
                  </rect>
                 </property>
                 <widget class="QLineEdit" name="e_extend_send_1">
@@ -4689,7 +4689,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>98</width>
-                  <height>159</height>
+                  <height>144</height>
                  </rect>
                 </property>
                 <widget class="QCheckBox" name="c_hex_send">

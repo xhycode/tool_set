@@ -12,6 +12,7 @@ class SnapControl(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
         ModuleBase.__init__(self)
+        self.line_data = ""
         self.step_init()
         self.print3d_init()
         self.cur_connect = CONNECT_TYPE_PC
@@ -185,6 +186,18 @@ class SnapControl(QThread, ModuleBase):
 
     def check_connect_type(self):
         pass
+
+    def parse(self, data):
+        try:
+            ch = data.decode()
+        except:
+            debug.err('数据编码错误')
+            return
+        if ch == '\n':
+            debug.data(self.line_data + '\n')
+            self.line_data = ''
+        else:
+            self.line_data += ch
 
     def run(self):
         while  True:

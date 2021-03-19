@@ -38,8 +38,9 @@ class TCPServer(QThread, MessageBase):
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.connect(('8.8.8.8', 80))
             ip = s.getsockname()[0]
-        finally:
             s.close()
+        except:
+            ip = "0.0.0.0"
         return ip
 
     def local_ip_init(self):

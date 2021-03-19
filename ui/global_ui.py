@@ -124,12 +124,14 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
             如果列表中没有 cur 端口则显示列表第一个
         '''
         self.serial_port.clear()
-        self.serial_port.addItems(port_list)
-        print(port_list)
         if cur in port_list:
-            self.serial_port.setCurrentText(cur)
-        elif len(port_list) > 0:
-            self.serial_port.setCurrentText(port_list[0])
+            port_list.remove(cur)
+            port_list.insert(0, cur)
+            self.serial_port.addItems(port_list)
+        else:
+            port_list.append("")
+            self.serial_port.addItems(port_list)
+            self.serial_port.setCurrentText("")
 
     def debug_dispay(self, data, is_html):
         ''' 调试窗口输出信息

@@ -1111,7 +1111,7 @@ class Ui_ToolSet(object):
         self.step_mm = QtWidgets.QDoubleSpinBox(self.groupBox_10)
         self.step_mm.setDecimals(1)
         self.step_mm.setMinimum(0.1)
-        self.step_mm.setMaximum(500.0)
+        self.step_mm.setMaximum(999999999.0)
         self.step_mm.setProperty("value", 5.0)
         self.step_mm.setObjectName("step_mm")
         self.gridLayout.addWidget(self.step_mm, 0, 1, 1, 2)

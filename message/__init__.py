@@ -166,7 +166,7 @@ class Message(QThread):
                 # 找到下一个被选中的数据
                 data = self.extend_send_info[index]['data'].displayText()
                 if ui.c_entend_enter.checkState():
-                    data += '\n'  # 勾选了自动换行
+                    data += '\r\n'  # 勾选了自动换行
                 self.extend_send_index = index + 1
                 return data
             index = (index + 1) % self.extend_count  # 循环累加，到最大会从头开始
@@ -245,7 +245,7 @@ class Message(QThread):
             if extend['btn'].isDown():
                 data = extend['data'].displayText()
                 if ui.c_entend_enter.checkState():
-                    data += '\n'
+                    data += '\r\n'
                 print(data)
                 self.send(data, self.cur_encode, 0, is_packet)
 

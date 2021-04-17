@@ -287,6 +287,8 @@ class Message(QThread):
             data = ui.e_send.toPlainText()
             is_packet = ui.c_is_pack.checkState()
             ishex = ui.c_hex_send.checkState()
+            if ui.c_send_enter.checkState():
+                data += '\r\n'
             ret = self.send(data, self.cur_encode, ishex=ishex, packet=is_packet)
             if not ret:
                 debug.err('数据格式错误')

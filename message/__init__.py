@@ -76,6 +76,7 @@ class Message(QThread):
         self.extend_send_index = 0  # 顺序发送时用到的索引记录
         self.extend_count = 22  # 扩展发送区发送栏的个数
         self.extend_send_info = []  # 列表的每个成员是个发送栏
+        self.loop_send_times = 0
         for i in range(self.extend_count):
             temp = {}
             # getattr 从类中根据属性的名字字符串获取属性，由于名字有规律，所以用循环方便
@@ -177,6 +178,8 @@ class Message(QThread):
                 if not ui.c_extend_cyclic_send.checkState():  # 没勾选循环选项
                     debug.info('顺序发送结束')
                     return None
+                else:
+                    self.loop_send_times += 1
 
     def recv_line(self):
         ''' 收到 \n 才会停止接收
@@ -268,6 +271,9 @@ class Message(QThread):
             按照顺序将选中的数据一次发出
             如果勾选了循环发送，则会循环的发送直到手动停止
         '''
+        self.loop_send_times = 0  ## 清空循环次数
+        ui.e_loop_times.setText(str(self.loop_send_times))
+
         if self.auto_send_mode == AUTO_SEND_MAIN:
             self._stop_main_auto_send()
         if self.auto_send_mode == AUTO_SEND_EXTEND:
@@ -405,6 +411,7 @@ class Message(QThread):
                 return
             if self.send(data, self.cur_encode, ishex=False):
                 self.auto_send.start(t)
+                ui.e_loop_times.setText(str(self.loop_send_times))
             else:
                 self._stop_extend_send()
 

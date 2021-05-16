@@ -105,6 +105,9 @@ class Waveform(QThread, ModuleBase):
     def open_data(self):
         filename=QFileDialog.getOpenFileName(ui)
         self.all_clear()
+        if filename[0] == '':
+            debug.err("找不到文件")
+            return
         with open(filename[0], 'r') as f:
             lines = f.readlines()
             for line in lines:

@@ -1,6 +1,7 @@
 
 # -*- coding: utf-8 -*-
 import sys
+import re
 import time
 sys.path.append('./')
 from module.module_base import ModuleBase
@@ -28,10 +29,8 @@ class _curve():
         self.data = []
         self.cache_size = cache_size
         self.chn_name = chn_name
-        self.b_clean = getattr(ui, 'b_chn_clear_' + str(chn_num))
         self.c_chn = getattr(ui, 'c_chn_' + str(chn_num))
         self.c_chn.setCheckState(2)
-        self.c_chn.setText(chn_name)
 
     def clear_data(self):
         self.data = []
@@ -71,8 +70,9 @@ class Waveform(QThread, ModuleBase):
         self.data_cache_init()
         self.data_lock = QMutex()
         ui.c_chn_all.stateChanged.connect(self.all_show)
-        ui.b_chn_clear_all.clicked.connect(self.all_clear)
+        ui.b_clean_waveform_data.clicked.connect(self.all_clear)
         self.init_slot()
+        self.chn_tag_init()
         self.start()  # 继承的 QThread， 用来刷新数据显示
 
     def init_slot(self):
@@ -94,7 +94,19 @@ class Waveform(QThread, ModuleBase):
         ui.b_save_waveform_data.clicked.connect(self.data_save)
         ui.b_open_waveform_file.clicked.connect(self.open_data)
         self.write_cache_timer.start(5000)
-        
+
+    def chn_tag_init(self):
+        for i in range(MAX_CHANNAL_COUNT):
+            last_data = cfg.get('data_tag_' + str(i), '')  # 恢复上次关闭时的数据
+            chn_tag = getattr(ui, 'data_tag_' + str(i))
+            chn_tag.setText(last_data)
+            chn_tag.editingFinished.connect(self.chn_tag_save)
+
+    def chn_tag_save(self):
+        for i in range(MAX_CHANNAL_COUNT):
+            cfg.set('data_tag_' + str(i),
+                    getattr(ui, 'data_tag_' + str(i)).displayText())
+
     def data_save(self):
         self.data_write_cache()
         filename=QFileDialog.getSaveFileName(ui)
@@ -167,8 +179,6 @@ class Waveform(QThread, ModuleBase):
                 self.data_lock.lock()
                 ui.add_curves(chn)
                 self.curves[chn] = _curve(chn, chn_num, self.channal_cache)
-                # 放到类中子类中不能触发信号，所以放在这里了
-                self.curves[chn].b_clean.pressed.connect(self.chn_clear_data)
                 self.data_lock.unlock()
             else:
                 return None
@@ -183,12 +193,6 @@ class Waveform(QThread, ModuleBase):
         d = self._get_chn_info(chn)
         if d:
             d.append(data)
-
-    def chn_clear_data(self):
-        for curve in self.curves.values():
-            if curve.b_clean.isDown():
-                curve.clear_data()
-        self.cache.clear()
 
     def all_clear(self):
         for curve in self.curves.values():
@@ -214,6 +218,21 @@ class Waveform(QThread, ModuleBase):
                                           t.tm_sec,
                                           ms)
 
+    def get_chn_data(self, line):
+        idx = -1
+        d = []
+        for i in range(MAX_CHANNAL_COUNT):
+            chn = getattr(ui, 'data_tag_' + str(i))
+            txt = chn.displayText()
+            if txt != '':
+                idx = line.find(txt)
+            if idx != -1:
+                start = idx + len(txt)
+                s = re.match(r"\-?\d+\.?\d*",line[start:].lstrip())
+                if s != None:
+                    d.append((txt, float(s.group())))
+        return d
+
     def parse(self, data):
         try:
             ch = data.decode()
@@ -223,9 +242,9 @@ class Waveform(QThread, ModuleBase):
         if ch == '\n':
             try:
                 debug.data(self.line_data + '\n')
-                name = self._between_str(self.line_data, '<', '>')
-                d = self._between_str(self.line_data, '[', ']')
-                if name and d:
+
+                chn_data = self.get_chn_data(self.line_data)
+                for name, d in chn_data:
                     self.append(name, float(d))
                     self.data_cache.append("{} {} {}".format(name, d, self.cut_time_str()))
                 self.line_data = ''

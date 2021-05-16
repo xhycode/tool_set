@@ -454,7 +454,7 @@
              <set>Qt::ImhNone</set>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab_serial">
              <attribute name="title">
@@ -988,7 +988,7 @@
                           </font>
                          </property>
                          <property name="text">
-                          <string>清除|显示</string>
+                          <string>显示|数据标签</string>
                          </property>
                         </widget>
                        </item>
@@ -1028,24 +1028,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_0">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_0">
                             <property name="maximumSize">
                              <size>
@@ -1062,6 +1044,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_0"/>
                           </item>
                          </layout>
                         </widget>
@@ -1102,24 +1087,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_1">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_1">
                             <property name="maximumSize">
                              <size>
@@ -1136,6 +1103,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_1"/>
                           </item>
                          </layout>
                         </widget>
@@ -1176,24 +1146,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_2">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_2">
                             <property name="maximumSize">
                              <size>
@@ -1210,6 +1162,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_2"/>
                           </item>
                          </layout>
                         </widget>
@@ -1250,24 +1205,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_3">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_3">
                             <property name="maximumSize">
                              <size>
@@ -1284,6 +1221,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_3"/>
                           </item>
                          </layout>
                         </widget>
@@ -1324,24 +1264,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_4">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_4">
                             <property name="maximumSize">
                              <size>
@@ -1358,6 +1280,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_4"/>
                           </item>
                          </layout>
                         </widget>
@@ -1398,24 +1323,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_5">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_5">
                             <property name="maximumSize">
                              <size>
@@ -1432,6 +1339,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_5"/>
                           </item>
                          </layout>
                         </widget>
@@ -1472,24 +1382,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_6">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_6">
                             <property name="maximumSize">
                              <size>
@@ -1506,6 +1398,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_6"/>
                           </item>
                          </layout>
                         </widget>
@@ -1546,24 +1441,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_7">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_7">
                             <property name="maximumSize">
                              <size>
@@ -1580,6 +1457,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_7"/>
                           </item>
                          </layout>
                         </widget>
@@ -1620,24 +1500,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_8">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_8">
                             <property name="maximumSize">
                              <size>
@@ -1654,6 +1516,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_8"/>
                           </item>
                          </layout>
                         </widget>
@@ -1694,24 +1559,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_9">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_9">
                             <property name="maximumSize">
                              <size>
@@ -1728,6 +1575,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_9"/>
                           </item>
                          </layout>
                         </widget>
@@ -1768,24 +1618,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_10">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_10">
                             <property name="maximumSize">
                              <size>
@@ -1802,6 +1634,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_10"/>
                           </item>
                          </layout>
                         </widget>
@@ -1842,24 +1677,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_11">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_11">
                             <property name="maximumSize">
                              <size>
@@ -1876,6 +1693,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_11"/>
                           </item>
                          </layout>
                         </widget>
@@ -1916,24 +1736,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_cnh_clear_12">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_12">
                             <property name="maximumSize">
                              <size>
@@ -1950,6 +1752,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_12"/>
                           </item>
                          </layout>
                         </widget>
@@ -1990,24 +1795,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_13">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_13">
                             <property name="maximumSize">
                              <size>
@@ -2024,6 +1811,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_13"/>
                           </item>
                          </layout>
                         </widget>
@@ -2064,24 +1854,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_14">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_14">
                             <property name="maximumSize">
                              <size>
@@ -2098,6 +1870,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_14"/>
                           </item>
                          </layout>
                         </widget>
@@ -2138,24 +1913,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_15">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_15">
                             <property name="maximumSize">
                              <size>
@@ -2172,6 +1929,9 @@
                              <string/>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="data_tag_15"/>
                           </item>
                          </layout>
                         </widget>
@@ -2212,24 +1972,6 @@
                            <number>1</number>
                           </property>
                           <item>
-                           <widget class="QToolButton" name="b_chn_clear_all">
-                            <property name="maximumSize">
-                             <size>
-                              <width>15</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>6</pointsize>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>...</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
                            <widget class="QCheckBox" name="c_chn_all">
                             <property name="maximumSize">
                              <size>
@@ -2248,6 +1990,18 @@
                            </widget>
                           </item>
                          </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="b_clean_waveform_data">
+                         <property name="font">
+                          <font>
+                           <pointsize>8</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>清除数据</string>
+                         </property>
                         </widget>
                        </item>
                        <item>

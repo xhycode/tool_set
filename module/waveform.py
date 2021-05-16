@@ -31,6 +31,8 @@ class _curve():
         self.chn_name = chn_name
         self.c_chn = getattr(ui, 'c_chn_' + str(chn_num))
         self.c_chn.setCheckState(2)
+        self.sum_count = 0
+        self.sum = 0
 
     def clear_data(self):
         self.data = []
@@ -40,6 +42,13 @@ class _curve():
         if len(self.data) >= self.cache_size:
             self.data = self.data[1:]
         self.data.append(data)
+        average_count = ui.e_warmform_average_count.value()
+        if average_count > 0:
+            self.sum += data
+            self.sum_count += 1
+            if (self.sum_count == average_count and self.c_chn.checkState()):
+                debug.info(self.chn_name + " average:{}".format(round(self.sum / self.sum_count, 3)))
+                self.sum_count = self.sum = 0
 
     def set_cache(self, size):
         self.cache_size = size

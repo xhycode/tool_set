@@ -2118,6 +2118,61 @@
                         </widget>
                        </item>
                        <item>
+                        <spacer name="verticalSpacer_4">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeType">
+                          <enum>QSizePolicy::Fixed</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>5</width>
+                           <height>10</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_47">
+                         <property name="font">
+                          <font>
+                           <pointsize>8</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>指定个数求均值</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="frame_53">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_40">
+                          <item>
+                           <widget class="QLabel" name="label_46">
+                            <property name="font">
+                             <font>
+                              <pointsize>8</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>个数</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="e_warmform_average_count"/>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
                         <spacer name="verticalSpacer">
                          <property name="orientation">
                           <enum>Qt::Vertical</enum>

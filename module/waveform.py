@@ -88,6 +88,7 @@ class Waveform(QThread, ModuleBase):
     def data_cache_init(self):
         self.data_cache = []
         self.cache = Cache('.', fname=CACHE_FILE, clear=True)
+        self.cache.clear()
         self.write_cache_timer = QTimer()
         self.write_cache_timer.timeout.connect(self.data_write_cache)
         ui.b_save_waveform_data.clicked.connect(self.data_save)
@@ -184,10 +185,12 @@ class Waveform(QThread, ModuleBase):
         for curve in self.curves.values():
             if curve.b_clean.isDown():
                 curve.clear_data()
+        self.cache.clear()
 
     def all_clear(self):
         for curve in self.curves.values():
             curve.clear_data()
+        self.cache.clear()
 
     def _between_str(self, string, start, end):
         head = string.find(start)

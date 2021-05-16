@@ -271,9 +271,6 @@ class Message(QThread):
             按照顺序将选中的数据一次发出
             如果勾选了循环发送，则会循环的发送直到手动停止
         '''
-        self.loop_send_times = 0  ## 清空循环次数
-        ui.e_loop_times.setText(str(self.loop_send_times))
-
         if self.auto_send_mode == AUTO_SEND_MAIN:
             self._stop_main_auto_send()
         if self.auto_send_mode == AUTO_SEND_EXTEND:
@@ -285,6 +282,8 @@ class Message(QThread):
                 self.auto_send_mode = AUTO_SEND_EXTEND
                 self.extend_send_index = 0
                 ui.b_extend_send_all.setText('停止发送')
+                self.loop_send_times = 0  ## 清空循环次数
+                ui.e_loop_times.setText(str(self.loop_send_times))
                 self.auto_send.start()
 
     def _event_send(self):

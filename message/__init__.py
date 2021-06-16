@@ -2,8 +2,6 @@
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import QTimer
 from message import serial_tool
-from message import tcp_client
-from message import tcp_server
 from message.protocol import Protocol
 from ui import ui
 import debug
@@ -32,10 +30,7 @@ class Message(QThread):
     def bind(self):
         ui.b_send.clicked.connect(self._event_send)
         ui.b_open_serial.clicked.connect(self._event_open_serial)
-        ui.b_connect_client.clicked.connect(self._event_tcp_client_connect)
-        ui.b_connect_server.clicked.connect(self._event_tcp_server_connect)
         ui.b_clear_send.clicked.connect(self._event_clean_send)
-        ui.b_status_control.clicked.connect(self._event_status_control)
         ui.c_auto_send.stateChanged.connect(self._event_auto_send)
         ui.c_all_exend_send.stateChanged.connect(self._event_extend_all_select)
         ui.c_entend_enter.stateChanged.connect(self.extend_enter_status_save)
@@ -47,27 +42,9 @@ class Message(QThread):
     def message_module_init(self):
         ''' 初始化已有的连接方式 '''
         self.serial = serial_tool.SerialMesssge()
-        self.client = tcp_client.TCPClinet()
-        self.server = tcp_server.TCPServer()
         # 当前连接设置成上次使用的连接方式，默认是串口连接
-        self.connect_mode = cfg.get(cfg.MSG_CONNRET_MODE, CONNTET_SERIAL)
-        self.set_connect_mode(self.connect_mode)
         self.state = False  # 连接状态
-
-    def set_connect_mode(self, connect):
-        ''' 将当前连接设置到选择的连接方式，并保存到配置文件
-        '''
-        self.connect_mode = connect
-        if connect == CONNTET_SERIAL:
-            self.cur_connect = self.serial
-            ui.t_connect_type.setText('串口')
-        elif connect == CONNECT_TCP_CLINET:
-            self.cur_connect = self.client
-            ui.t_connect_type.setText('TCP客户端')
-        elif connect == CONNECT_TCP_SERVER:
-            self.cur_connect = self.server
-            ui.t_connect_type.setText('TCP服务器')
-        cfg.set(cfg.MSG_CONNRET_MODE, self.connect_mode)
+        self.cur_connect = self.serial
 
     def extend_send_init(self):
         ''' 扩展(快捷)发送区的初始化
@@ -202,10 +179,6 @@ class Message(QThread):
             # self.state 没被置位说明意外断开了连接，尝试重新打开一次
             if not self.cur_connect.status():
                 self.cur_connect.event_open()
-            # 再判断一次打开是否成功
-            if not self.cur_connect.status():
-                ui.b_status_control.setText('连接断开')
-                debug.err('连接被断开')
             return None
 
     def send_push(self, b_data, packet=0):
@@ -302,76 +275,14 @@ class Message(QThread):
         else:
             debug.err('当前没有连接')
 
-    def _event_status_control(self):
-        ''' 根据当期的连接模式，控制连接的打开/关闭 
-        '''
-        if self.cur_connect.status():
-            self.cur_connect.close()
-            ui.b_status_control.setText('未连接')
-            self.state = False
-        else:
-            # 因为要同步改变显示状态，所以分别调用对应连接的打开比较方便
-            if self.connect_mode == CONNTET_SERIAL:
-                self._event_open_serial()
-            elif self.connect_mode == CONNECT_TCP_CLINET:
-                self._event_tcp_client_connect()
-            elif self.connect_mode == CONNECT_TCP_SERVER:
-                self._event_tcp_client_connect()
-            self.state = True
-
     def _event_open_serial(self):
         ''' 点击串口连接事件
             会断开其他连接
         '''
-        if self.connect_mode != CONNTET_SERIAL:
-            self.cur_connect.close()
         if not self.serial.status():
             self.serial.event_open()
         else:
             self.serial.close()
-        if self.serial.status():
-            ui.b_status_control.setText('关闭串口')
-            self.state = True
-        else:
-            ui.b_status_control.setText('打开串口')
-            self.state = False
-        self.set_connect_mode(CONNTET_SERIAL)
-
-    def _event_tcp_client_connect(self):
-        ''' 点击 TCP客户端 连接事件
-            只有打开没有关闭功能
-            会断开其他连接
-        '''
-        if self.connect_mode != CONNECT_TCP_CLINET:
-            self.cur_connect.close()
-        if self.client.status():
-            self.client.close()
-        else:
-            self.client.event_open()
-        # 判断打开是否成功,并改变状态
-        if self.client.status():
-            self.state = True
-            ui.b_status_control.setText('断开')
-        else:
-            self.state = False
-            ui.b_status_control.setText('连接')
-        self.set_connect_mode(CONNECT_TCP_CLINET)
-
-    def _event_tcp_server_connect(self):
-        ''' 点击 TCP服务器 连接事件
-            只有打开没有关闭功能
-            会断开其他连接
-        '''
-        if self.connect_mode != CONNECT_TCP_SERVER:
-            self.cur_connect.close()
-        self.server.event_open()
-        if self.server.status():
-            ui.b_status_control.setText('关闭服务器')
-            self.state = True
-        else:
-            ui.b_status_control.setText('服务器启动失败')
-            self.state = False
-        self.set_connect_mode(CONNECT_TCP_SERVER)
 
     def _event_clean_send(self):
         ''' 清空底部发送区数据 '''

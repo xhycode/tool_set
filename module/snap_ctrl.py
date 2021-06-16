@@ -35,6 +35,8 @@ class SnapControl(QThread, ModuleBase):
         ui.b_home.clicked.connect(self.home_b)
         ui.all_home.clicked.connect(self.home_all)
         ui.speed_unit.stateChanged.connect(self.set_speed_unit)
+        ui.nozzle_temp_set.clicked.connect(self.set_nozzle_temp)
+        ui.bed_temp_set.clicked.connect(self.set_bed_temp)
         # 按键颜色初始化
         ui.x_add.setStyleSheet("background-color: #008000;font-weight:bold;")
         ui.x_sub.setStyleSheet("background-color: #008000;font-weight:bold;")
@@ -132,6 +134,16 @@ class SnapControl(QThread, ModuleBase):
     def home_b(self):
         self.home("B")
 
+    def set_nozzle_temp(self):
+        temp = ui.nozzle_temp_edit.value()
+        cmd = "M104 S{}\r\n".format(temp)
+        self.send_str(cmd)
+
+    def set_bed_temp(self):
+        temp = ui.bed_temp_edit.value()
+        cmd = "M140 S{}\r\n".format(temp)
+        self.send_str(cmd)
+
     # 3D头控制
     def print3d_init(self):
         ui.set_fan_0.clicked.connect(self.set_print_fan0)
@@ -155,15 +167,15 @@ class SnapControl(QThread, ModuleBase):
         power = ui.fan_1_target.value()
         self.set_fan_power(1, power)
 
-    def set_nozzle_temp(self):
-        temp = ui.nozzle_temp_target.value()
-        cmd = "M104 S{}".format(temp)
-        self.send_str(cmd)
+    # def set_nozzle_temp(self):
+    #     temp = ui.nozzle_temp_target.value()
+    #     cmd = "M104 S{}".format(temp)
+    #     self.send_str(cmd)
 
-    def set_bed_temp(self):
-        temp = ui.bed_temp_target.value()
-        cmd = "M109 S{}".format(temp)
-        self.send_str(cmd)
+    # def set_bed_temp(self):
+    #     temp = ui.bed_temp_target.value()
+    #     cmd = "M109 S{}".format(temp)
+    #     self.send_str(cmd)
 
     def show_nozzle_temp(self, cur, target):
         ui.nozzle_temp_val.setText("{}/{}".format(cur, target))

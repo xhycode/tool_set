@@ -34,6 +34,7 @@ class Message(QThread):
         ui.c_auto_send.stateChanged.connect(self._event_auto_send)
         ui.c_all_exend_send.stateChanged.connect(self._event_extend_all_select)
         ui.c_entend_enter.stateChanged.connect(self.extend_enter_status_save)
+        ui.c_send_enter.stateChanged.connect(self.send_enter_status_save)
         ui.c_extend_cyclic_send.stateChanged.connect(self.extend_cyclic_status_save)
         ui.b_extend_send_all.clicked.connect(self._event_extend_all_send)
         ui.e_auto_send_time.valueChanged.connect(self.auto_send_time_save)
@@ -81,6 +82,7 @@ class Message(QThread):
         ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
         ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SEND_TIME, '1.0')))
         self.send_encode_init()
+        ui.c_send_enter.setCheckState(int(cfg.get(cfg.SEND_ENTER_STATE, '1')))
         self.start()  # 开启发送线程，继承来的，从 run() 函数运行
 
     def send_encode_init(self):
@@ -105,6 +107,12 @@ class Message(QThread):
             复选框改变事件调用
         '''
         cfg.set(cfg.EXTEND_ENTER_STATE, state)
+
+    def send_enter_status_save(self, state):
+        ''' 保存发送区发送的换行复选框状态 
+            复选框改变事件调用
+        '''
+        cfg.set(cfg.SEND_ENTER_STATE, state)
 
     def extend_cyclic_status_save(self, state):
         ''' 保存扩展发送的循环发送复选框状态 

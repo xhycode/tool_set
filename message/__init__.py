@@ -17,6 +17,7 @@ AUTO_SEND_NONE = '0'
 AUTO_SEND_MAIN = '1'
 AUTO_SEND_EXTEND = '2'
 
+HISTORY_COUNT = 30
 
 class Message(QThread):
     ''' 管理不同的消息类型,对外开放统一的接口'''
@@ -26,6 +27,7 @@ class Message(QThread):
         self.message_module_init()
         self.send_init()
         self.extend_send_init()
+        self.history_send_init()
         self.bind()
 
     def bind(self):
@@ -88,6 +90,15 @@ class Message(QThread):
         ui.c_enter_send.setCheckState(int(cfg.get(cfg.ENTER_SEND_STATE, '2')))
         ui.e_send.textChanged.connect(self._event_send_change)
         self.start()  # 开启发送线程，继承来的，从 run() 函数运行
+
+    def history_send_init(self):
+        self.edit_send_test_flag = False
+        self.history = []
+        self.cur_send_edit = cfg.get(cfg.CUR_SEND_EDIT, '')
+        ui.e_send.setText(self.cur_send_edit)
+        for i in range(HISTORY_COUNT):
+            self.history.append(cfg.get(cfg.HISTARY_SEND + str(i), ''))
+        ui.s_history.valueChanged.connect(self._event_show_history)
 
     def send_encode_init(self):
         ''' 发送可以使用不同的编码格式，
@@ -228,6 +239,15 @@ class Message(QThread):
     def status(self):
         return self.cur_connect.status()
 
+    def _event_show_history(self, val):
+        self.edit_send_test_flag = True
+        if val == 0:
+            ui.e_send.setText(self.cur_send_edit)
+        else:
+            cur = self.cur_send_edit
+            ui.e_send.setText(self.history[val - 1])
+            self.cur_send_edit = cur
+
     def _event_extend_send(self):
         ''' 扩展发送区的单个发送事件触发
             只发送被按下发送的数据框数据
@@ -278,12 +298,28 @@ class Message(QThread):
                 self.auto_send.start()
 
     def _event_send_change(self):
+        if self.edit_send_test_flag:
+            self.edit_send_test_flag = False
+            return
         data = ui.e_send.toPlainText()
         if ui.c_enter_send.checkState() and len(data) > 0:
             if data[-1] == '\n':
-                ui.e_send.setText(data[:-1])
+                self.cur_send_edit = data[:-1]
+                ui.e_send.setText(self.cur_send_edit)
                 ui.e_send.moveCursor(QTextCursor.End)
                 self._event_send()
+                cfg.set(cfg.CUR_SEND_EDIT, self.cur_send_edit)
+                return
+        self.cur_send_edit = data
+        cfg.set(cfg.CUR_SEND_EDIT, self.cur_send_edit)
+
+    def save_send_history(self, data):
+        if not data == self.history[0]:
+            ui.s_history.setValue(0)
+            self.history.insert(0, data)
+            self.history = self.history[: HISTORY_COUNT]
+            for i, h in enumerate(self.history):
+                cfg.set(cfg.HISTARY_SEND + str(i), h)
 
     def _event_send(self):
         ''' 发送区的数据发送 '''
@@ -291,6 +327,7 @@ class Message(QThread):
             data = ui.e_send.toPlainText()
             is_packet = ui.c_is_pack.checkState()
             ishex = ui.c_hex_send.checkState()
+            self.save_send_history(data)
             if ui.c_send_enter.checkState():
                 data += '\r\n'
             ret = self.send(data, self.cur_encode, ishex=ishex, packet=is_packet)

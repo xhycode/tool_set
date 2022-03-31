@@ -314,6 +314,7 @@ class Message(QThread):
         cfg.set(cfg.CUR_SEND_EDIT, self.cur_send_edit)
 
     def save_send_history(self, data):
+        self.cur_send_edit = data
         if not data == self.history[0]:
             ui.s_history.setValue(0)
             self.history.insert(0, data)

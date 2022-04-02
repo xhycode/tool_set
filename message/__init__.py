@@ -4,6 +4,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QTextCursor
 from message import serial_tool
 from message.protocol import Protocol
+from module import sacp_update
 from ui import ui
 import debug
 import cfg
@@ -213,7 +214,8 @@ class Message(QThread):
     def send_push(self, b_data, packet=0):
         """b_data为字节类型"""
         if packet:
-            b_data = Protocol.pack(data=b_data)
+            b_data = sacp_update.sacp_pack_from_ui(b_data)
+            # b_data = Protocol.pack(data=b_data)
         self.send_queue.put(b_data)
         if not self.cur_connect.status():
             debug.err('未连接,连接后会继续发送')

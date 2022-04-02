@@ -34,6 +34,12 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     # 清空指定通道波形数据显示的信号 str:通道对应名称
     g_waveform_clear_signal = QtCore.pyqtSignal(str)
    
+    # SACP数据显示窗口添加要显示的内容的信号 str:显示的内容
+    e_sacp_data_signal = QtCore.pyqtSignal(str)
+
+    # SACP缓存区显示窗口添加要显示的内容的信号 str:显示的内容
+    e_sacp_cache_data_signal = QtCore.pyqtSignal(str)
+
 
     def __init__(self):
         super().__init__()
@@ -58,6 +64,8 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.serial_port_signal.connect(self.renew_serial_port)
         self.g_waveform_clear_signal.connect(self.clear_curves)
         self.g_waveform_signal.connect(self.set_waveform_data)
+        self.e_sacp_data_signal.connect(self.renew_sacp_data_dispay)
+        self.e_sacp_cache_data_signal.connect(self.renew_sacp_cache_data_dispay)
 
     def renew_recv_dispay(self, data):
         ''' 数据界面添加内容，数据会追加到最后边显示
@@ -189,3 +197,19 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         '''
         if self.curves.get(name, None):
             self.curves[name].clear()
+
+    def renew_sacp_data_dispay(self, data):
+        if len(data):
+            self.sacp_debug_output_win.moveCursor(QTextCursor.End)
+            self.sacp_debug_output_win.insertPlainText(data)
+            self.sacp_debug_output_win.moveCursor(QTextCursor.End)
+        else:
+            self.sacp_debug_output_win.clear()
+
+    def renew_sacp_cache_data_dispay(self, data):
+        if len(data):
+            self.sacp_debug_cache_data.moveCursor(QTextCursor.End)
+            self.sacp_debug_cache_data.insertPlainText(data)
+            self.sacp_debug_cache_data.moveCursor(QTextCursor.End)
+        else:
+            self.sacp_debug_cache_data.clear()

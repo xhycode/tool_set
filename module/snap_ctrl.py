@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtCore import QThread
 from module.module_base import ModuleBase
+from module.sacp_update import SnapUpdateTool
 from ui import ui
 import cfg
 import debug
@@ -15,7 +16,9 @@ class SnapControl(QThread, ModuleBase):
         self.line_data = ""
         self.step_init()
         self.print3d_init()
+        self.update_tool = SnapUpdateTool()
         self.cur_connect = CONNECT_TYPE_PC
+        ui.snapmaker_tool.setCurrentIndex(0)
 
     # 运动控制
     def step_init(self):
@@ -199,17 +202,29 @@ class SnapControl(QThread, ModuleBase):
     def check_connect_type(self):
         pass
 
+    def gcode_parse(self, data):
+        # try:
+        #     ch = data.decode()
+        # except:
+        #     debug.err('数据编码错误')
+        #     return
+        # if ch == '\n':
+        #     debug.data(self.line_data + '\n')
+        #     self.line_data = ''
+        # else:
+        #     self.line_data += ch
+        pass
+
+    def sacp_parse(self, data):
+        for d in data:
+            self.update_tool.sacp_parse(d)
+
     def parse(self, data):
-        try:
-            ch = data.decode()
-        except:
-            debug.err('数据编码错误')
-            return
-        if ch == '\n':
-            debug.data(self.line_data + '\n')
-            self.line_data = ''
+        index = ui.snapmaker_tool.currentIndex()
+        if index == 3 or index == 4:
+            self.sacp_parse(data)
         else:
-            self.line_data += ch
+            self.gcode_parse(data)
 
     def run(self):
         while  True:

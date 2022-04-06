@@ -27,7 +27,7 @@ class ModuleBase():
 
     def send_bytes(self, b_data, packet=0):
         """直接发送字节数据"""
-        return self.send_push(b_data)
+        return self.send_push(b_data, packet)
 
     def send_str(self, str_data, packet=0):
         """发送字符串类型的数据"""
@@ -37,7 +37,7 @@ class ModuleBase():
     def send_hex(self, hex_str, packet=0):
         """hex_str:十六进制的字符串"""
         debug.info(hex_str)
-        return self.send_push(bytes.fromhex(b_data), packet)
+        return self.send_push(bytes.fromhex(hex_str), packet)
 
     def send_pop(self):
         ''' 获取待发送的数据，给其他模块调用，帮助把这个包里模块的数据发出去

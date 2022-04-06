@@ -16,7 +16,7 @@ class SnapControl(QThread, ModuleBase):
         self.line_data = ""
         self.step_init()
         self.print3d_init()
-        self.update_tool = SnapUpdateTool()
+        self.update_tool = SnapUpdateTool(self.send_bytes)
         self.cur_connect = CONNECT_TYPE_PC
         ui.snapmaker_tool.setCurrentIndex(0)
 

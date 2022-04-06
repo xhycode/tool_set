@@ -327,6 +327,8 @@ class SnapUpdateTool(QThread):
         if app_path == '':
             debug.err('没有选择升级文件')
             return
+        ui.e_set_update_progress_signal.emit(0)
+        ui.last_update_file_path.setText(app_path)
         with open(app_path, 'rb') as f:
             self.update_file = f.read()
             f.close()
@@ -375,7 +377,7 @@ class SnapUpdateTool(QThread):
             return
         file_len = len(self.update_file)
         file_addr = UPDATE_PACK_HEAD_SIZE + start_addr
-        if file_addr > file_len:
+        if file_addr + 1 > file_len:
             debug.err("请求的地址超出文件")
             data = bytes()
             result = 1
@@ -392,6 +394,19 @@ class SnapUpdateTool(QThread):
         update_pack = sacp_pack(SACP_ID_HMI, SACP_ID_CONTROLLER, COMMAND_SET_UPDATE, UPDATE_ID_REQ_UPDATE_PACK,
                 pack_info, len(pack_info), self.sacp_cmd.get_sequence(), SACP_ATTR_ACK)
         self.send_sacp(update_pack)
+        ui.e_set_update_progress_signal.emit(end_addr / (file_len - UPDATE_PACK_HEAD_SIZE) * 100)
+
+    def update_status_deal(self):
+        result = self.sacp_cmd.get_valid_data()[0]
+        ui.e_set_update_progress_signal.emit(100)
+        print(result)
+        print(type(result))
+        print(len(result))
+
+        if result[0] != 0:
+            debug.err("升级失败:{}".format(result))
+        else:
+            debug.info('升级成功')
 
     def sacp_event(self):
         cmd_set = self.sacp_cmd.get_cmd_set()
@@ -399,6 +414,8 @@ class SnapUpdateTool(QThread):
         if cmd_set == COMMAND_SET_UPDATE:
             if cmd_id == UPDATE_ID_REQ_UPDATE_PACK:
                 self.send_update_pack()
+            elif cmd_id == UPDATE_ID_REPORT_STATUS:
+                self.update_status_deal()
 
     def sacp_recv_end(self):
         self.sacp_cmd.parse_data(self.sacp_cache)

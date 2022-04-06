@@ -39,6 +39,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
 
     # SACP缓存区显示窗口添加要显示的内容的信号 str:显示的内容
     e_sacp_cache_data_signal = QtCore.pyqtSignal(str)
+    e_set_update_progress_signal = QtCore.pyqtSignal(int)
 
 
     def __init__(self):
@@ -66,6 +67,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.g_waveform_signal.connect(self.set_waveform_data)
         self.e_sacp_data_signal.connect(self.renew_sacp_data_dispay)
         self.e_sacp_cache_data_signal.connect(self.renew_sacp_cache_data_dispay)
+        self.e_set_update_progress_signal.connect(self.set_update_progress)
 
     def renew_recv_dispay(self, data):
         ''' 数据界面添加内容，数据会追加到最后边显示
@@ -213,3 +215,6 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
             self.sacp_debug_cache_data.moveCursor(QTextCursor.End)
         else:
             self.sacp_debug_cache_data.clear()
+
+    def set_update_progress(self, val):
+        self.update_progress.setValue(val)

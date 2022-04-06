@@ -91,7 +91,7 @@ def creat_update_packet(pack_type, index_range, version, flash_addr, app_path, o
         pack_head += struct.pack('<H', index_range[1])            # 4 B
         pack_head += version.encode('UTF-8')                      # 32 B
         pack_head += pack_time                                    # 20 B
-        pack_head += struct.pack('<H', 0xFFFF)                    # 2 B
+        pack_head += struct.pack('<H', 0xAA01)                    # 2 B
         pack_head += struct.pack('<I', len(app_bin))              # 4 B
         app_checknum = sacp_check_data(app_bin, len(app_bin))
         pack_head += struct.pack('<I', app_checknum)              # 4 B

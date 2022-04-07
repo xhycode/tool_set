@@ -198,6 +198,8 @@ class SacpStruct:
                 self.valid_data = sacp_data[13: -2]
 
     def _data_to_hex(self, data):
+        if len(data) == 0:
+            return ''
         temp = []
         for d in data:
             temp.append("{:0>2x}".format(d) + ' ')
@@ -225,32 +227,33 @@ class SacpStruct:
 
             if not self.is_crc_ok:
                 out_info += " (实际接收长度 {},有错误)\n".format(len(self.all_data) - 7)
-            else:
-                out_info += " (ok)\n"
-            out_info += "有效数据长度:" + str(self.data_len - 8) + '\n'
-            
-            out_info += "协议版本:{}\n".format(self.sacp_ver)
-            out_info += "sender_id:{}  recever_id:{}\n".format(self.sender_id, self.recever_id)
-            out_info += "crc 校验数:{:0>2x} ".format(self.recv_crc)
-            if not self.is_crc_ok:
-                out_info += "(包头校验错误:0x{:0>2})\n".format(self.calc_crc)
                 out_info += "全部数据(hex): " + self._data_to_hex(self.all_data) + "\n"
             else:
-                out_info += "(ok)\n"
-                out_info += "包类型:{:0>2x} ".format(self.arrt)
-                if self.arrt & 0x1:
-                    out_info += "(应答包)\n"
-                else:
-                    out_info += "(请求包)\n"
-                out_info += "sequence:{}\n".format(self.sequence)
-                out_info += "cmd_set:0x{:0>2x}  cmd_id:0x{:0>2x}\n".format(self.cmd_set, self.cmd_id)
-                out_info += "数据校验码:0x{:0>4x}".format(self.recv_checknum)
-                if not self.is_checknum_ok:
-                    out_info += "(校验错误:0x{:0>4x})\n".format(self.calc_checknum & 0xFFFF)
+                out_info += " (ok)\n"
+                out_info += "有效数据长度:" + str(self.data_len - 8) + '\n'
+                out_info += "协议版本:{}\n".format(self.sacp_ver)
+                out_info += "sender_id:{}  recever_id:{}\n".format(self.sender_id, self.recever_id)
+                out_info += "crc 校验数:{:0>2x} ".format(self.recv_crc)
+                if not self.is_crc_ok:
+                    out_info += "(包头校验错误:0x{:0>2})\n".format(self.calc_crc)
+                    out_info += "全部数据(hex): " + self._data_to_hex(self.all_data) + "\n"
                 else:
                     out_info += "(ok)\n"
-                out_info += "包头数据(hex): " + self._data_to_hex(self.head_data) + "\n"
-                out_info += "有效数据(hex): " + self._data_to_hex(self.valid_data) + "\n"
+                    out_info += "包类型:{:0>2x} ".format(self.arrt)
+                    if self.arrt & 0x1:
+                        out_info += "(应答包)\n"
+                    else:
+                        out_info += "(请求包)\n"
+                    out_info += "sequence:{}\n".format(self.sequence)
+                    out_info += "cmd_set:0x{:0>2x}  cmd_id:0x{:0>2x}\n".format(self.cmd_set, self.cmd_id)
+                    out_info += "数据校验码:0x{:0>4x}".format(self.recv_checknum)
+                    if not self.is_checknum_ok:
+                        out_info += "(校验错误:0x{:0>4x})\n".format(self.calc_checknum & 0xFFFF)
+                        out_info += "全部数据(hex): " + self._data_to_hex(self.all_data) + "\n"
+                    else:
+                        out_info += "(ok)\n"
+                        out_info += "包头数据(hex): " + self._data_to_hex(self.head_data) + "\n"
+                        out_info += "有效数据(hex): " + self._data_to_hex(self.valid_data) + "\n"
             out_info += "\n\n"
         ui.e_sacp_data_signal.emit(out_info)
 
@@ -291,6 +294,7 @@ class SnapUpdateTool(QThread):
         ui.update_pack_creat.clicked.connect(self.event_creat_update_pack)
         ui.sacp_debug_clean_data.clicked.connect(self.event_clean_debug_data)
         ui.update_start_button.clicked.connect(self.event_update_app)
+        ui.sacp_debug_parse_cache.clicked.connect(self.event_parse_cache_date)
 
     def send_sacp(self, data):
         SacpStruct(data).show_to_ui(DATA_SORCE_SEND)
@@ -299,6 +303,15 @@ class SnapUpdateTool(QThread):
     def get_sequence(self):
         self.sequence += 1
         return self.sequence & 0xffff
+
+    def event_parse_cache_date(self):
+        try:
+            data = ui.sacp_debug_cache_data.toPlainText()
+            sacp_data = bytes.fromhex(data)
+            print(sacp_data)
+            SacpStruct(sacp_data).show_to_ui(DATA_SORCE_SEND)
+        except:
+            debug.err("格式错误.举例“01 02”")
 
     def event_app_path(self):
         path = ui.update_pack_app_path.text()
@@ -350,6 +363,7 @@ class SnapUpdateTool(QThread):
         update_head = sacp_pack(SACP_ID_HMI, SACP_ID_CONTROLLER, COMMAND_SET_UPDATE, UPDATE_ID_REQ_UPDATE,
                 self.update_file[ : UPDATE_PACK_HEAD_SIZE], UPDATE_PACK_HEAD_SIZE, self.get_sequence(), SACP_ATTR_REQ)
         self.send_sacp(update_head)
+        self.send_data_bak = bytes()
 
 
     def creat_update_packet(self, app_path, out_file):
@@ -395,13 +409,13 @@ class SnapUpdateTool(QThread):
                 pack_info, len(pack_info), self.sacp_cmd.get_sequence(), SACP_ATTR_ACK)
         self.send_sacp(update_pack)
         ui.e_set_update_progress_signal.emit(end_addr / (file_len - UPDATE_PACK_HEAD_SIZE) * 100)
+        self.send_data_bak += data
 
     def update_status_deal(self):
         result = self.sacp_cmd.get_valid_data()[0]
         ui.e_set_update_progress_signal.emit(100)
-        print(result)
-        print(type(result))
-        print(len(result))
+        check = sacp_check_data(self.send_data_bak, len(self.send_data_bak))
+        debug.info("发送校验:{:0>4x}".format(check))
 
         if result[0] != 0:
             debug.err("升级失败:{}".format(result))
@@ -459,10 +473,6 @@ class SnapUpdateTool(QThread):
             ui.e_sacp_cache_data_signal.emit("{:0>2x} ".format(b_data))
             if len(self.sacp_cache) == self.need_recv_len:
                 self.sacp_recv_end()
-
-
-    # def run(self):
-    #     while True:
 
 
 if __name__ == '__main__':

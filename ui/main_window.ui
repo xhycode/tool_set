@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1221</width>
-    <height>898</height>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -77,7 +77,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>128</width>
-                  <height>643</height>
+                  <height>663</height>
                  </rect>
                 </property>
                 <widget class="QGroupBox" name="groupBox_4">
@@ -3867,6 +3867,13 @@
                        </property>
                       </widget>
                      </item>
+                     <item>
+                      <widget class="QPushButton" name="sacp_debug_parse_cache">
+                       <property name="text">
+                        <string>解析缓冲数据</string>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                   </item>
@@ -3906,7 +3913,7 @@
                         <item>
                          <widget class="QTextEdit" name="sacp_debug_cache_data">
                           <property name="enabled">
-                           <bool>false</bool>
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -3999,7 +4006,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>216</width>
-                  <height>651</height>
+                  <height>671</height>
                  </rect>
                 </property>
                 <widget class="QLineEdit" name="e_extend_send_1">

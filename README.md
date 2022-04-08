@@ -43,7 +43,7 @@
             * pip install pyqt5 -i https://pypi.douban.com/simple
             * pip install pyqtgraph -i https://pypi.douban.com/simple
             * pip install pyinstaller  # 打包成exe
-             pyinstaller --onefile -w --icon=mao.ico .\main.py
+             pyinstaller --onefile -w --icon=mao.ico ./main.py
         - linux
             * pip3 install serial -i https://pypi.douban.com/simple
             * pip3 install pyserial -i https://pypi.douban.com/simple

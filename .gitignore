@@ -32,3 +32,7 @@ ui/cfg.ini
 ui/__pycache__/__init__.cpython-38.pyc
 ui/__pycache__/global_ui.cpython-38.pyc
 ui/__pycache__/main_window.cpython-38.pyc
+*.pyc
+*.exe
+build/
+dist/

@@ -87,19 +87,23 @@ def creat_update_packet(pack_type, index_range, version, flash_addr, app_path, o
         pack_head = PACK_HEAD_FLAG_STR.encode('UTF-8')            # 21 B
         pack_head += struct.pack('<B', PACK_SACP_VER)             # 1 B
         pack_head += struct.pack('<H', pack_type)                 # 2 B
+        pack_head += struct.pack('<B', 0x00)                      # 1 B 强制升级位，预留暂未使用
         pack_head += struct.pack('<H', index_range[0])            # 4 B
         pack_head += struct.pack('<H', index_range[1])            # 4 B
         pack_head += version.encode('UTF-8')                      # 32 B
         pack_head += pack_time                                    # 20 B
-        pack_head += struct.pack('<H', 0xAA01)                    # 2 B
+        pack_head += struct.pack('<H', 0xAA01)                    # 2 B  升级标记位
         pack_head += struct.pack('<I', len(app_bin))              # 4 B
         app_checknum = sacp_check_data(app_bin, len(app_bin))
-        pack_head += struct.pack('<I', app_checknum)              # 4 B
+        pack_head += struct.pack('<I', app_checknum)              # 4 B app校验
         pack_head += struct.pack('<I', flash_addr)                # 4 B
-
+        pack_head += struct.pack('<B', 0x00)                      # 1 B  接收的通道
+        pack_head += struct.pack('<B', 0x00)                      # 1 B  对端地址
         pack_checknum = sacp_check_data(pack_head, len(pack_head))
-        pack_head += struct.pack('<I', pack_checknum)                # 4 B
+        pack_head += struct.pack('<I', pack_checknum)             # 4 B 包头校验
 
+        debug.info("包头长度:{}".format(len(pack_head)))
+        print(pack_head)
         with open(out_path, 'wb') as out_file:
             out_file.write(pack_head)
             out_file.seek(UPDATE_PACK_HEAD_SIZE)

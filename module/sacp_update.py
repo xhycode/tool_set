@@ -405,14 +405,11 @@ class SnapUpdateTool(QThread):
         else:
             data = self.update_file[file_addr:]
             result = 0
-        end_addr = start_addr
-        if len(data) > 1:
-            end_addr = start_addr + len(data) - 1
-        pack_info = struct.pack("<BII", result, start_addr, end_addr) + data
+        pack_info = struct.pack("<BIH", result, start_addr, len(data)&0xFFFF) + data
         update_pack = sacp_pack(SACP_ID_HMI, SACP_ID_CONTROLLER, COMMAND_SET_UPDATE, UPDATE_ID_REQ_UPDATE_PACK,
                 pack_info, len(pack_info), self.sacp_cmd.get_sequence(), SACP_ATTR_ACK)
         self.send_sacp(update_pack)
-        ui.e_set_update_progress_signal.emit(end_addr / (file_len - UPDATE_PACK_HEAD_SIZE) * 100)
+        ui.e_set_update_progress_signal.emit((start_addr + len(data)) / (file_len - UPDATE_PACK_HEAD_SIZE) * 100)
         self.send_data_bak += data
 
     def update_status_deal(self):

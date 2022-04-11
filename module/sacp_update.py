@@ -420,6 +420,10 @@ class SnapUpdateTool(QThread):
             debug.err("升级失败:{}".format(result))
         else:
             debug.info('升级成功')
+        pack_info = struct.pack("<B", 0)  # 应答主控已经收到通知
+        update_pack = sacp_pack(SACP_ID_HMI, SACP_ID_CONTROLLER, COMMAND_SET_UPDATE, UPDATE_ID_REPORT_STATUS,
+                pack_info, len(pack_info), self.sacp_cmd.get_sequence(), SACP_ATTR_ACK)
+        self.send_sacp(update_pack)
 
     def sacp_event(self):
         cmd_set = self.sacp_cmd.get_cmd_set()

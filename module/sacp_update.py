@@ -44,8 +44,6 @@ def sacp_check_data(data, length):
         checknum &= 0xffffffff
       if length % 2 != 0:
         checknum += data[length - 1]
-    while checknum > 0xffff:
-      checknum = ((checknum >> 16) & 0xffff) + (checknum & 0xffff)
     checknum = ~checknum
     return checknum & 0xffffffff
 

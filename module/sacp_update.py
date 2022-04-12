@@ -36,7 +36,20 @@ UPDATE_ID_REQ_UPDATE      = 0x01
 UPDATE_ID_REQ_UPDATE_PACK = 0x02
 UPDATE_ID_REPORT_STATUS   = 0x03
 
-def sacp_check_data(data, length):
+def u16_check_data(data, length):
+    checknum = 0
+    if length > 0 :
+      for i in range(0, (length - 1) , 2) :
+        checknum += (((data[i]&0xff) << 8) | (data[i+1]&0xff))
+        checknum &= 0xffffffff
+      if length % 2 != 0:
+        checknum += data[length - 1]
+    while checknum > 0xffff:
+        checknum = ((checknum >> 16) & 0xffff) + (checknum & 0xffff)
+    checknum = ~checknum
+    return checknum & 0xffff
+
+def u32_check_data(data, length):
     checknum = 0
     if length > 0 :
       for i in range(0, (length - 1) , 2) :
@@ -92,12 +105,12 @@ def creat_update_packet(pack_type, index_range, version, flash_addr, app_path, o
         pack_head += pack_time                                    # 20 B
         pack_head += struct.pack('<H', 0xAA01)                    # 2 B  升级标记位
         pack_head += struct.pack('<I', len(app_bin))              # 4 B
-        app_checknum = sacp_check_data(app_bin, len(app_bin))
+        app_checknum = u32_check_data(app_bin, len(app_bin))
         pack_head += struct.pack('<I', app_checknum)              # 4 B app校验
         pack_head += struct.pack('<I', flash_addr)                # 4 B
         pack_head += struct.pack('<B', 0x00)                      # 1 B  接收的通道
         pack_head += struct.pack('<B', 0x00)                      # 1 B  对端地址
-        pack_checknum = sacp_check_data(pack_head, len(pack_head))
+        pack_checknum = u32_check_data(pack_head, len(pack_head))
         pack_head += struct.pack('<I', pack_checknum)             # 4 B 包头校验
 
         debug.info("包头长度:{}".format(len(pack_head)))
@@ -139,7 +152,7 @@ def sacp_pack(snd_id, rec_id, cmd_set, cmd_id, data, length, sequence, arrt):
     sacp_head = bytearray(sacp_head)
     sacp_head[6] = sacp_check_head(sacp_head, 6)
     pack_array = sacp_head + data
-    checknum = sacp_check_data(pack_array[7:], length + 6)
+    checknum = u16_check_data(pack_array[7:], length + 6)
     pack_array = pack_array + struct.pack("<H", checknum&0xFFFF)
     return pack_array
 
@@ -191,7 +204,7 @@ class SacpStruct:
                 self.cmd_set = sacp_data[11]
                 self.cmd_id = sacp_data[12]
                 self.recv_checknum = (sacp_data[-2] | sacp_data[-1] << 8) & 0xFFFF
-                self.calc_checknum = sacp_check_data(sacp_data[7:], self.data_len - 2) & 0xFFFF
+                self.calc_checknum = u16_check_data(sacp_data[7:], self.data_len - 2) & 0xFFFF
                 if self.recv_checknum != self.calc_checknum:
                     self.is_checknum_ok = False
                 else:
@@ -413,7 +426,7 @@ class SnapUpdateTool(QThread):
     def update_status_deal(self):
         result = self.sacp_cmd.get_valid_data()[0]
         ui.e_set_update_progress_signal.emit(100)
-        check = sacp_check_data(self.send_data_bak, len(self.send_data_bak))
+        check = u32_check_data(self.send_data_bak, len(self.send_data_bak))
         debug.info("发送校验:{:0>4x}".format(check))
 
         if result[0] != 0:

@@ -1539,6 +1539,13 @@ class Ui_ToolSet(object):
         self.label_58 = QtWidgets.QLabel(self.groupBox_16)
         self.label_58.setObjectName("label_58")
         self.verticalLayout_21.addWidget(self.label_58)
+        self.label_61 = QtWidgets.QLabel(self.groupBox_16)
+        font = QtGui.QFont()
+        font.setPointSize(17)
+        self.label_61.setFont(font)
+        self.label_61.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_61.setObjectName("label_61")
+        self.verticalLayout_21.addWidget(self.label_61)
         spacerItem12 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_21.addItem(spacerItem12)
         self.horizontalLayout_47.addWidget(self.groupBox_16)
@@ -2253,7 +2260,7 @@ class Ui_ToolSet(object):
 
         self.retranslateUi(ToolSet)
         self.mode_manage.setCurrentIndex(2)
-        self.snapmaker_tool.setCurrentIndex(4)
+        self.snapmaker_tool.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(ToolSet)
 
     def retranslateUi(self, ToolSet):
@@ -2402,6 +2409,7 @@ class Ui_ToolSet(object):
         self.update_start_button.setText(_translate("ToolSet", "选择升级文件"))
         self.last_update_file_path.setText(_translate("ToolSet", "./app.nin"))
         self.label_58.setText(_translate("ToolSet", "（没有打包的文件会根据左边参数自动打包后发送）"))
+        self.label_61.setText(_translate("ToolSet", "（注意：升级中不能切换界面）"))
         self.snapmaker_tool.setTabText(self.snapmaker_tool.indexOf(self.tab_5), _translate("ToolSet", "SACP升级工具"))
         self.groupBox_26.setTitle(_translate("ToolSet", "SACP包头参数"))
         self.groupBox_28.setTitle(_translate("ToolSet", "command set"))

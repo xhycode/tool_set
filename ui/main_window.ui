@@ -1927,7 +1927,7 @@
               <item row="1" column="0">
                <widget class="QTabWidget" name="snapmaker_tool">
                 <property name="currentIndex">
-                 <number>4</number>
+                 <number>3</number>
                 </property>
                 <widget class="QWidget" name="tab_2">
                  <attribute name="title">
@@ -3666,6 +3666,21 @@
                          <widget class="QLabel" name="label_58">
                           <property name="text">
                            <string>（没有打包的文件会根据左边参数自动打包后发送）</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_61">
+                          <property name="font">
+                           <font>
+                            <pointsize>17</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>（注意：升级中不能切换界面）</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
                           </property>
                          </widget>
                         </item>

@@ -9,6 +9,7 @@ import debug
 CONNECT_TYPE_PC = 0  # 电脑控制，只用串口线连接
 CONNECT_TYPE_SC = 1  # 模拟屏幕控制，使用屏幕线连接
 
+STEP_SET_MM = (0.05, 0.1, 0.5, 1, 5, 10, 50)
 class SnapControl(QThread, ModuleBase):
     def __init__(self):
         super().__init__()
@@ -37,6 +38,11 @@ class SnapControl(QThread, ModuleBase):
         ui.z_home.clicked.connect(self.home_z)
         ui.b_home.clicked.connect(self.home_b)
         ui.all_home.clicked.connect(self.home_all)
+        for i , mm in enumerate(STEP_SET_MM):
+            step_btton = getattr(ui, 'step_set_' + str(i + 1))  # 设置运动距离按钮
+            fun = getattr(self, 'step_set_button' + str(i + 1))  # 触发事件函数
+            step_btton.clicked.connect(fun)
+            step_btton.setText(f'{mm}')
         ui.speed_unit.stateChanged.connect(self.set_speed_unit)
         ui.nozzle_temp_set.clicked.connect(self.set_nozzle_temp)
         ui.bed_temp_set.clicked.connect(self.set_bed_temp)
@@ -136,6 +142,27 @@ class SnapControl(QThread, ModuleBase):
 
     def home_b(self):
         self.home("B")
+
+    def step_set_button1(self):
+        ui.step_mm.setValue(STEP_SET_MM[0])
+
+    def step_set_button2(self):
+        ui.step_mm.setValue(STEP_SET_MM[1])
+
+    def step_set_button3(self):
+        ui.step_mm.setValue(STEP_SET_MM[2])
+
+    def step_set_button4(self):
+        ui.step_mm.setValue(STEP_SET_MM[3])
+
+    def step_set_button5(self):
+        ui.step_mm.setValue(STEP_SET_MM[4])
+
+    def step_set_button6(self):
+        ui.step_mm.setValue(STEP_SET_MM[5])
+
+    def step_set_button7(self):
+        ui.step_mm.setValue(STEP_SET_MM[6])
 
     def set_nozzle_temp(self):
         temp = ui.nozzle_temp_edit.value()

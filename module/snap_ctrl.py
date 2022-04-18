@@ -88,7 +88,7 @@ class SnapControl(QThread, ModuleBase):
         mm = self.get_step_mm() * dir
         speed = self.get_step_speed()
         self.send_str("G91\r\n")
-        cmd = "G0 {}{} F{}\r\n".format(axis, mm, speed)
+        cmd = "G1 {}{} F{}\r\n".format(axis, mm, speed)
         self.send_str(cmd)
         self.send_str("G90\r\n")
         self.wait_ack(1000)

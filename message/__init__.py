@@ -164,29 +164,41 @@ class Message(QThread):
         '''
         cfg.set(cfg.AUTO_SEND_TIME, '{:.3f}'.format(new_time))
 
+    def __next_index(self, cur_index, max_count):
+        return (cur_index + 1) % max_count
+
     def get_next_extend_data(self):
         ''' 循环发送时获取下一个要发送的数据
             没被选中的不发送
         '''
         index = self.extend_send_index
+        data =  None
+        find_times = 0
         while True:
             if self.extend_send_info[index]['select'].checkState():
                 # 找到下一个被选中的数据
                 data = self.extend_send_info[index]['data'].displayText()
                 if ui.c_entend_enter.checkState():
                     data += '\r\n'  # 勾选了自动换行
-                self.extend_send_index = index + 1
-                return data
-            index = (index + 1) % self.extend_count  # 循环累加，到最大会从头开始
-            if index == self.extend_send_index:  # 找了一圈没有选中的
+                index += 1
+                break
+            find_times += 1
+            index = self.__next_index(index, self.extend_count)
+            if index == 0:
+                self.loop_send_times += 1
+            if find_times == self.extend_count:  # 找了一圈没有选中的
                 debug.err('没有选中的数据')
-                return None
-            if index == 0:  # 循环一圈了，要判断是否重新循环
-                if not ui.c_extend_cyclic_send.checkState():  # 没勾选循环选项
-                    debug.info('顺序发送结束')
-                    return None
-                else:
-                    self.loop_send_times += 1
+                break
+        if data != None:
+            while index < self.extend_count:
+                if self.extend_send_info[index]['select'].checkState():
+                    break
+                index += 1
+            else:
+                index = 0
+                self.loop_send_times += 1
+            self.extend_send_index = index
+        return data
 
     def recv_line(self):
         ''' 收到 \n 才会停止接收
@@ -196,7 +208,7 @@ class Message(QThread):
         return None
 
     def recv(self, count=1):
-        ''' 接收 count 数据，默认是1个
+        ''' 接收 count 数据,默认是1个
             连接异常返回 None
         '''
         try:
@@ -297,7 +309,7 @@ class Message(QThread):
                 ui.b_extend_send_all.setText('停止发送')
                 self.loop_send_times = 0  ## 清空循环次数
                 ui.e_loop_times.setText(str(self.loop_send_times))
-                self.auto_send.start()
+                self.auto_send.start(0)
 
     def _event_send_change(self):
         if self.edit_send_test_flag:
@@ -390,6 +402,10 @@ class Message(QThread):
                 ui.e_loop_times.setText(str(self.loop_send_times))
             else:
                 self._stop_extend_send()
+            if not ui.c_extend_cyclic_send.checkState() and self.loop_send_times:  # 没勾选循环选项
+                debug.info('顺序发送结束')
+                self._stop_extend_send()
+                return None
 
     def run(self):
         ''' 线程用于发送队列的数据 '''

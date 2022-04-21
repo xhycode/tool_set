@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1364</width>
-    <height>1101</height>
+    <width>1168</width>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -77,7 +77,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>128</width>
-                  <height>811</height>
+                  <height>663</height>
                  </rect>
                 </property>
                 <widget class="QGroupBox" name="groupBox_4">
@@ -4227,8 +4227,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>216</width>
-                  <height>819</height>
+                  <width>206</width>
+                  <height>671</height>
                  </rect>
                 </property>
                 <widget class="QLineEdit" name="e_extend_send_1">
@@ -5472,7 +5472,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>98</width>
-                  <height>178</height>
+                  <height>143</height>
                  </rect>
                 </property>
                 <widget class="QCheckBox" name="c_hex_send">

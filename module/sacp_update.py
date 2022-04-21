@@ -311,6 +311,7 @@ class SnapUpdateTool(QThread):
         ui.update_start_button.clicked.connect(self.event_update_app)
         ui.sacp_debug_parse_cache.clicked.connect(self.event_parse_cache_date)
         self.load_update_pack_info_from_cfg()
+        self.load_sacp_debug_info_from_cfg()
 
     def load_update_pack_info_from_cfg(self):
         ui.update_pack_type.setValue(int(cfg.get('update_pack_type', 0)))
@@ -327,6 +328,21 @@ class SnapUpdateTool(QThread):
         ui.update_pack_flash_addr.valueChanged.connect(self.save_update_info)
         ui.update_pack_version.editingFinished.connect(self.save_update_info)
 
+    def load_sacp_debug_info_from_cfg(self):
+        ui.sacp_debug_cmd_set.setValue(int(cfg.get('sacp_debug_cmd_set', 0)))
+        ui.sacp_debug_cmd_id.setValue(int(cfg.get('sacp_debug_cmd_id', 0)))
+        ui.sacp_debug_attribute.setValue(int(cfg.get('sacp_debug_attribute', 0)))
+        ui.sacp_debug_recv_id.setValue(int(cfg.get('sacp_debug_recv_id', 0)))
+        ui.sacp_debug_send_id.setValue(int(cfg.get('sacp_debug_send_id', 0)))
+        ui.sacp_debug_sequence.setValue(int(cfg.get('sacp_debug_sequence', 0)))
+        # 绑定改变事件
+        ui.sacp_debug_cmd_set.valueChanged.connect(self.save_sacp_debug_info)
+        ui.sacp_debug_cmd_id.valueChanged.connect(self.save_sacp_debug_info)
+        ui.sacp_debug_attribute.valueChanged.connect(self.save_sacp_debug_info)
+        ui.sacp_debug_recv_id.valueChanged.connect(self.save_sacp_debug_info)
+        ui.sacp_debug_send_id.valueChanged.connect(self.save_sacp_debug_info)
+        ui.sacp_debug_sequence.valueChanged.connect(self.save_sacp_debug_info)
+
     def save_update_info(self):
         cfg.set('update_pack_type', ui.update_pack_type.value())
         cfg.set('update_pack_start_id', ui.update_pack_start_id.value())
@@ -335,6 +351,14 @@ class SnapUpdateTool(QThread):
         cfg.set('update_pack_version', ui.update_pack_version.text())
         cfg.set('update_pack_app_path', ui.update_pack_app_path.text())
         cfg.set('last_update_file_path', ui.last_update_file_path.text())
+        
+    def save_sacp_debug_info(self):
+        cfg.set('sacp_debug_cmd_set', ui.sacp_debug_cmd_set.value())
+        cfg.set('sacp_debug_cmd_id', ui.sacp_debug_cmd_id.value())
+        cfg.set('sacp_debug_attribute', ui.sacp_debug_attribute.value())
+        cfg.set('sacp_debug_recv_id', ui.sacp_debug_recv_id.value())
+        cfg.set('sacp_debug_send_id', ui.sacp_debug_send_id.value())
+        cfg.set('sacp_debug_sequence', ui.sacp_debug_sequence.value())
 
     def send_sacp(self, data):
         SacpStruct(data).show_to_ui(DATA_SORCE_SEND)

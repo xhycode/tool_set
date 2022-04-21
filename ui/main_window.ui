@@ -603,7 +603,7 @@
              <set>Qt::ImhNone</set>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab_serial">
              <attribute name="title">
@@ -5334,7 +5334,7 @@
                  <property name="geometry">
                   <rect>
                    <x>40</x>
-                   <y>550</y>
+                   <y>610</y>
                    <width>121</width>
                    <height>16</height>
                   </rect>
@@ -5353,12 +5353,12 @@
                   <rect>
                    <x>10</x>
                    <y>520</y>
-                   <width>71</width>
+                   <width>81</width>
                    <height>21</height>
                   </rect>
                  </property>
                  <property name="text">
-                  <string>已循环次数：</string>
+                  <string>设置循环次数</string>
                  </property>
                 </widget>
                 <widget class="QLineEdit" name="e_loop_times">
@@ -5368,10 +5368,46 @@
                  <property name="geometry">
                   <rect>
                    <x>90</x>
-                   <y>520</y>
+                   <y>580</y>
                    <width>111</width>
                    <height>20</height>
                   </rect>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_62">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>580</y>
+                   <width>71</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>已循环次数：</string>
+                 </property>
+                </widget>
+                <widget class="QSpinBox" name="set_send_loop_times">
+                 <property name="geometry">
+                  <rect>
+                   <x>90</x>
+                   <y>520</y>
+                   <width>111</width>
+                   <height>22</height>
+                  </rect>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_64">
+                 <property name="geometry">
+                  <rect>
+                   <x>30</x>
+                   <y>550</y>
+                   <width>141</width>
+                   <height>20</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>(次数设置成0为一直发送)</string>
                  </property>
                 </widget>
                </widget>

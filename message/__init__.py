@@ -406,6 +406,11 @@ class Message(QThread):
                 debug.info('顺序发送结束')
                 self._stop_extend_send()
                 return None
+            loop_times = ui.set_send_loop_times.value()
+            if loop_times != 0 and loop_times <= self.loop_send_times:
+                debug.info('到达指定次数，发送结束')
+                self._stop_extend_send()
+                return None
 
     def run(self):
         ''' 线程用于发送队列的数据 '''

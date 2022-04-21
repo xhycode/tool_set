@@ -310,6 +310,31 @@ class SnapUpdateTool(QThread):
         ui.sacp_debug_clean_data.clicked.connect(self.event_clean_debug_data)
         ui.update_start_button.clicked.connect(self.event_update_app)
         ui.sacp_debug_parse_cache.clicked.connect(self.event_parse_cache_date)
+        self.load_update_pack_info_from_cfg()
+
+    def load_update_pack_info_from_cfg(self):
+        ui.update_pack_type.setValue(int(cfg.get('update_pack_type', 0)))
+        ui.update_pack_start_id.setValue(int(cfg.get('update_pack_start_id', '0')))
+        ui.update_pack_end_id.setValue(int(cfg.get('update_pack_end_id', '255')))
+        ui.update_pack_flash_addr.setValue(int(cfg.get('update_pack_flash_addr', 0x8000001)))
+        ui.update_pack_version.setText(cfg.get('update_pack_version', 'v0.0.0'))
+        ui.update_pack_app_path.setText(cfg.get('update_pack_app_path', './app.bin'))
+        ui.last_update_file_path.setText(cfg.get('last_update_file_path', './app.bin'))
+        # 绑定改变事件
+        ui.update_pack_type.valueChanged.connect(self.save_update_info)
+        ui.update_pack_start_id.valueChanged.connect(self.save_update_info)
+        ui.update_pack_end_id.valueChanged.connect(self.save_update_info)
+        ui.update_pack_flash_addr.valueChanged.connect(self.save_update_info)
+        ui.update_pack_version.editingFinished.connect(self.save_update_info)
+
+    def save_update_info(self):
+        cfg.set('update_pack_type', ui.update_pack_type.value())
+        cfg.set('update_pack_start_id', ui.update_pack_start_id.value())
+        cfg.set('update_pack_end_id', ui.update_pack_end_id.value())
+        cfg.set('update_pack_flash_addr', ui.update_pack_flash_addr.value())
+        cfg.set('update_pack_version', ui.update_pack_version.text())
+        cfg.set('update_pack_app_path', ui.update_pack_app_path.text())
+        cfg.set('last_update_file_path', ui.last_update_file_path.text())
 
     def send_sacp(self, data):
         SacpStruct(data).show_to_ui(DATA_SORCE_SEND)
@@ -333,6 +358,7 @@ class SnapUpdateTool(QThread):
         app_path = QFileDialog.getOpenFileName(ui, "Open upgrade file", path)[0]
         debug.info('path:' + app_path)
         ui.update_pack_app_path.setText(app_path)
+        self.save_update_info()
 
     def event_creat_update_pack(self):
         out_file = QFileDialog.getSaveFileName(ui)[0]
@@ -357,6 +383,7 @@ class SnapUpdateTool(QThread):
             return
         ui.e_set_update_progress_signal.emit(0)
         ui.last_update_file_path.setText(app_path)
+        self.save_update_info()
         with open(app_path, 'rb') as f:
             self.update_file = f.read()
             f.close()

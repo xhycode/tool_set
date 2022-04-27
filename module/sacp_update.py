@@ -181,6 +181,8 @@ class SacpStruct:
 
     def parse_data(self, sacp_data):
         self.all_data = sacp_data[:]
+        d = time.localtime()
+        self.pack_time = "{}.{:02}.{:02}.{:02}.{:02}.{:02}".format(d.tm_year, d.tm_mon,d.tm_mday, d.tm_hour, d.tm_min, d.tm_sec)
         if (sacp_data[0] != 0xAA and sacp_data[1] != 0x55) or len(sacp_data) < 13:
             self.is_sacp_data = False
         else:
@@ -227,11 +229,12 @@ class SacpStruct:
         '''
         out_info = "\n"
         if source == DATA_SORCE_SEND:
-            out_info += "数据源:发送\n"
+            out_info += "数据源:发送"
         elif source == DATA_SORCE_RECV:
-            out_info += "数据源:接收\n"
+            out_info += "数据源:接收"
         else:
-            out_info += "数据源:未知\n"
+            out_info += "数据源:未知"
+        out_info += " 时间:" + self.pack_time + "\n"
         
         if not self.is_sacp_data:
             out_info += "数据类型不是SACP格式\n"

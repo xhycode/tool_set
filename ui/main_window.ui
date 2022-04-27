@@ -47,7 +47,7 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,0,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,11,1">
           <item>
            <widget class="QGroupBox" name="groupBox_2">
             <property name="minimumSize">
@@ -5395,6 +5395,9 @@
                    <width>111</width>
                    <height>22</height>
                   </rect>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
                  </property>
                 </widget>
                 <widget class="QLabel" name="label_64">

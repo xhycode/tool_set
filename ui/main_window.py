@@ -2148,6 +2148,7 @@ class Ui_ToolSet(object):
         self.label_62.setObjectName("label_62")
         self.set_send_loop_times = QtWidgets.QSpinBox(self.scrollAreaWidgetContents_5)
         self.set_send_loop_times.setGeometry(QtCore.QRect(90, 520, 111, 22))
+        self.set_send_loop_times.setMaximum(999999999)
         self.set_send_loop_times.setObjectName("set_send_loop_times")
         self.label_64 = QtWidgets.QLabel(self.scrollAreaWidgetContents_5)
         self.label_64.setGeometry(QtCore.QRect(30, 550, 141, 20))

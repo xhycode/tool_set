@@ -30,6 +30,8 @@ DATA_SORCE_SEND = 0
 DATA_SORCE_RECV = 1
 DATA_SORCE_UNKNOW = 3
 
+COMMAND_SET_SYSTEM        = 0x01
+SYSTEM_REPORT_LOG_ID      = 0xA1
 
 COMMAND_SET_UPDATE        = 0xAD
 UPDATE_ID_REQ_UPDATE      = 0x01
@@ -272,6 +274,11 @@ class SacpStruct:
                         out_info += "(ok)\n"
                         out_info += "包头数据(hex): " + self._data_to_hex(self.head_data) + "\n"
                         out_info += "有效数据(hex): " + self._data_to_hex(self.valid_data) + "\n"
+                        try:
+                            if self.cmd_set == COMMAND_SET_SYSTEM and self.cmd_id == SYSTEM_REPORT_LOG_ID:
+                                out_info += "log{:d}: ".format(self.valid_data[1]) + bytes(self.valid_data[2:]).decode()
+                        except Exception as e:
+                            print(e)
             out_info += "\n\n"
         ui.e_sacp_data_signal.emit(out_info)
 

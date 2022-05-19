@@ -418,6 +418,7 @@ class SnapUpdateTool(QThread):
         ui.e_set_update_progress_signal.emit(0)
         ui.last_update_file_path.setText(app_path)
         self.save_update_info()
+        self.send_bytes("\r\nM2000 S5 P1\r\n".encode())  # 切换到sacp模式
         with open(app_path, 'rb') as f:
             self.update_file = f.read()
             f.close()

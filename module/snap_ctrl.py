@@ -17,6 +17,7 @@ class SnapControl(QThread, ModuleBase):
         self.line_data = ""
         self.step_init()
         self.print3d_init()
+        self.base_ctrl_init()
         self.update_tool = SnapUpdateTool(self.send_bytes)
         self.cur_connect = CONNECT_TYPE_PC
         ui.snapmaker_tool.setCurrentIndex(0)
@@ -62,6 +63,16 @@ class SnapControl(QThread, ModuleBase):
         ui.z_home.setStyleSheet("background-color: #909090;font-weight:bold;")
         ui.b_home.setStyleSheet("background-color: #909090;font-weight:bold;")
         ui.all_home.setStyleSheet("background-color: #806060;font-weight:bold;")
+
+    def base_ctrl_init(self):
+        ui.b_change_t0.clicked.connect(self.change_to_t0)
+        ui.b_change_t1.clicked.connect(self.change_to_t1)
+        ui.b_print_mode_full.clicked.connect(self.change_mode_to_full)
+        ui.b_print_mode_back.clicked.connect(self.change_mode_to_back)
+        ui.b_print_mode_duplication.clicked.connect(self.change_mode_to_duplication)
+        ui.b_print_mode_mirror.clicked.connect(self.change_mode_to_mirror)
+        ui.b_reboot.clicked.connect(self.reboot)
+        ui.b_factory_reset.clicked.connect(self.factory_reset)
 
     def set_speed_unit(self, state):
         if state:
@@ -172,6 +183,40 @@ class SnapControl(QThread, ModuleBase):
     def set_bed_temp(self):
         temp = ui.bed_temp_edit.value()
         cmd = "M140 S{}\r\n".format(temp)
+        self.send_str(cmd)
+
+    def change_to_t0(self):
+        cmd = "T0\r\n"
+        self.send_str(cmd)
+
+    def change_to_t1(self):
+        cmd = "T1\r\n"
+        self.send_str(cmd)
+
+    def change_mode_to_full(self):
+        cmd = "M605 S0 B0\r\n"
+        self.send_str(cmd)
+
+    def change_mode_to_back(self):
+        cmd = "M605 S0 B1\r\n"
+        self.send_str(cmd)
+
+    def change_mode_to_duplication(self):
+        cmd = "M605 S2 B0\r\n"
+        self.send_str(cmd)
+
+    def change_mode_to_mirror(self):
+        cmd = "M605 S3 B0\r\n"
+        self.send_str(cmd)
+
+    def reboot(self):
+        cmd = "M1999\r\n"
+        self.send_str(cmd)
+
+    def factory_reset(self):
+        cmd = "M502\r\n"
+        self.send_str(cmd)
+        cmd = "M500\r\n"
         self.send_str(cmd)
 
     # 3D头控制

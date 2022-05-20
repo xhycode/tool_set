@@ -12,7 +12,7 @@
     - ui                    ->> 界面相关模块
         * __init__.py           ->> 里边的 ui 变量可以用来访问所有的小部件
         * global.py             ->> 将窗口部件封装一层，并添加信号提供外出使用
-        * main_window.py        ->> 使用 pyuic5 -o .\main_window.py .\main_window.ui 生成的文件。不能在里边添加自己的代码，重新生生成会覆盖
+        * main_window.py        ->> 使用 pyuic5 -o ui/main_window.py ui/main_window.ui 生成的文件。不能在里边添加自己的代码，重新生生成会覆盖
         * main_window.ui        ->> Qt Designer 工程文件
     - module                ->> 功能相关的模块
         * __init__.py           ->> 管理模块的切换
@@ -51,7 +51,8 @@
             * pip3 install pyqtgraph -i https://pypi.douban.com/simple
             * sudo apt-get install python3-pyqt5
             * alias pyuic5="python3 -m PyQt5.uic.pyuic"  # 添加pyuic5到快捷方式，就可以直接用了
-
+6. .ui 文件转 .py文件
+   1. pyuic5 -o ui/main_window.py ui/main_window.ui
 #### 版本说明
 
 - V1.0.0

@@ -4278,6 +4278,9 @@
                  <property name="text">
                   <string>循环发送</string>
                  </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                 <widget class="QCheckBox" name="c_entend_enter">
                  <property name="geometry">
@@ -4295,6 +4298,9 @@
                  </property>
                  <property name="text">
                   <string>发送换行</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                 <widget class="QPushButton" name="b_extend_send_all">
@@ -5557,6 +5563,9 @@
                  </property>
                  <property name="text">
                   <string> 发送换行</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                 <widget class="QCheckBox" name="c_is_pack">

@@ -74,8 +74,8 @@ class Message(QThread):
             temp['data'].editingFinished.connect(self.extend_send_save)
             temp['select'].stateChanged.connect(self.extend_send_save)
             self.extend_send_info.append(temp)
-        ui.c_entend_enter.setCheckState(int(cfg.get(cfg.EXTEND_ENTER_STATE, '0')))
-        ui.c_extend_cyclic_send.setCheckState(int(cfg.get(cfg.EXTEND_CYCLIC, '0')))
+        ui.c_entend_enter.setCheckState(int(cfg.get(cfg.EXTEND_ENTER_STATE, '2')))
+        ui.c_extend_cyclic_send.setCheckState(int(cfg.get(cfg.EXTEND_CYCLIC, '2')))
 
     def send_init(self):
         ''' 底部发送区部件的初始化及发送线程初始化

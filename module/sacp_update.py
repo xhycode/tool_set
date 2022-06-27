@@ -276,7 +276,12 @@ class SacpStruct:
                         out_info += "有效数据(hex): " + self._data_to_hex(self.valid_data) + "\n"
                         try:
                             if self.cmd_set == COMMAND_SET_SYSTEM and self.cmd_id == SYSTEM_REPORT_LOG_ID:
-                                out_info += "log{:d}: ".format(self.valid_data[1]) + bytes(self.valid_data[2:]).decode()
+                                log_len = (self.valid_data[2] | self.valid_data[3] << 8) & 0xFFFF
+                                log_data = self.valid_data[4:]
+                                if log_len != len(log_data):
+                                    out_info += "log数据长度错误\n"
+                                else:
+                                    out_info += "log{:d}: ".format(self.valid_data[1]) + bytes(log_data).decode()
                         except Exception as e:
                             print(e)
             out_info += "\n\n"

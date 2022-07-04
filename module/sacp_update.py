@@ -442,6 +442,7 @@ class SnapUpdateTool(QThread):
                 f.close()
         else:
             debug.info('正常升级包')
+        ui.e_sacp_data_signal.emit("")  # 清空调试区内容
         pack_head_data = struct.pack('<H', UPDATE_PACK_HEAD_SIZE) + self.update_file[ : UPDATE_PACK_HEAD_SIZE]
         update_head = sacp_pack(SACP_ID_HMI, SACP_ID_CONTROLLER, COMMAND_SET_UPDATE, UPDATE_ID_REQ_UPDATE,
                 pack_head_data, len(pack_head_data), self.get_sequence(), SACP_ATTR_REQ)

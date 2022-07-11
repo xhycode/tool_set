@@ -1710,6 +1710,12 @@ class Ui_ToolSet(object):
         self.sacp_debug_sequence.setObjectName("sacp_debug_sequence")
         self.horizontalLayout_68.addWidget(self.sacp_debug_sequence)
         self.verticalLayout_29.addWidget(self.groupBox_33)
+        self.sacp_subscription = QtWidgets.QPushButton(self.groupBox_26)
+        self.sacp_subscription.setObjectName("sacp_subscription")
+        self.verticalLayout_29.addWidget(self.sacp_subscription)
+        self.sacp_unsubscribe = QtWidgets.QPushButton(self.groupBox_26)
+        self.sacp_unsubscribe.setObjectName("sacp_unsubscribe")
+        self.verticalLayout_29.addWidget(self.sacp_unsubscribe)
         self.sacp_debug_clean_data = QtWidgets.QPushButton(self.groupBox_26)
         self.sacp_debug_clean_data.setObjectName("sacp_debug_clean_data")
         self.verticalLayout_29.addWidget(self.sacp_debug_clean_data)
@@ -2350,7 +2356,7 @@ class Ui_ToolSet(object):
 
         self.retranslateUi(ToolSet)
         self.mode_manage.setCurrentIndex(2)
-        self.snapmaker_tool.setCurrentIndex(0)
+        self.snapmaker_tool.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(ToolSet)
 
     def retranslateUi(self, ToolSet):
@@ -2515,6 +2521,8 @@ class Ui_ToolSet(object):
         self.groupBox_30.setTitle(_translate("ToolSet", "receiver ID"))
         self.groupBox_31.setTitle(_translate("ToolSet", "sender ID"))
         self.groupBox_33.setTitle(_translate("ToolSet", "Sequence"))
+        self.sacp_subscription.setText(_translate("ToolSet", "订阅"))
+        self.sacp_unsubscribe.setText(_translate("ToolSet", "取消订阅"))
         self.sacp_debug_clean_data.setText(_translate("ToolSet", "清除数据"))
         self.sacp_debug_parse_cache.setText(_translate("ToolSet", "解析缓冲数据"))
         self.groupBox_27.setTitle(_translate("ToolSet", "数据展示"))

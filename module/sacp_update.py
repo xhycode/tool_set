@@ -325,6 +325,8 @@ class SnapUpdateTool(QThread):
         ui.sacp_debug_clean_data.clicked.connect(self.event_clean_debug_data)
         ui.update_start_button.clicked.connect(self.event_update_app)
         ui.sacp_debug_parse_cache.clicked.connect(self.event_parse_cache_date)
+        ui.sacp_subscription.clicked.connect(self.event_subscription)
+        ui.sacp_unsubscribe.clicked.connect(self.event_unsubscription)
         self.load_update_pack_info_from_cfg()
         self.load_sacp_debug_info_from_cfg()
 
@@ -391,6 +393,30 @@ class SnapUpdateTool(QThread):
             SacpStruct(sacp_data).show_to_ui(DATA_SORCE_SEND)
         except:
             debug.err("格式错误.举例“01 02”")
+
+    def event_subscription(self):
+        cmd_set = ui.sacp_debug_cmd_set.value() & 0xff
+        cmd_id = ui.sacp_debug_cmd_id.value() & 0xff
+        recv_id = ui.sacp_debug_recv_id.value() & 0xff
+        send_id = ui.sacp_debug_send_id.value() & 0xff
+        attr = ui.sacp_debug_attribute.value() & 0xffff
+        sequence = ui.sacp_debug_sequence.value() & 0xffff
+        data = struct.pack('<BBH', cmd_set, cmd_id, 1000)
+        pack = sacp_pack(send_id, recv_id, 0x01, 0x00, data, len(data), sequence, attr)
+        SacpStruct(pack).show_to_ui(DATA_SORCE_SEND)
+        self.send_sacp(pack)
+
+    def event_unsubscription(self):
+        cmd_set = ui.sacp_debug_cmd_set.value() & 0xff
+        cmd_id = ui.sacp_debug_cmd_id.value() & 0xff
+        recv_id = ui.sacp_debug_recv_id.value() & 0xff
+        send_id = ui.sacp_debug_send_id.value() & 0xff
+        attr = ui.sacp_debug_attribute.value() & 0xffff
+        sequence = ui.sacp_debug_sequence.value() & 0xffff
+        data = struct.pack('<BB', cmd_set, cmd_id)
+        pack = sacp_pack(send_id, recv_id, 0x01, 0x01, data, len(data), sequence, attr)
+        SacpStruct(pack).show_to_ui(DATA_SORCE_SEND)
+        self.send_sacp(pack)
 
     def event_app_path(self):
         path = ui.update_pack_app_path.text()

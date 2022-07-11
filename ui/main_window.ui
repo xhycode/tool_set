@@ -1924,10 +1924,10 @@
               <string>Snapmaker</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0" columnstretch="1">
-              <item row="1" column="0">
+              <item row="0" column="0">
                <widget class="QTabWidget" name="snapmaker_tool">
                 <property name="currentIndex">
-                 <number>4</number>
+                 <number>5</number>
                 </property>
                 <widget class="QWidget" name="tab_2">
                  <attribute name="title">
@@ -4162,6 +4162,94 @@
                    </widget>
                   </item>
                  </layout>
+                </widget>
+                <widget class="QWidget" name="tab_7">
+                 <attribute name="title">
+                  <string>异常码解析</string>
+                 </attribute>
+                 <widget class="QLabel" name="label_65">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>91</width>
+                    <height>41</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>机器类型：</string>
+                  </property>
+                 </widget>
+                 <widget class="QComboBox" name="c_machine_type">
+                  <property name="geometry">
+                   <rect>
+                    <x>120</x>
+                    <y>30</y>
+                    <width>201</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="label_66">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>80</y>
+                    <width>101</width>
+                    <height>21</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>错误码：0x</string>
+                  </property>
+                 </widget>
+                 <widget class="QPushButton" name="b_exception_code_parse">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>120</y>
+                    <width>311</width>
+                    <height>51</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>解析</string>
+                  </property>
+                 </widget>
+                 <widget class="QGroupBox" name="groupBox_35">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>180</y>
+                    <width>421</width>
+                    <height>341</height>
+                   </rect>
+                  </property>
+                  <property name="title">
+                   <string>异常信息显示</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_11">
+                   <item>
+                    <widget class="QTextEdit" name="e_exception_code_win"/>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QSpinBox" name="exception_code_input">
+                  <property name="geometry">
+                   <rect>
+                    <x>120</x>
+                    <y>80</y>
+                    <width>201</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                  <property name="maximum">
+                   <number>999999999</number>
+                  </property>
+                  <property name="displayIntegerBase">
+                   <number>16</number>
+                  </property>
+                 </widget>
                 </widget>
                </widget>
               </item>

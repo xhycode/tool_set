@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1168</width>
-    <height>918</height>
+    <width>1505</width>
+    <height>1101</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="4,1">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -47,18 +47,18 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,11,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,0,0">
           <item>
            <widget class="QGroupBox" name="groupBox_2">
             <property name="minimumSize">
              <size>
-              <width>150</width>
+              <width>200</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>150</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
@@ -76,16 +76,16 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>128</width>
-                  <height>663</height>
+                  <width>174</width>
+                  <height>805</height>
                  </rect>
                 </property>
                 <widget class="QGroupBox" name="groupBox_4">
                  <property name="geometry">
                   <rect>
-                   <x>0</x>
-                   <y>10</y>
-                   <width>121</width>
+                   <x>6</x>
+                   <y>8</y>
+                   <width>147</width>
                    <height>131</height>
                   </rect>
                  </property>
@@ -95,7 +95,7 @@
                  <widget class="QPushButton" name="b_open_serial">
                   <property name="geometry">
                    <rect>
-                    <x>40</x>
+                    <x>54</x>
                     <y>90</y>
                     <width>81</width>
                     <height>23</height>
@@ -113,8 +113,8 @@
                  <widget class="QComboBox" name="serial_port">
                   <property name="geometry">
                    <rect>
-                    <x>30</x>
-                    <y>30</y>
+                    <x>48</x>
+                    <y>32</y>
                     <width>91</width>
                     <height>22</height>
                    </rect>
@@ -128,7 +128,7 @@
                  <widget class="QLabel" name="label_2">
                   <property name="geometry">
                    <rect>
-                    <x>2</x>
+                    <x>4</x>
                     <y>30</y>
                     <width>31</width>
                     <height>22</height>
@@ -149,7 +149,7 @@
                  <widget class="QComboBox" name="baudrate">
                   <property name="geometry">
                    <rect>
-                    <x>40</x>
+                    <x>56</x>
                     <y>60</y>
                     <width>81</width>
                     <height>22</height>
@@ -166,7 +166,7 @@
                    <rect>
                     <x>2</x>
                     <y>60</y>
-                    <width>41</width>
+                    <width>53</width>
                     <height>22</height>
                    </rect>
                   </property>
@@ -186,16 +186,31 @@
                 <widget class="QGroupBox" name="groupBox_7">
                  <property name="geometry">
                   <rect>
-                   <x>-10</x>
-                   <y>140</y>
+                   <x>8</x>
+                   <y>156</y>
                    <width>151</width>
-                   <height>461</height>
+                   <height>413</height>
                   </rect>
                  </property>
                  <property name="title">
                   <string>数据面板配置</string>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_18">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
                    <widget class="QFrame" name="frame_55">
                     <property name="frameShape">
@@ -205,6 +220,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_42">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QLabel" name="label_16">
                        <property name="minimumSize">
@@ -215,7 +245,7 @@
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>25</width>
+                         <width>35</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -256,6 +286,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_41">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QLabel" name="label_10">
                        <property name="minimumSize">
@@ -266,7 +311,7 @@
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>25</width>
+                         <width>35</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -332,6 +377,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_44">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QLabel" name="label_9">
                        <property name="sizePolicy">
@@ -348,7 +408,7 @@
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>25</width>
+                         <width>35</width>
                          <height>20</height>
                         </size>
                        </property>
@@ -398,6 +458,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_45">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QLabel" name="label_17">
                        <property name="minimumSize">
@@ -450,6 +525,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_46">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QCheckBox" name="c_hex_show">
                        <property name="minimumSize">
@@ -489,6 +579,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_43">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QLabel" name="label_7">
                        <property name="minimumSize">
@@ -499,7 +604,7 @@
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>25</width>
+                         <width>35</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -552,10 +657,10 @@
                     <widget class="QPushButton" name="b_clean_recv">
                      <property name="geometry">
                       <rect>
-                       <x>20</x>
-                       <y>0</y>
-                       <width>91</width>
-                       <height>21</height>
+                       <x>18</x>
+                       <y>8</y>
+                       <width>109</width>
+                       <height>45</height>
                       </rect>
                      </property>
                      <property name="minimumSize">
@@ -628,22 +733,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,8">
-                 <property name="spacing">
-                  <number>0</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
                  <item>
                   <widget class="QGroupBox" name="groupBox_5">
                    <property name="maximumSize">
@@ -1923,7 +2013,7 @@
              <attribute name="title">
               <string>Snapmaker</string>
              </attribute>
-             <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0" columnstretch="1">
+             <layout class="QGridLayout" name="gridLayout_2" rowstretch="0" columnstretch="0">
               <item row="0" column="0">
                <widget class="QTabWidget" name="snapmaker_tool">
                 <property name="currentIndex">
@@ -2525,32 +2615,6 @@
                   <string>执行头</string>
                  </attribute>
                  <layout class="QGridLayout" name="gridLayout_5">
-                  <item row="4" column="1">
-                   <spacer name="verticalSpacer_6">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="0" column="2">
-                   <spacer name="horizontalSpacer_3">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
                   <item row="0" column="0" rowspan="3">
                    <widget class="QGroupBox" name="groupBox_11">
                     <property name="title">
@@ -2830,6 +2894,32 @@
                      </item>
                     </layout>
                    </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <spacer name="verticalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                   <item row="2" column="1" rowspan="2">
                    <widget class="QGroupBox" name="groupBox_18">
@@ -3319,254 +3409,13 @@
                     </layout>
                    </widget>
                   </item>
-                  <item row="0" column="3">
-                   <spacer name="horizontalSpacer_4">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
                  </layout>
                 </widget>
                 <widget class="QWidget" name="tab_3">
                  <attribute name="title">
                   <string>净化器</string>
                  </attribute>
-                 <layout class="QGridLayout" name="gridLayout_4">
-                  <item row="0" column="0" colspan="3">
-                   <widget class="QGroupBox" name="groupBox_14">
-                    <property name="title">
-                     <string>信息</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QGroupBox" name="groupBox_12">
-                    <property name="title">
-                     <string>工作状态</string>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_15">
-                     <item>
-                      <widget class="QPushButton" name="pushButton_7">
-                       <property name="text">
-                        <string>挡位1</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_6">
-                       <property name="text">
-                        <string>挡位2</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_2">
-                       <property name="text">
-                        <string>挡位3</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton">
-                       <property name="text">
-                        <string>关闭</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QCheckBox" name="checkBox">
-                       <property name="text">
-                        <string>强制运行</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QGroupBox" name="groupBox_13">
-                    <property name="title">
-                     <string>灯条调试</string>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_16">
-                     <item>
-                      <widget class="QFrame" name="frame_40">
-                       <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                       </property>
-                       <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                       </property>
-                       <layout class="QHBoxLayout" name="horizontalLayout_33">
-                        <item>
-                         <widget class="QLabel" name="label_19">
-                          <property name="maximumSize">
-                           <size>
-                            <width>20</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>R</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="purifier_R"/>
-                        </item>
-                       </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QFrame" name="frame_43">
-                       <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                       </property>
-                       <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                       </property>
-                       <layout class="QHBoxLayout" name="horizontalLayout_34">
-                        <item>
-                         <widget class="QLabel" name="label_39">
-                          <property name="maximumSize">
-                           <size>
-                            <width>20</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>G</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="purifier_G"/>
-                        </item>
-                       </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QFrame" name="frame_50">
-                       <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                       </property>
-                       <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                       </property>
-                       <layout class="QHBoxLayout" name="horizontalLayout_37">
-                        <item>
-                         <widget class="QLabel" name="label_42">
-                          <property name="maximumSize">
-                           <size>
-                            <width>20</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>B</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="purifier_B"/>
-                        </item>
-                       </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_8">
-                       <property name="text">
-                        <string>发送</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QGroupBox" name="groupBox_15">
-                    <property name="maximumSize">
-                     <size>
-                      <width>260</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="title">
-                     <string>鼓风机调试</string>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_17">
-                     <item>
-                      <widget class="QSlider" name="horizontalSlider">
-                       <property name="maximumSize">
-                        <size>
-                         <width>300</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QFrame" name="frame_52">
-                       <property name="maximumSize">
-                        <size>
-                         <width>300</width>
-                         <height>50</height>
-                        </size>
-                       </property>
-                       <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                       </property>
-                       <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                       </property>
-                       <layout class="QHBoxLayout" name="horizontalLayout_39">
-                        <item>
-                         <widget class="QLabel" name="label_43">
-                          <property name="maximumSize">
-                           <size>
-                            <width>40</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>功率</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="purifier_R_2">
-                          <property name="maximumSize">
-                           <size>
-                            <width>100</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_9">
-                       <property name="text">
-                        <string>设置</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                 </layout>
+                 <layout class="QGridLayout" name="gridLayout_4"/>
                 </widget>
                 <widget class="QWidget" name="tab_5">
                  <attribute name="title">
@@ -4267,13 +4116,13 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>210</width>
+              <width>300</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>220</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
@@ -4283,1250 +4132,212 @@
             <property name="title">
              <string>快捷发送</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="spacing">
+            <widget class="QSpinBox" name="set_send_loop_times">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>708</y>
+               <width>111</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="maximum">
+              <number>999999999</number>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="e_loop_times">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>182</x>
+               <y>768</y>
+               <width>111</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="b_extend_send_all">
+             <property name="geometry">
+              <rect>
+               <x>192</x>
+               <y>668</y>
+               <width>100</width>
+               <height>30</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>发送按顺序</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_62">
+             <property name="geometry">
+              <rect>
+               <x>14</x>
+               <y>768</y>
+               <width>99</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>已循环次数：</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="c_all_exend_send">
+             <property name="geometry">
+              <rect>
+               <x>236</x>
+               <y>648</y>
+               <width>51</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>全选</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label">
+             <property name="geometry">
+              <rect>
+               <x>14</x>
+               <y>708</y>
+               <width>101</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>设置循环次数</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="c_extend_cyclic_send">
+             <property name="geometry">
+              <rect>
+               <x>14</x>
+               <y>678</y>
+               <width>81</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>循环发送</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_6">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>798</y>
+               <width>275</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>8</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>发送间隔在发送区设置</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="c_entend_enter">
+             <property name="geometry">
+              <rect>
+               <x>14</x>
+               <y>648</y>
+               <width>81</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>发送换行</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_64">
+             <property name="geometry">
+              <rect>
+               <x>24</x>
+               <y>738</y>
+               <width>269</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>(次数设置成0为一直发送)</string>
+             </property>
+            </widget>
+            <widget class="QScrollArea" name="extern_scrollArea">
+             <property name="geometry">
+              <rect>
+               <x>4</x>
+               <y>20</y>
+               <width>297</width>
+               <height>623</height>
+              </rect>
+             </property>
+             <property name="lineWidth">
               <number>0</number>
              </property>
-             <property name="leftMargin">
-              <number>0</number>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOn</enum>
              </property>
-             <property name="topMargin">
-              <number>0</number>
+             <property name="widgetResizable">
+              <bool>true</bool>
              </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="frame">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>70</height>
-                </size>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QScrollArea" name="scrollArea_5">
-               <property name="tabletTracking">
-                <bool>false</bool>
-               </property>
-               <property name="widgetResizable">
-                <bool>true</bool>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
-               </property>
-               <widget class="QWidget" name="scrollAreaWidgetContents_5">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>206</width>
-                  <height>671</height>
-                 </rect>
-                </property>
-                <widget class="QLineEdit" name="e_extend_send_1">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>10</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_1">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>10</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>1</string>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_cyclic_send">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>490</y>
-                   <width>81</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>循环发送</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_entend_enter">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>460</y>
-                   <width>81</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送换行</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_all">
-                 <property name="geometry">
-                  <rect>
-                   <x>99</x>
-                   <y>480</y>
-                   <width>100</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>80</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>100</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送按顺序</string>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_all_exend_send">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>460</y>
-                   <width>51</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                  </font>
-                 </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-                 </property>
-                 <property name="text">
-                  <string>全选</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_1">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>10</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>30</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>30</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>2</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>30</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_3">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>50</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>3</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_3">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>50</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_3">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>50</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>70</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>4</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>70</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>70</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_5">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>90</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>5</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_5">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>90</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_5">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>90</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>110</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>6</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>110</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>110</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>130</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>130</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>130</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>7</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_8">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>150</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_8">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>150</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_8">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>150</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>8</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_9">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>170</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_9">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>170</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_9">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>170</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>9</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_10">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>190</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_10">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>190</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_10">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>190</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>10</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_11">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>210</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_11">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>210</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_11">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>210</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>11</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_12">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>230</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_12">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>230</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_12">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>230</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>12</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_13">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>250</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_13">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>250</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_13">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>250</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>13</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_14">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>270</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_14">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>270</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_14">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>270</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>14</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_15">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>290</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_15">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>290</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_15">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>290</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>15</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_16">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>310</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_16">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>310</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_16">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>310</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>16</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_17">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>330</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_17">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>330</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_17">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>330</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>17</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_18">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>350</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_18">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>350</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_18">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>350</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>18</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_19">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>370</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_19">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>370</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_19">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>370</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>19</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_20">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>390</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_20">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>390</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_20">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>390</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>20</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_21">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>410</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_21">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>410</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_21">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>410</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>21</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="b_extend_send_22">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>430</y>
-                   <width>41</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_extend_send_22">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>430</y>
-                   <width>101</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                </widget>
-                <widget class="QCheckBox" name="c_extend_send_22">
-                 <property name="geometry">
-                  <rect>
-                   <x>150</x>
-                   <y>430</y>
-                   <width>71</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>22</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>40</x>
-                   <y>610</y>
-                   <width>121</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>8</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>发送间隔在发送区设置</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>520</y>
-                   <width>81</width>
-                   <height>21</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>设置循环次数</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="e_loop_times">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="geometry">
-                  <rect>
-                   <x>90</x>
-                   <y>580</y>
-                   <width>111</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_62">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>580</y>
-                   <width>71</width>
-                   <height>21</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>已循环次数：</string>
-                 </property>
-                </widget>
-                <widget class="QSpinBox" name="set_send_loop_times">
-                 <property name="geometry">
-                  <rect>
-                   <x>90</x>
-                   <y>520</y>
-                   <width>111</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="maximum">
-                  <number>999999999</number>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_64">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>550</y>
-                   <width>141</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>(次数设置成0为一直发送)</string>
-                 </property>
-                </widget>
-               </widget>
-              </widget>
-             </item>
-            </layout>
+             <widget class="QWidget" name="extend_send_contents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>274</width>
+                <height>621</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="extern_send_layout_v"/>
+             </widget>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -5566,13 +4377,13 @@
               <widget class="QScrollArea" name="scrollArea">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>120</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>100</width>
+                 <width>120</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -5584,8 +4395,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>98</width>
-                  <height>143</height>
+                  <width>118</width>
+                  <height>162</height>
                  </rect>
                 </property>
                 <widget class="QCheckBox" name="c_hex_send">
@@ -5593,7 +4404,7 @@
                   <rect>
                    <x>6</x>
                    <y>30</y>
-                   <width>81</width>
+                   <width>107</width>
                    <height>20</height>
                   </rect>
                  </property>
@@ -5618,9 +4429,9 @@
                 <widget class="QComboBox" name="c_send_encode">
                  <property name="geometry">
                   <rect>
-                   <x>32</x>
+                   <x>36</x>
                    <y>114</y>
-                   <width>61</width>
+                   <width>63</width>
                    <height>22</height>
                   </rect>
                  </property>
@@ -5633,7 +4444,7 @@
                 <widget class="QLabel" name="label_15">
                  <property name="geometry">
                   <rect>
-                   <x>6</x>
+                   <x>4</x>
                    <y>114</y>
                    <width>54</width>
                    <height>20</height>
@@ -5659,7 +4470,7 @@
                   <rect>
                    <x>6</x>
                    <y>50</y>
-                   <width>96</width>
+                   <width>109</width>
                    <height>16</height>
                   </rect>
                  </property>
@@ -5675,7 +4486,7 @@
                   <rect>
                    <x>6</x>
                    <y>68</y>
-                   <width>96</width>
+                   <width>115</width>
                    <height>16</height>
                   </rect>
                  </property>
@@ -5688,7 +4499,7 @@
                   <rect>
                    <x>6</x>
                    <y>88</y>
-                   <width>80</width>
+                   <width>99</width>
                    <height>16</height>
                   </rect>
                  </property>
@@ -5700,7 +4511,7 @@
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>80</width>
+                   <width>120</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -5721,7 +4532,7 @@
                   <rect>
                    <x>6</x>
                    <y>8</y>
-                   <width>81</width>
+                   <width>105</width>
                    <height>20</height>
                   </rect>
                  </property>

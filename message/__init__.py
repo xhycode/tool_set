@@ -5,10 +5,12 @@ from PyQt5.QtGui import QTextCursor
 from message import serial_tool
 from message.protocol import Protocol
 from module import sacp_update
+from PyQt5 import QtWidgets , QtGui, QtCore
 from ui import ui
 import debug
 import cfg
 import queue
+from functools import partial
 
 CONNTET_SERIAL = '0'
 CONNECT_TCP_CLINET = '1'
@@ -57,23 +59,48 @@ class Message(QThread):
             扩展区的所有数据都会保存，初始化会恢复上次的数据
         '''
         self.extend_send_index = 0  # 顺序发送时用到的索引记录
-        self.extend_count = 22  # 扩展发送区发送栏的个数
+        self.extend_count = 100  # 扩展发送区发送栏的个数
         self.extend_send_info = []  # 列表的每个成员是个发送栏
         self.loop_send_times = 0
         for i in range(self.extend_count):
-            temp = {}
-            # getattr 从类中根据属性的名字字符串获取属性，由于名字有规律，所以用循环方便
-            temp['btn'] = getattr(ui, 'b_extend_send_' + str(i + 1))  # 发送的按键
-            temp['data'] = getattr(ui, 'e_extend_send_' + str(i + 1))  # 数据栏
-            temp['select'] = getattr(ui, 'c_extend_send_' + str(i + 1))  # 选择框
+            frame = QtWidgets.QFrame(ui.extend_send_contents)
+            frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+            frame.setFrameShadow(QtWidgets.QFrame.Raised)
+            frame.setObjectName("extend_frame_"+str(i))
+            horizontalLayout = QtWidgets.QHBoxLayout(frame)
+            horizontalLayout.setContentsMargins(0, 0, 0, 0)
+            horizontalLayout.setSpacing(0)
+            horizontalLayout.setObjectName("extern_h_layout_"+str(i))
+            extend_send_bt = QtWidgets.QPushButton(frame)
+            extend_send_bt.setMaximumSize(QtCore.QSize(41, 20))
+            font = QtGui.QFont()
+            font.setPointSize(8)
+            extend_send_bt.setFont(font)
+            extend_send_bt.setObjectName("extend_send_bt_"+str(i))
+            extend_send_bt.setText("发送")
+            horizontalLayout.addWidget(extend_send_bt)
+            extend_send_e = QtWidgets.QLineEdit(frame)
+            extend_send_e.setMaximumSize(QtCore.QSize(500, 20))
+            font = QtGui.QFont()
+            font.setPointSize(8)
+            extend_send_e.setFont(font)
+            extend_send_e.setObjectName("extend_send_e_"+str(i))
             last_data = cfg.get('extend_data_' + str(i+1))  # 恢复上次关闭时的数据
-            temp['data'].setText(last_data)
+            extend_send_e.setText(last_data)
+            horizontalLayout.addWidget(extend_send_e)
+            extend_send_c = QtWidgets.QCheckBox(frame)
+            extend_send_c.setMaximumSize(QtCore.QSize(50, 20))
+            extend_send_c.setText("")
             last_select = cfg.get('extend_selsct_' + str(i+1), '0')
-            temp['select'].setCheckState(int(last_select))
-            temp['btn'].pressed.connect(self._event_extend_send)  # 按键按下未抬起时就发送
-            temp['data'].editingFinished.connect(self.extend_send_save)
-            temp['select'].stateChanged.connect(self.extend_send_save)
-            self.extend_send_info.append(temp)
+            extend_send_c.setCheckState(int(last_select))
+            extend_send_c.setObjectName("extend_send_c_"+str(i))
+            horizontalLayout.addWidget(extend_send_c)
+            ui.extern_send_layout_v.addWidget(frame)
+            total = {"index":i, "btn":extend_send_bt, "data":extend_send_e, "select":extend_send_c}
+            self.extend_send_info.append(total)
+            extend_send_bt.pressed.connect(partial(self._event_extend_send,total["index"]))  # 按键按下未抬起时就发送
+            extend_send_c.stateChanged.connect(partial(self.extend_send_save,total["index"]))
+            extend_send_e.editingFinished.connect(partial(self.extend_send_save,total["index"]))
         ui.c_entend_enter.setCheckState(int(cfg.get(cfg.EXTEND_ENTER_STATE, '2')))
         ui.c_extend_cyclic_send.setCheckState(int(cfg.get(cfg.EXTEND_CYCLIC, '2')))
 
@@ -142,15 +169,14 @@ class Message(QThread):
         '''
         cfg.set(cfg.EXTEND_CYCLIC, state)
 
-    def extend_send_save(self):
+    def extend_send_save(self, i):
         ''' 扩增发送区的数据有变化就全部保存一遍，
             人的输入还是很慢的，所以全都保存没什么影响
         '''
-        for i in range(self.extend_count):
-            cfg.set('extend_data_' + str(i+1),  # 输入数据的保存
-                    self.extend_send_info[i]['data'].displayText())
-            cfg.set('extend_selsct_' + str(i+1),  # 选中复选框的状态保存
-                    self.extend_send_info[i]['select'].checkState())
+        cfg.set('extend_data_' + str(i+1),  # 输入数据的保存
+                self.extend_send_info[i]['data'].displayText())
+        cfg.set('extend_selsct_' + str(i+1),  # 选中复选框的状态保存
+                self.extend_send_info[i]['select'].checkState())
 
     def hex_send_state_save(self, state):
         ''' 保存发送区的十六进制发送复选框状态 
@@ -262,27 +288,30 @@ class Message(QThread):
             ui.e_send.setText(self.history[val - 1])
             self.cur_send_edit = cur
 
-    def _event_extend_send(self):
+    def _event_extend_send(self, i):
         ''' 扩展发送区的单个发送事件触发
             只发送被按下发送的数据框数据
         '''
         is_packet = ui.c_is_pack.checkState()
         # 因为要循环检测哪个被按下了，所以事件要设置成按下触发
         # 如果设置成弹起触发，则无法分辨谁被按下了
-        for extend in self.extend_send_info:
-            if extend['btn'].isDown():
-                data = extend['data'].displayText()
-                if ui.c_entend_enter.checkState():
-                    data += '\r\n'
-                print(data)
-                self.send(data, self.cur_encode, 0, is_packet)
+        extend = self.extend_send_info[i]
+        if extend['btn'].isDown():
+            data = extend['data'].displayText()
+            if ui.c_entend_enter.checkState():
+                data += '\r\n'
+            print(data)
+            self.send(data, self.cur_encode, 0, is_packet)
 
     def _event_extend_all_select(self, state):
         ''' 扩展区的全选事件
             所有的复选框会与 state 状态同步
         '''
         for extend in self.extend_send_info:
-            extend['select'].setCheckState(state)
+            if extend["data"].text() !="":
+                extend['select'].setCheckState(state)
+            else:
+                extend['select'].setCheckState(0)
 
     def _stop_extend_send(self):
         ''' 停止扩展区的自动发送

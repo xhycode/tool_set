@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1505</width>
-    <height>1101</height>
+    <width>1278</width>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -52,13 +52,13 @@
            <widget class="QGroupBox" name="groupBox_2">
             <property name="minimumSize">
              <size>
-              <width>200</width>
+              <width>170</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>170</width>
               <height>16777215</height>
              </size>
             </property>
@@ -66,8 +66,29 @@
              <string>选项栏</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QScrollArea" name="scrollArea_2">
+               <property name="maximumSize">
+                <size>
+                 <width>170</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="widgetResizable">
                 <bool>true</bool>
                </property>
@@ -76,8 +97,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>174</width>
-                  <height>805</height>
+                  <width>166</width>
+                  <height>681</height>
                  </rect>
                 </property>
                 <widget class="QGroupBox" name="groupBox_4">
@@ -708,7 +729,7 @@
              <set>Qt::ImhNone</set>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab_serial">
              <attribute name="title">
@@ -2017,7 +2038,7 @@
               <item row="0" column="0">
                <widget class="QTabWidget" name="snapmaker_tool">
                 <property name="currentIndex">
-                 <number>5</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tab_2">
                  <attribute name="title">
@@ -3411,12 +3432,6 @@
                   </item>
                  </layout>
                 </widget>
-                <widget class="QWidget" name="tab_3">
-                 <attribute name="title">
-                  <string>净化器</string>
-                 </attribute>
-                 <layout class="QGridLayout" name="gridLayout_4"/>
-                </widget>
                 <widget class="QWidget" name="tab_5">
                  <attribute name="title">
                   <string>SACP升级工具</string>
@@ -4132,212 +4147,274 @@
             <property name="title">
              <string>快捷发送</string>
             </property>
-            <widget class="QSpinBox" name="set_send_loop_times">
-             <property name="geometry">
-              <rect>
-               <x>180</x>
-               <y>708</y>
-               <width>111</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="maximum">
-              <number>999999999</number>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="e_loop_times">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="geometry">
-              <rect>
-               <x>182</x>
-               <y>768</y>
-               <width>111</width>
-               <height>20</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="b_extend_send_all">
-             <property name="geometry">
-              <rect>
-               <x>192</x>
-               <y>668</y>
-               <width>100</width>
-               <height>30</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>80</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>9</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>发送按顺序</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_62">
-             <property name="geometry">
-              <rect>
-               <x>14</x>
-               <y>768</y>
-               <width>99</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>已循环次数：</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="c_all_exend_send">
-             <property name="geometry">
-              <rect>
-               <x>236</x>
-               <y>648</y>
-               <width>51</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>9</pointsize>
-              </font>
-             </property>
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
-             <property name="text">
-              <string>全选</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label">
-             <property name="geometry">
-              <rect>
-               <x>14</x>
-               <y>708</y>
-               <width>101</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>设置循环次数</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="c_extend_cyclic_send">
-             <property name="geometry">
-              <rect>
-               <x>14</x>
-               <y>678</y>
-               <width>81</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>9</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>循环发送</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_6">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>798</y>
-               <width>275</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>8</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>发送间隔在发送区设置</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="c_entend_enter">
-             <property name="geometry">
-              <rect>
-               <x>14</x>
-               <y>648</y>
-               <width>81</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>9</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>发送换行</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_64">
-             <property name="geometry">
-              <rect>
-               <x>24</x>
-               <y>738</y>
-               <width>269</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>(次数设置成0为一直发送)</string>
-             </property>
-            </widget>
-            <widget class="QScrollArea" name="extern_scrollArea">
-             <property name="geometry">
-              <rect>
-               <x>4</x>
-               <y>20</y>
-               <width>297</width>
-               <height>623</height>
-              </rect>
-             </property>
-             <property name="lineWidth">
-              <number>0</number>
-             </property>
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOn</enum>
-             </property>
-             <property name="widgetResizable">
-              <bool>true</bool>
-             </property>
-             <widget class="QWidget" name="extend_send_contents">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>274</width>
-                <height>621</height>
-               </rect>
-              </property>
-              <layout class="QVBoxLayout" name="extern_send_layout_v"/>
-             </widget>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QScrollArea" name="extern_scrollArea">
+               <property name="lineWidth">
+                <number>0</number>
+               </property>
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOn</enum>
+               </property>
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="extend_send_contents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>261</width>
+                  <height>563</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="extern_send_layout_v"/>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <property name="leftMargin">
+                 <number>1</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>1</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <property name="horizontalSpacing">
+                 <number>1</number>
+                </property>
+                <property name="verticalSpacing">
+                 <number>2</number>
+                </property>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_62">
+                  <property name="text">
+                   <string>已循环次数：</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="c_entend_enter">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>发送换行</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QCheckBox" name="c_all_exend_send">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::RightToLeft</enum>
+                  </property>
+                  <property name="text">
+                   <string>全选</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QCheckBox" name="c_extend_cyclic_send">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>循环发送</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>设置循环次数</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QSpinBox" name="set_send_loop_times">
+                  <property name="maximum">
+                   <number>999999999</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QLabel" name="label_64">
+                  <property name="text">
+                   <string>(0一直发送)</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QPushButton" name="b_extend_send_all">
+                  <property name="minimumSize">
+                   <size>
+                    <width>80</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>发送按顺序</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1" colspan="2">
+                 <widget class="QFrame" name="frame_9">
+                  <property name="maximumSize">
+                   <size>
+                    <width>999999</width>
+                    <height>99999</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_5">
+                   <property name="spacing">
+                    <number>1</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>1</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>1</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>1</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>1</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_6">
+                     <property name="maximumSize">
+                      <size>
+                       <width>30</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::RightToLeft</enum>
+                     </property>
+                     <property name="text">
+                      <string>间隔</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDoubleSpinBox" name="e_auto_send_time">
+                     <property name="maximumSize">
+                      <size>
+                       <width>99999</width>
+                       <height>99999</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>8</pointsize>
+                      </font>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                     <property name="decimals">
+                      <number>3</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.001000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_8">
+                     <property name="maximumSize">
+                      <size>
+                       <width>10</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string>S</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QLineEdit" name="e_loop_times">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="2">
+                 <widget class="QLabel" name="label_19">
+                  <property name="text">
+                   <string>(全发完算一次)</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
@@ -4396,7 +4473,7 @@
                   <x>0</x>
                   <y>0</y>
                   <width>118</width>
-                  <height>162</height>
+                  <height>143</height>
                  </rect>
                 </property>
                 <widget class="QCheckBox" name="c_hex_send">
@@ -4596,7 +4673,7 @@
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_7" stretch="2,2,1">
+               <layout class="QVBoxLayout" name="verticalLayout_7" stretch="2,1">
                 <item>
                  <widget class="QPushButton" name="b_send">
                   <property name="sizePolicy">
@@ -4626,61 +4703,6 @@
                   <property name="text">
                    <string>发送</string>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QFrame" name="frame_9">
-                  <property name="maximumSize">
-                   <size>
-                    <width>110</width>
-                    <height>50</height>
-                   </size>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_5">
-                   <item>
-                    <widget class="QDoubleSpinBox" name="e_auto_send_time">
-                     <property name="maximumSize">
-                      <size>
-                       <width>90</width>
-                       <height>50</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <pointsize>8</pointsize>
-                      </font>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                     </property>
-                     <property name="decimals">
-                      <number>3</number>
-                     </property>
-                     <property name="minimum">
-                      <double>0.001000000000000</double>
-                     </property>
-                     <property name="singleStep">
-                      <double>0.100000000000000</double>
-                     </property>
-                     <property name="value">
-                      <double>1.000000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_8">
-                     <property name="text">
-                      <string>S</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
                  </widget>
                 </item>
                 <item>

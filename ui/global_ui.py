@@ -11,7 +11,7 @@ from PyQt5.QtCore import Qt
 from ui.main_window import Ui_ToolSet
 import sys
 
-TOOL_VERSIONS = 'V1.5.13'
+TOOL_VERSIONS = 'V1.5.14'
 
 class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling) 

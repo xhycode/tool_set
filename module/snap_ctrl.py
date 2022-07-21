@@ -344,7 +344,7 @@ class SnapControl(QThread, ModuleBase):
 
     def parse(self, data):
         index = ui.snapmaker_tool.currentIndex()
-        if index == 3 or index == 4:
+        if index == 2 or index == 3:
             self.sacp_parse(data)
         else:
             self.gcode_parse(data)

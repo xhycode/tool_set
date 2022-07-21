@@ -326,16 +326,16 @@ class SnapControl(QThread, ModuleBase):
         pass
 
     def gcode_parse(self, data):
-        # try:
-        #     ch = data.decode()
-        # except:
-        #     debug.err('数据编码错误')
-        #     return
-        # if ch == '\n':
-        #     debug.data(self.line_data + '\n')
-        #     self.line_data = ''
-        # else:
-        #     self.line_data += ch
+        try:
+            ch = data.decode()
+        except:
+            debug.err('数据编码错误')
+            return
+        if ch == '\n':
+            debug.data(self.line_data + '\n')
+            self.line_data = ''
+        else:
+            self.line_data += ch
         pass
 
     def sacp_parse(self, data):

@@ -47,6 +47,7 @@ class Message(QThread):
         ui.b_extend_send_all.clicked.connect(self._event_extend_all_send)
         ui.e_auto_send_time.valueChanged.connect(self.auto_send_time_save)
         ui.c_hex_send.stateChanged.connect(self.hex_send_state_save)
+        ui.c_send_auto_clear.stateChanged.connect(self.send_auto_clear_state_save)
 
     def message_module_init(self):
         ''' 初始化已有的连接方式 '''
@@ -113,6 +114,7 @@ class Message(QThread):
         self.auto_send = QTimer()
         self.auto_send.timeout.connect(self._event_auto_send_timer)
         ui.c_hex_send.setCheckState(int(cfg.get(cfg.HEX_SEND_STATE, '0')))
+        ui.c_send_auto_clear.setCheckState(int(cfg.get(cfg.SEND_AUTO_CLEAR_STATE, '0')))
         ui.e_auto_send_time.setValue(float(cfg.get(cfg.AUTO_SEND_TIME, '1.0')))
         self.send_encode_init()
         ui.c_send_enter.setCheckState(int(cfg.get(cfg.SEND_ENTER_STATE, '2')))
@@ -184,6 +186,12 @@ class Message(QThread):
             复选框改变事件调用
         '''
         cfg.set(cfg.HEX_SEND_STATE, str(state))
+
+    def send_auto_clear_state_save(self, state):
+        ''' 保存发送区的自动清除复选框状态 
+            复选框改变事件调用
+        '''
+        cfg.set(cfg.SEND_AUTO_CLEAR_STATE, str(state))
     
     def auto_send_time_save(self, new_time):
         ''' 保存发送区的十六进制发送复选框状态 
@@ -376,6 +384,8 @@ class Message(QThread):
             if ui.c_send_enter.checkState():
                 data += '\r\n'
             ret = self.send(data, self.cur_encode, ishex=ishex, packet=is_packet)
+            if ui.c_send_auto_clear.checkState():
+                ui.e_send.clear()
             if not ret:
                 debug.err('数据格式错误')
                 if ui.c_auto_send.checkState():

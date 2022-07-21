@@ -729,7 +729,7 @@
              <set>Qt::ImhNone</set>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="tab_serial">
              <attribute name="title">
@@ -2038,7 +2038,7 @@
               <item row="0" column="0">
                <widget class="QTabWidget" name="snapmaker_tool">
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>2</number>
                 </property>
                 <widget class="QWidget" name="tab_2">
                  <attribute name="title">
@@ -4673,7 +4673,7 @@
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_7" stretch="2,1">
+               <layout class="QVBoxLayout" name="verticalLayout_7" stretch="2,1,0">
                 <item>
                  <widget class="QPushButton" name="b_send">
                   <property name="sizePolicy">
@@ -4758,6 +4758,19 @@
                     </widget>
                    </item>
                   </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="c_send_auto_clear">
+                  <property name="layoutDirection">
+                   <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="text">
+                   <string>发送后自动清除</string>
+                  </property>
+                  <property name="autoExclusive">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                </layout>

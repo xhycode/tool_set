@@ -1932,6 +1932,11 @@ class Ui_ToolSet(object):
         self.lcd_send_len.setObjectName("lcd_send_len")
         self.horizontalLayout_6.addWidget(self.lcd_send_len)
         self.verticalLayout_7.addWidget(self.frame_14)
+        self.c_send_auto_clear = QtWidgets.QCheckBox(self.frame_8)
+        self.c_send_auto_clear.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.c_send_auto_clear.setAutoExclusive(True)
+        self.c_send_auto_clear.setObjectName("c_send_auto_clear")
+        self.verticalLayout_7.addWidget(self.c_send_auto_clear)
         self.verticalLayout_7.setStretch(0, 2)
         self.verticalLayout_7.setStretch(1, 1)
         self.horizontalLayout_3.addWidget(self.frame_8)
@@ -1962,8 +1967,8 @@ class Ui_ToolSet(object):
         self.label_3.setBuddy(self.baudrate)
 
         self.retranslateUi(ToolSet)
-        self.mode_manage.setCurrentIndex(0)
-        self.snapmaker_tool.setCurrentIndex(1)
+        self.mode_manage.setCurrentIndex(2)
+        self.snapmaker_tool.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(ToolSet)
 
     def retranslateUi(self, ToolSet):
@@ -2145,6 +2150,7 @@ class Ui_ToolSet(object):
         self.c_enter_send.setText(_translate("ToolSet", " 回车发送"))
         self.b_send.setText(_translate("ToolSet", "发送"))
         self.b_clear_send.setText(_translate("ToolSet", "计数"))
+        self.c_send_auto_clear.setText(_translate("ToolSet", "发送后自动清除"))
         self.groupBox_6.setTitle(_translate("ToolSet", "调试窗口"))
         self.actionopen.setText(_translate("ToolSet", "&open"))
         self.actionopen.setToolTip(_translate("ToolSet", "<html><head/><body><p><span style=\" font-weight:600;\">open</span></p></body></html>"))

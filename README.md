@@ -38,7 +38,7 @@
 4.  测试过的系统： win10
 5.  依赖库：
         - windows
-            * pip install serial -i https://pypi.douban.com/simple
+            * pip install pyserial -i https://pypi.douban.com/simple
             * pip install configobj -i https://pypi.douban.com/simple
             * pip install pyqt5 -i https://pypi.douban.com/simple
             * pip install pyqtgraph -i https://pypi.douban.com/simple

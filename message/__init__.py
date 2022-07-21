@@ -21,6 +21,7 @@ AUTO_SEND_MAIN = '1'
 AUTO_SEND_EXTEND = '2'
 
 HISTORY_COUNT = 30
+EXTERN_SEND_COUNT = 150
 
 class Message(QThread):
     ''' 管理不同的消息类型,对外开放统一的接口'''
@@ -59,7 +60,7 @@ class Message(QThread):
             扩展区的所有数据都会保存，初始化会恢复上次的数据
         '''
         self.extend_send_index = 0  # 顺序发送时用到的索引记录
-        self.extend_count = 100  # 扩展发送区发送栏的个数
+        self.extend_count = EXTERN_SEND_COUNT  # 扩展发送区发送栏的个数
         self.extend_send_info = []  # 列表的每个成员是个发送栏
         self.loop_send_times = 0
         for i in range(self.extend_count):

@@ -129,7 +129,8 @@ class SnapControl(QThread, ModuleBase):
             self.print_file_lines = None
             ui.print_start.setText("开始")
             ui.print_start.setStyleSheet("background-color: #f0f0f0;font-weight:bold;")
-            self.print_work_status == PRINT_STATUS_IDLE
+            debug.info("停止打印")
+            self.print_work_status = PRINT_STATUS_IDLE
 
     def print_manual_continue_event(self):
         debug.err("这个功能还没有实现")

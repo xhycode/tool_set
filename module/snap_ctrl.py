@@ -78,6 +78,8 @@ class SnapControl(QThread, ModuleBase):
         self.print_info_show_timer = QTimer()
         self.print_info_show_timer.timeout.connect(self.renew_print_info)
 
+    def is_print_work(self):
+        return self.print_work_status == PRINT_STATUS_WORK
 
     def open_print_file_event(self):
         if self.print_work_status != PRINT_STATUS_IDLE:
@@ -103,6 +105,7 @@ class SnapControl(QThread, ModuleBase):
             ui.print_start.setStyleSheet("background-color: #008000;font-weight:bold;")
             self.print_work_status = PRINT_STATUS_WORK
             self.send_file_gcode()
+            self.print_line_num = 0
             debug.info("开始打印工作")
             self.print_info_show_timer.start(0)
         else:
@@ -468,14 +471,17 @@ class SnapControl(QThread, ModuleBase):
         except:
             debug.err('数据编码错误')
             return
+        self.line_data += ch
         if ch == '\n':
-            debug.data(self.line_data + '\n')
-            if self.print_work_status == PRINT_STATUS_WORK and "ok" in self.line_data:
-                self.send_file_gcode()
+            debug.data(self.line_data)
+            if self.print_work_status == PRINT_STATUS_WORK:
+                if "ok" in self.line_data:
+                    self.send_file_gcode()
+                    if len(self.line_data) > 4:
+                        ui.e_recv_signal.emit(self.line_data)
+                else:
+                    ui.e_recv_signal.emit(self.line_data)
             self.line_data = ''
-        else:
-            self.line_data += ch
-        pass
 
     def sacp_parse(self, data):
         for d in data:

@@ -45,7 +45,7 @@ class Control():  # 继承类
                 if len(data) > 0:
                     self.md.parse(data)
             else:
-                QThread.msleep(10)
+                QThread.msleep(1)
 
     def send(self):
         ''' 将模块要发送的数据转发出去 '''
@@ -54,4 +54,4 @@ class Control():  # 继承类
             if data:
                 self.msg.send_push(data, packet)
             else:
-                QThread.msleep(20)
+                QThread.msleep(1)

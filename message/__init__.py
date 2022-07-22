@@ -456,7 +456,7 @@ class Message(QThread):
         ''' 线程用于发送队列的数据 '''
         while True:
             if self.send_queue.empty() or not self.cur_connect.status():
-                self.msleep(20)
+                self.msleep(1)
                 continue
             try:
                 data = self.send_queue.get()

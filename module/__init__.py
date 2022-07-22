@@ -33,10 +33,15 @@ class ModuleManage(module_base.ModuleBase):
         cfg.set(cfg.LAST_MODULE_INDEX, str(self.cur_module_index))
 
     def parse(self, data):
-        if self.cur_module_index != MODULE_TYPE_DISPLAY:
+        if self.cur_module_index != MODULE_TYPE_DISPLAY and not self._module_table[MODULE_TYPE_SNAP_CTRL].is_print_work():
             self._module_table[MODULE_TYPE_DISPLAY].parse(data)
-        self._cur_module.parse(data)
+        if self.cur_module_index != MODULE_TYPE_SNAP_CTRL and self._module_table[MODULE_TYPE_SNAP_CTRL].is_print_work():
+            self._module_table[MODULE_TYPE_SNAP_CTRL].parse(data)
+        else:
+            self._cur_module.parse(data)
 
     def send_pop(self):
+        if self.cur_module_index != MODULE_TYPE_SNAP_CTRL and self._module_table[MODULE_TYPE_SNAP_CTRL].is_print_work():
+            return self._module_table[MODULE_TYPE_SNAP_CTRL].send_pop()
         return self._cur_module.send_pop()
 

@@ -22,6 +22,7 @@ DISPLAY_ENCODE = 'display_encode'
 SERVER_PORT = 'server_port'
 HISTARY_SEND = 'histary_send_'
 CUR_SEND_EDIT = 'cur_send_edit'
+PRINT_FILE_NAME = "print_file_name"
 
 config = ConfigObj(CFG_FILE, encoding='UTF8')
 

@@ -2038,14 +2038,14 @@
               <item row="0" column="0">
                <widget class="QTabWidget" name="snapmaker_tool">
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="tab_2">
                  <attribute name="title">
                   <string>机器控制</string>
                  </attribute>
                  <layout class="QGridLayout" name="gridLayout_3">
-                  <item row="2" column="0">
+                  <item row="3" column="0">
                    <widget class="QGroupBox" name="groupBox_9">
                     <property name="title">
                      <string>基本控制</string>
@@ -2159,212 +2159,26 @@
                     </layout>
                    </widget>
                   </item>
-                  <item row="0" column="0">
+                  <item row="1" column="3">
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="0" rowspan="2">
                    <widget class="QGroupBox" name="groupBox_10">
                     <property name="title">
                      <string>运动</string>
                     </property>
-                    <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
-                     <item row="8" column="0">
-                      <widget class="QPushButton" name="x_home">
-                       <property name="text">
-                        <string>Xhome</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="2">
-                      <widget class="QPushButton" name="z_sub">
-                       <property name="text">
-                        <string>Z-</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0">
-                      <widget class="QPushButton" name="b_add">
-                       <property name="text">
-                        <string>B+</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="1">
-                      <widget class="QPushButton" name="all_home">
-                       <property name="text">
-                        <string>home</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
-                      <widget class="QPushButton" name="x_sub">
-                       <property name="autoFillBackground">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>X-</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="0">
-                      <widget class="QPushButton" name="b_sub">
-                       <property name="text">
-                        <string>B-</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="2">
-                      <widget class="QPushButton" name="x_add">
-                       <property name="autoFillBackground">
-                        <bool>false</bool>
-                       </property>
-                       <property name="text">
-                        <string>X+</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="2">
-                      <widget class="QCheckBox" name="speed_unit">
-                       <property name="layoutDirection">
-                        <enum>Qt::LeftToRight</enum>
-                       </property>
-                       <property name="text">
-                        <string>换单位</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QPushButton" name="y_add">
-                       <property name="text">
-                        <string>Y+</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="8" column="2">
-                      <widget class="QPushButton" name="z_home">
-                       <property name="text">
-                        <string>Zhome</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="2">
-                      <widget class="QPushButton" name="z_add">
-                       <property name="text">
-                        <string>Z+</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="1">
-                      <widget class="QLineEdit" name="step_speed">
-                       <property name="inputMethodHints">
-                        <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-                       </property>
-                       <property name="text">
-                        <string>2000</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QLabel" name="speed_unit_label">
-                       <property name="text">
-                        <string>速度mm/min</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="1">
-                      <widget class="QPushButton" name="y_sub">
-                       <property name="text">
-                        <string>Y-</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="8" column="1">
-                      <widget class="QPushButton" name="y_home">
-                       <property name="text">
-                        <string>Yhome</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="0">
-                      <widget class="QPushButton" name="e_sub">
-                       <property name="text">
-                        <string>E-</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="1">
-                      <widget class="QPushButton" name="e_add">
-                       <property name="text">
-                        <string>E+</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="2">
-                      <widget class="QPushButton" name="b_home">
-                       <property name="text">
-                        <string>Bhome</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="9" column="1">
-                      <widget class="QSpinBox" name="nozzle_temp_edit">
-                       <property name="maximum">
-                        <number>999</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>10</number>
-                       </property>
-                       <property name="value">
-                        <number>205</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="10" column="0">
-                      <widget class="QLabel" name="label_5">
-                       <property name="text">
-                        <string>热床喷嘴温度</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="9" column="2">
-                      <widget class="QPushButton" name="nozzle_temp_set">
-                       <property name="text">
-                        <string>确定</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="9" column="0">
-                      <widget class="QLabel" name="label_4">
-                       <property name="text">
-                        <string>设置喷嘴温度</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="10" column="1">
-                      <widget class="QSpinBox" name="bed_temp_edit">
-                       <property name="maximum">
-                        <number>999</number>
-                       </property>
-                       <property name="singleStep">
-                        <number>10</number>
-                       </property>
-                       <property name="value">
-                        <number>60</number>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="10" column="2">
-                      <widget class="QPushButton" name="bed_temp_set">
-                       <property name="text">
-                        <string>确定</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_18">
-                       <property name="text">
-                        <string>步距mm</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1" colspan="2">
+                    <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,0,0">
+                     <item row="0" column="3" colspan="2">
                       <widget class="QFrame" name="frame_60">
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
@@ -2587,47 +2401,469 @@
                        </layout>
                       </widget>
                      </item>
+                     <item row="3" column="3">
+                      <widget class="QPushButton" name="all_home">
+                       <property name="text">
+                        <string>home</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QPushButton" name="x_sub">
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>X-</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="4">
+                      <widget class="QPushButton" name="x_add">
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>X+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QPushButton" name="b_add">
+                       <property name="text">
+                        <string>B+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0">
+                      <widget class="QPushButton" name="b_sub">
+                       <property name="text">
+                        <string>B-</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="4">
+                      <widget class="QPushButton" name="z_home">
+                       <property name="text">
+                        <string>Zhome</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="4">
+                      <widget class="QPushButton" name="z_add">
+                       <property name="text">
+                        <string>Z+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="4">
+                      <widget class="QCheckBox" name="speed_unit">
+                       <property name="layoutDirection">
+                        <enum>Qt::LeftToRight</enum>
+                       </property>
+                       <property name="text">
+                        <string>换单位</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="3">
+                      <widget class="QPushButton" name="y_add">
+                       <property name="text">
+                        <string>Y+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="3">
+                      <widget class="QLineEdit" name="step_speed">
+                       <property name="inputMethodHints">
+                        <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+                       </property>
+                       <property name="text">
+                        <string>2000</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="speed_unit_label">
+                       <property name="text">
+                        <string>速度mm/min</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="0">
+                      <widget class="QPushButton" name="e_sub">
+                       <property name="text">
+                        <string>E-</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="4">
+                      <widget class="QPushButton" name="b_home">
+                       <property name="text">
+                        <string>Bhome</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="3">
+                      <widget class="QPushButton" name="y_sub">
+                       <property name="text">
+                        <string>Y-</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="3">
+                      <widget class="QPushButton" name="y_home">
+                       <property name="text">
+                        <string>Yhome</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="3">
+                      <widget class="QPushButton" name="e_add">
+                       <property name="text">
+                        <string>E+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="4">
+                      <widget class="QPushButton" name="z_sub">
+                       <property name="text">
+                        <string>Z-</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="0">
+                      <widget class="QPushButton" name="x_home">
+                       <property name="text">
+                        <string>Xhome</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="0">
+                      <widget class="QLabel" name="label_4">
+                       <property name="text">
+                        <string>设置T0温度</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="0">
+                      <widget class="QLabel" name="label_5">
+                       <property name="text">
+                        <string>热床喷嘴温度</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_18">
+                       <property name="text">
+                        <string>步距mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="0">
+                      <widget class="QLabel" name="label_70">
+                       <property name="text">
+                        <string>设置T1温度</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="3" colspan="2">
+                      <widget class="QFrame" name="frame_40">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_33">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QSpinBox" name="nozzle_temp_edit">
+                          <property name="maximum">
+                           <number>999</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>205</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="nozzle_temp_set">
+                          <property name="text">
+                           <string>加热</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="nozzle_temp_close">
+                          <property name="text">
+                           <string>关闭</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item row="10" column="1">
+                      <widget class="QFrame" name="frame_43">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="3" colspan="2">
+                      <widget class="QFrame" name="frame_50">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_34">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QSpinBox" name="nozzle_2_temp_edit">
+                          <property name="maximum">
+                           <number>999</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>205</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="nozzle_2_temp_set">
+                          <property name="text">
+                           <string>加热</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="nozzle_2_temp_close">
+                          <property name="text">
+                           <string>关闭</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item row="11" column="3" colspan="2">
+                      <widget class="QFrame" name="frame_52">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_37">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QSpinBox" name="bed_temp_edit">
+                          <property name="maximum">
+                           <number>999</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>60</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="bed_temp_set">
+                          <property name="text">
+                           <string>加热</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="bed_temp_close">
+                          <property name="text">
+                           <string>关闭</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                   </item>
-                  <item row="0" column="2">
-                   <spacer name="horizontalSpacer_5">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                  <item row="1" column="2" rowspan="2">
+                   <widget class="QGroupBox" name="groupBox_12">
+                    <property name="title">
+                     <string>文件打印</string>
                     </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="0" column="3">
-                   <spacer name="horizontalSpacer">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="0" column="1">
-                   <spacer name="horizontalSpacer_6">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
+                    <layout class="QGridLayout" name="gridLayout_6">
+                     <item row="3" column="0" colspan="3">
+                      <widget class="Line" name="line">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QPushButton" name="print_start">
+                       <property name="text">
+                        <string>开始</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QPushButton" name="open_print_file">
+                       <property name="text">
+                        <string>选择文件</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QPushButton" name="print_stop">
+                       <property name="text">
+                        <string>停止</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="0">
+                      <widget class="QLabel" name="label_67">
+                       <property name="text">
+                        <string>上条命令：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_39">
+                       <property name="text">
+                        <string>打印文件：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_prev_cmd"/>
+                     </item>
+                     <item row="6" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_prev_prev_cmd"/>
+                     </item>
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="label_69">
+                       <property name="text">
+                        <string>执行行号：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="0">
+                      <widget class="QLabel" name="label_43">
+                       <property name="text">
+                        <string>上上条命令：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_file_line_num">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_file_name">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="0">
+                      <widget class="QLabel" name="label_68">
+                       <property name="text">
+                        <string>正在执行：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_cur_cmd"/>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QPushButton" name="print_manual_continue">
+                       <property name="text">
+                        <string>手动续打</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1" colspan="2">
+                      <widget class="QLabel" name="label_42">
+                       <property name="text">
+                        <string>(喷嘴需移到待续打位置)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="0">
+                      <widget class="QLabel" name="label_71">
+                       <property name="text">
+                        <string>打印用时：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_used_time">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                  </layout>
                 </widget>

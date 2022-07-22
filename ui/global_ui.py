@@ -11,6 +11,7 @@ from PyQt5.QtCore import Qt
 from ui.main_window import Ui_ToolSet
 import ctypes
 import sys
+import time
 
 TOOL_VERSIONS = 'V1.5.14'
 
@@ -42,6 +43,9 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     e_sacp_cache_data_signal = QtCore.pyqtSignal(str)
     e_set_update_progress_signal = QtCore.pyqtSignal(int)
 
+    show_print_file_line_num_signal = QtCore.pyqtSignal(int, int)
+    show_print_time_signal = QtCore.pyqtSignal(float)
+    show_print_cmd_signal = QtCore.pyqtSignal(list)
 
     def __init__(self):
         super().__init__()
@@ -74,6 +78,9 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.e_sacp_data_signal.connect(self.renew_sacp_data_dispay)
         self.e_sacp_cache_data_signal.connect(self.renew_sacp_cache_data_dispay)
         self.e_set_update_progress_signal.connect(self.set_update_progress)
+        self.show_print_file_line_num_signal.connect(self.show_print_line)
+        self.show_print_time_signal.connect(self.show_print_time)
+        self.show_print_cmd_signal.connect(self.show_print_cmd)
 
     def renew_recv_dispay(self, data):
         ''' 数据界面添加内容，数据会追加到最后边显示
@@ -225,3 +232,19 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
 
     def set_update_progress(self, val):
         self.update_progress.setValue(val)
+
+    def show_print_line(self, cur, total):
+        self.print_file_line_num.setText("{}/{}-{:.2f}%".format(cur, total, cur / total * 100))
+
+    def show_print_time(self, start):
+        cur_time = time.time()
+        diff_time = int(cur_time - start)
+        time_s = diff_time % 60
+        time_m = diff_time // 60 % 60
+        time_h = diff_time // 3600 % 60
+        self.print_used_time.setText("{}时{}分{}秒".format(time_h, time_m, time_s))
+
+    def show_print_cmd(self, cmd):
+        self.print_prev_prev_cmd.setText(cmd[0])
+        self.print_prev_cmd.setText(cmd[1])
+        self.print_cur_cmd.setText(cmd[2])

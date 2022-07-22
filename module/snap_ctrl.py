@@ -2,7 +2,10 @@
 from PyQt5.QtCore import QThread
 from module.module_base import ModuleBase
 from module.sacp_update import SnapUpdateTool
+from PyQt5.QtWidgets import QFileDialog
 from ui import ui
+import time
+import os
 import cfg
 import debug
 
@@ -12,6 +15,10 @@ CONNECT_TYPE_SC = 1  # 模拟屏幕控制，使用屏幕线连接
 STEP_SET_MM = (0.05, 0.1, 0.5, 1, 5, 10, 50)
 
 MACHINE_TYPE_LIST = ["snapmaker 2.0"]
+
+PRINT_STATUS_IDLE = 0
+PRINT_STATUS_WORK = 1
+PRINT_STATUS_PAUSE = 2
 
 snapmaker_2_exception_info = {
     #  [异常名称, 异常原因， 检测时机， 检测修复方法]
@@ -51,10 +58,108 @@ class SnapControl(QThread, ModuleBase):
         self.step_init()
         self.print3d_init()
         self.base_ctrl_init()
+        self.print_work_init()
         self.exception_code_parsing_init()
         self.update_tool = SnapUpdateTool(self.send_bytes)
         self.cur_connect = CONNECT_TYPE_PC
         ui.snapmaker_tool.setCurrentIndex(0)
+
+    def print_work_init(self):
+        self.print_work_status = PRINT_STATUS_IDLE
+        self.print_line_num = 0
+        self.print_cmd = ["", "", ""]
+        ui.open_print_file.clicked.connect(self.open_print_file_event)
+        ui.print_start.clicked.connect(self.start_print_event)
+        ui.print_stop.clicked.connect(self.stop_print_event)
+        ui.print_manual_continue.clicked.connect(self.print_manual_continue_event)
+        self.print_file_name = cfg.get(cfg.PRINT_FILE_NAME, '')
+        ui.print_file_name.setText(self.print_file_name)
+
+
+    def open_print_file_event(self):
+        if self.print_work_status != PRINT_STATUS_IDLE:
+            debug.err("工作状态禁止操作")
+            return
+        self.print_file_name=QFileDialog.getOpenFileName(ui)[0]
+        self.print_line_num = 0
+        cfg.set(cfg.PRINT_FILE_NAME, self.print_file_name)
+        if self.print_file_name == '':
+            debug.err("没选择文件文件")
+            return
+        ui.print_file_name.setText(self.print_file_name)
+
+    def start_print_work(self):
+        if os.path.exists(self.print_file_name):
+            with open(self.print_file_name) as gcode:
+                self.print_file_lines = gcode.readlines()
+                gcode.close()
+            self.print_cmd = ["", "", ""]
+            self.start_work_time = time.time()
+            ui.print_start.setText("暂停")
+            ui.print_start.setStyleSheet("background-color: #008000;font-weight:bold;")
+            self.print_work_status = PRINT_STATUS_WORK
+            self.send_file_gcode()
+            debug.info("开始打印工作")
+        else:
+            debug.err("文件路径错误")
+
+    def pause_print_work(self):
+        ui.print_start.setText("继续")
+        self.print_work_status = PRINT_STATUS_PAUSE
+        ui.print_start.setStyleSheet("background-color: #ffce45;font-weight:bold;")
+        debug.info("暂停打印工作")
+
+    def recover_print_work(self):
+        ui.print_start.setText("暂停")
+        ui.print_start.setStyleSheet("background-color: #008000;font-weight:bold;")
+        self.print_work_status = PRINT_STATUS_WORK
+        debug.info("恢复打印工作")
+        self.send_file_gcode()
+
+    def start_print_event(self):
+        if self.print_work_status == PRINT_STATUS_IDLE:
+            self.start_print_work()
+        elif self.print_work_status == PRINT_STATUS_WORK:
+            self.pause_print_work()
+        elif self.print_work_status == PRINT_STATUS_PAUSE:
+            self.recover_print_work()
+
+    def stop_print_event(self):
+        if self.print_work_status != PRINT_STATUS_IDLE:
+            self.print_file_lines = None
+            ui.print_start.setText("开始")
+            ui.print_start.setStyleSheet("background-color: #f0f0f0;font-weight:bold;")
+            self.print_work_status == PRINT_STATUS_IDLE
+
+    def print_manual_continue_event(self):
+        debug.err("这个功能还没有实现")
+
+    def renew_print_info(self):
+        ui.show_print_file_line_num_signal.emit(self.print_line_num, len(self.print_file_lines))
+        ui.show_print_time_signal.emit(self.start_work_time)
+        ui.show_print_cmd_signal.emit(self.print_cmd) 
+
+    def send_file_gcode(self):
+        if self.print_work_status == PRINT_STATUS_WORK and self.print_file_lines:
+            while True:
+                if self.print_line_num < len(self.print_file_lines):
+                    cmd = self.print_file_lines[self.print_line_num].lstrip()
+                    if len(cmd) <= 1 or len(cmd) > 96 or cmd[0] == ';':
+                        self.print_line_num += 1
+                    else:
+                        self.send_str(cmd)
+                        self.print_cmd = self.print_cmd[1:]
+                        self.print_cmd.append(cmd)
+                        self.print_line_num += 1
+                        self.renew_print_info()
+                        break
+                else:
+                    debug.info("打印结束")
+                    self.send_str("G28")
+                    self.print_cmd = print_cmd[1:]
+                    self.print_cmd.append("打印结束")
+                    self.renew_print_info()
+                    break
 
     # 运动控制
     def step_init(self):
@@ -80,7 +185,11 @@ class SnapControl(QThread, ModuleBase):
             step_btton.setText(f'{mm}')
         ui.speed_unit.stateChanged.connect(self.set_speed_unit)
         ui.nozzle_temp_set.clicked.connect(self.set_nozzle_temp)
+        ui.nozzle_2_temp_set.clicked.connect(self.set_nozzle_2_temp)
         ui.bed_temp_set.clicked.connect(self.set_bed_temp)
+        ui.nozzle_temp_close.clicked.connect(self.close_nozzle_temp)
+        ui.nozzle_2_temp_close.clicked.connect(self.close_nozzle_2_temp)
+        ui.bed_temp_close.clicked.connect(self.close_bed_temp)
         # 按键颜色初始化
         ui.x_add.setStyleSheet("background-color: #008000;font-weight:bold;")
         ui.x_sub.setStyleSheet("background-color: #008000;font-weight:bold;")
@@ -228,13 +337,33 @@ class SnapControl(QThread, ModuleBase):
 
     def set_nozzle_temp(self):
         temp = ui.nozzle_temp_edit.value()
-        cmd = "M104 S{}\r\n".format(temp)
+        cmd = "M104 T0 S{}\r\n".format(temp)
         self.send_str(cmd)
+        self.send_str("M105\r\n")
+
+    def set_nozzle_2_temp(self):
+        temp = ui.nozzle_temp_edit.value()
+        cmd = "M104 T1 S{}\r\n".format(temp)
+        self.send_str(cmd)
+        self.send_str("M105\r\n")
 
     def set_bed_temp(self):
         temp = ui.bed_temp_edit.value()
         cmd = "M140 S{}\r\n".format(temp)
         self.send_str(cmd)
+        self.send_str("M105\r\n")
+
+    def close_nozzle_temp(self):
+        self.send_str("M104 T0 S0\r\n")
+        self.send_str("M105\r\n")
+
+    def close_nozzle_2_temp(self):
+        self.send_str("M104 T1 S0\r\n")
+        self.send_str("M105\r\n")
+
+    def close_bed_temp(self):
+        self.send_str( "M140 S0\r\n")
+        self.send_str("M105\r\n")
 
     def change_to_t0(self):
         cmd = "T0\r\n"
@@ -333,6 +462,8 @@ class SnapControl(QThread, ModuleBase):
             return
         if ch == '\n':
             debug.data(self.line_data + '\n')
+            if self.print_work_status == PRINT_STATUS_WORK and "ok" in self.line_data:
+                self.send_file_gcode()
             self.line_data = ''
         else:
             self.line_data += ch

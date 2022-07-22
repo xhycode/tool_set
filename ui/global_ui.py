@@ -164,6 +164,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
             self.e_debug_info.insertHtml(data)
         else:
             self.e_debug_info.insertPlainText(data)
+        self.e_debug_info.moveCursor(QTextCursor.End)
 
     # ############ 波形界面相关方法 ##################
 

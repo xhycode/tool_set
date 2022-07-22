@@ -3,6 +3,7 @@ from PyQt5.QtCore import QThread
 from module.module_base import ModuleBase
 from module.sacp_update import SnapUpdateTool
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtCore import QTimer
 from ui import ui
 import time
 import os
@@ -74,6 +75,8 @@ class SnapControl(QThread, ModuleBase):
         ui.print_manual_continue.clicked.connect(self.print_manual_continue_event)
         self.print_file_name = cfg.get(cfg.PRINT_FILE_NAME, '')
         ui.print_file_name.setText(self.print_file_name)
+        self.print_info_show_timer = QTimer()
+        self.print_info_show_timer.timeout.connect(self.renew_print_info)
 
 
     def open_print_file_event(self):
@@ -92,6 +95,7 @@ class SnapControl(QThread, ModuleBase):
         if os.path.exists(self.print_file_name):
             with open(self.print_file_name) as gcode:
                 self.print_file_lines = gcode.readlines()
+                self.print_total_lines = len(self.print_file_lines)
                 gcode.close()
             self.print_cmd = ["", "", ""]
             self.start_work_time = time.time()
@@ -100,6 +104,7 @@ class SnapControl(QThread, ModuleBase):
             self.print_work_status = PRINT_STATUS_WORK
             self.send_file_gcode()
             debug.info("开始打印工作")
+            self.print_info_show_timer.start(0)
         else:
             debug.err("文件路径错误")
 
@@ -136,9 +141,13 @@ class SnapControl(QThread, ModuleBase):
         debug.err("这个功能还没有实现")
 
     def renew_print_info(self):
-        ui.show_print_file_line_num_signal.emit(self.print_line_num, len(self.print_file_lines))
         ui.show_print_time_signal.emit(self.start_work_time)
-        ui.show_print_cmd_signal.emit(self.print_cmd) 
+        ui.show_print_cmd_signal.emit(self.print_cmd)
+        ui.show_print_file_line_num_signal.emit(self.print_line_num, self.print_total_lines)
+        if self.print_work_status != PRINT_STATUS_IDLE:
+            self.print_info_show_timer.start(500)
+        else:
+            self.print_info_show_timer.stop()
 
     def send_file_gcode(self):
         if self.print_work_status == PRINT_STATUS_WORK and self.print_file_lines:
@@ -152,14 +161,12 @@ class SnapControl(QThread, ModuleBase):
                         self.print_cmd = self.print_cmd[1:]
                         self.print_cmd.append(cmd)
                         self.print_line_num += 1
-                        self.renew_print_info()
                         break
                 else:
                     debug.info("打印结束")
                     self.send_str("G28")
                     self.print_cmd = print_cmd[1:]
                     self.print_cmd.append("打印结束")
-                    self.renew_print_info()
                     break
 
     # 运动控制

@@ -9,6 +9,7 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from ui.main_window import Ui_ToolSet
+import ctypes
 import sys
 
 TOOL_VERSIONS = 'V1.5.14'
@@ -56,6 +57,11 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     def icon_init(self):
         '''界面坐上角显示的图标'''
         self.setWindowIcon(QIcon('./ui/mao.png'))
+        try:
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('./ui/mao.png')
+        except:
+            # 仅支持windows
+            pass
 
     def signal_init(self):
         '''将开头定义的信号量绑定处理函数'''

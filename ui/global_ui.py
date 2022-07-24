@@ -9,9 +9,11 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from ui.main_window import Ui_ToolSet
+from  ui.mao_icon import *
 import ctypes
 import sys
-import time
+import time , os
+import binascii 
 
 TOOL_VERSIONS = 'V1.6.2'
 
@@ -62,7 +64,15 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         '''界面坐上角显示的图标'''
         self.setWindowIcon(QIcon('./ui/mao.png'))
         try:
-            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('./ui/mao.png')
+            icon_path = "C:/ProgramData/tool_set/"
+            icon_name = "mao.ico"
+            if not os.path.exists(icon_path+icon_name):
+                os.mkdir(icon_path)
+                with open(icon_path+icon_name, 'wb') as f:
+                    pic = binascii.a2b_hex(MAO_ICON)
+                    f.write(pic)
+                    f.close()
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(icon_path+icon_name)
         except:
             # 仅支持windows
             pass

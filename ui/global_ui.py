@@ -48,6 +48,8 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     show_print_file_line_num_signal = QtCore.pyqtSignal(int, int)
     show_print_time_signal = QtCore.pyqtSignal(float)
     show_print_cmd_signal = QtCore.pyqtSignal(list)
+    print_start_btn_status_signal = QtCore.pyqtSignal(str, str)
+    print_restart_times_signal = QtCore.pyqtSignal(int)
 
     def __init__(self):
         super().__init__()
@@ -91,6 +93,8 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.show_print_file_line_num_signal.connect(self.show_print_line)
         self.show_print_time_signal.connect(self.show_print_time)
         self.show_print_cmd_signal.connect(self.show_print_cmd)
+        self.print_start_btn_status_signal.connect(self.print_start_btn_status)
+        self.print_restart_times_signal.connect(self.print_restart_times_show)
 
     def renew_recv_dispay(self, data):
         ''' 数据界面添加内容，数据会追加到最后边显示
@@ -258,3 +262,13 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.print_prev_prev_cmd.setText(cmd[0])
         self.print_prev_cmd.setText(cmd[1])
         self.print_cur_cmd.setText(cmd[2])
+
+    def print_start_btn_status(self, sta, color):
+        self.print_start.setText(sta)
+        self.print_start.setStyleSheet(color)
+
+    def print_restart_times_show(self, times):
+        if times:
+            self.print_restart_times.setText("循环:"+str(times))
+        else:
+            self.print_restart_times.setText("")

@@ -68,6 +68,7 @@ class SnapControl(QThread, ModuleBase):
     def print_work_init(self):
         self.print_work_status = PRINT_STATUS_IDLE
         self.print_line_num = 0
+        self.print_restart_times = 0
         self.print_cmd = ["", "", ""]
         ui.open_print_file.clicked.connect(self.open_print_file_event)
         ui.print_start.clicked.connect(self.start_print_event)
@@ -95,31 +96,31 @@ class SnapControl(QThread, ModuleBase):
 
     def start_print_work(self):
         if os.path.exists(self.print_file_name):
+            debug.info("加载文件："+self.print_file_name)
             with open(self.print_file_name) as gcode:
                 self.print_file_lines = gcode.readlines()
                 self.print_total_lines = len(self.print_file_lines)
                 gcode.close()
+                debug.info("gcode总行数:"+str(self.print_total_lines))
             self.print_cmd = ["", "", ""]
             self.start_work_time = time.time()
-            ui.print_start.setText("暂停")
-            ui.print_start.setStyleSheet("background-color: #008000;font-weight:bold;")
+            ui.print_start_btn_status_signal.emit("暂停", "background-color: #008000;font-weight:bold;")
             self.print_work_status = PRINT_STATUS_WORK
-            self.send_file_gcode()
             self.print_line_num = 0
+            self.print_restart_times = 0
+            self.send_file_gcode()
             debug.info("开始打印工作")
             self.print_info_show_timer.start(0)
         else:
             debug.err("文件路径错误")
 
     def pause_print_work(self):
-        ui.print_start.setText("继续")
+        ui.print_start_btn_status_signal.emit("继续", "background-color: #ffce45;font-weight:bold;")
         self.print_work_status = PRINT_STATUS_PAUSE
-        ui.print_start.setStyleSheet("background-color: #ffce45;font-weight:bold;")
         debug.info("暂停打印工作")
 
     def recover_print_work(self):
-        ui.print_start.setText("暂停")
-        ui.print_start.setStyleSheet("background-color: #008000;font-weight:bold;")
+        ui.print_start_btn_status_signal.emit("暂停", "background-color: #008000;font-weight:bold;")
         self.print_work_status = PRINT_STATUS_WORK
         debug.info("恢复打印工作")
         self.send_file_gcode()
@@ -135,8 +136,7 @@ class SnapControl(QThread, ModuleBase):
     def stop_print_event(self):
         if self.print_work_status != PRINT_STATUS_IDLE:
             self.print_file_lines = None
-            ui.print_start.setText("开始")
-            ui.print_start.setStyleSheet("background-color: #f0f0f0;font-weight:bold;")
+            ui.print_start_btn_status_signal.emit("开始", "background-color: #f0f0f0;font-weight:bold;")
             debug.info("停止打印")
             self.print_work_status = PRINT_STATUS_IDLE
 
@@ -147,6 +147,7 @@ class SnapControl(QThread, ModuleBase):
         ui.show_print_time_signal.emit(self.start_work_time)
         ui.show_print_cmd_signal.emit(self.print_cmd)
         ui.show_print_file_line_num_signal.emit(self.print_line_num, self.print_total_lines)
+        ui.print_restart_times_signal.emit(self.print_restart_times)
         if self.print_work_status != PRINT_STATUS_IDLE:
             self.print_info_show_timer.start(500)
         else:
@@ -155,7 +156,7 @@ class SnapControl(QThread, ModuleBase):
     def send_file_gcode(self):
         if self.print_work_status == PRINT_STATUS_WORK and self.print_file_lines:
             while True:
-                if self.print_line_num < len(self.print_file_lines):
+                if self.print_line_num < self.print_total_lines:
                     cmd = self.print_file_lines[self.print_line_num].lstrip()
                     if len(cmd) <= 1 or len(cmd) > 96 or cmd[0] == ';':
                         self.print_line_num += 1
@@ -167,9 +168,16 @@ class SnapControl(QThread, ModuleBase):
                         break
                 else:
                     debug.info("打印结束")
-                    self.send_str("G28")
-                    self.print_cmd = print_cmd[1:]
-                    self.print_cmd.append("打印结束")
+                    if ui.print_auto_restart.checkState():
+                        self.print_line_num = 0
+                        self.print_restart_times += 1
+                        debug.info("重新开始打印")
+                        continue
+                    else:
+                        # self.send_str("G28\r\n")
+                        self.print_cmd = self.print_cmd[1:]
+                        self.print_cmd.append("打印结束")
+                        self.stop_print_event()
                     break
 
     # 运动控制

@@ -13,12 +13,12 @@ from  ui.mao_icon import *
 import ctypes
 import sys
 import time , os
-import binascii 
+import binascii
 
 TOOL_VERSIONS = 'V1.6.3'
 
 class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling) 
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
 
     '''外部在线程里边调用的小部件,需要提供一个自定义信号供外部使用，不然会出错'''
@@ -37,7 +37,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     g_waveform_signal = QtCore.pyqtSignal(str, list)
     # 清空指定通道波形数据显示的信号 str:通道对应名称
     g_waveform_clear_signal = QtCore.pyqtSignal(str)
-   
+
     # SACP数据显示窗口添加要显示的内容的信号 str:显示的内容
     e_sacp_data_signal = QtCore.pyqtSignal(str)
 
@@ -61,7 +61,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.icon_init()
         self.init_waveform_ui()
         self.signal_init()
-    
+
     def icon_init(self):
         '''界面坐上角显示的图标'''
         self.setWindowIcon(QIcon('./ui/mao.png'))
@@ -103,7 +103,7 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
         self.e_recv.moveCursor(QTextCursor.End)
         self.e_recv.insertPlainText(data)
         self.e_recv.moveCursor(QTextCursor.End)
-    
+
     def set_lcd_recv_len(self, is_add, num):
         ''' 设置接收数据长度的显示
         is_add: True-数字累加 类型: bool
@@ -134,10 +134,10 @@ class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
             cursor.select(QTextCursor.WordUnderCursor)
         cursor.mergeCharFormat(format)
         text_edit.mergeCurrentCharFormat(format)
-    
+
     def highlight_text(self, text_edit, text, color):
         ''' QTextEdit 中的部分字体高亮
-            text_edit: 待操作的小部件 
+            text_edit: 待操作的小部件
             text: 要高亮的字符串
             color：字符串颜色
         '''

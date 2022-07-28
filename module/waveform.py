@@ -122,7 +122,7 @@ class Waveform(QThread, ModuleBase):
         lines = self.cache.readlines()
         with open(filename[0], 'w') as f:
             f.writelines(lines)
-    
+
     def open_data(self):
         filename=QFileDialog.getOpenFileName(ui)
         self.all_clear()

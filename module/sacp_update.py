@@ -139,7 +139,7 @@ def sacp_pack(snd_id, rec_id, cmd_set, cmd_id, data, length, sequence, arrt):
         cmd_id : command_id
         arrt : 0 - 请求, 1 - 应答
     '''
-    sacp_head = struct.pack('<BBHBBBBBHBB', 
+    sacp_head = struct.pack('<BBHBBBBBHBB',
                             0xAA, 0x55, # 包头标识符
                             length + 6 + 2, # 包头从字节7到结尾有6个字节+数据末尾2个校验字节
                             SACP_VERSION, # 协议版本固定1
@@ -237,7 +237,7 @@ class SacpStruct:
         else:
             out_info += "数据源:未知"
         out_info += " 时间:" + self.pack_time + "\n"
-        
+
         if not self.is_sacp_data:
             out_info += "数据类型不是SACP格式\n"
             out_info += "全部数据:"
@@ -368,7 +368,7 @@ class SnapUpdateTool(QThread):
         cfg.set('update_pack_version', ui.update_pack_version.text())
         cfg.set('update_pack_app_path', ui.update_pack_app_path.text())
         cfg.set('last_update_file_path', ui.last_update_file_path.text())
-        
+
     def save_sacp_debug_info(self):
         cfg.set('sacp_debug_cmd_set', ui.sacp_debug_cmd_set.value())
         cfg.set('sacp_debug_cmd_id', ui.sacp_debug_cmd_id.value())

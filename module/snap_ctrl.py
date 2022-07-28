@@ -320,7 +320,7 @@ class SnapControl(QThread, ModuleBase):
 
     def home_all(self):
         self.home()
-   
+
     def home_x(self):
         self.home("X")
 

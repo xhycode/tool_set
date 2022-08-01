@@ -15,7 +15,7 @@ import sys
 import time , os
 import binascii
 
-TOOL_VERSIONS = 'V1.6.3'
+TOOL_VERSIONS = 'V1.6.4'
 
 class GloabalUI(QMainWindow, Ui_ToolSet):  # 继承类
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)

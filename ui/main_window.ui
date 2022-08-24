@@ -2783,38 +2783,48 @@
                      <string>文件打印</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_6">
-                     <item row="4" column="0" colspan="3">
-                      <widget class="Line" name="line">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                     <item row="6" column="1" colspan="2">
+                      <widget class="QSpinBox" name="print_jump_line_num">
+                       <property name="minimum">
+                        <number>1</number>
+                       </property>
+                       <property name="maximum">
+                        <number>999999999</number>
                        </property>
                       </widget>
                      </item>
-                     <item row="11" column="1" colspan="2">
+                     <item row="3" column="1" colspan="2">
+                      <widget class="QCheckBox" name="print_step_debug">
+                       <property name="text">
+                        <string>单步调试(发送一行自动暂停)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="0">
+                      <widget class="QPushButton" name="print_jump_line">
+                       <property name="text">
+                        <string>跳转行并发送</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="16" column="1" colspan="2">
                       <widget class="QLineEdit" name="print_used_time">
                        <property name="enabled">
                         <bool>false</bool>
                        </property>
                       </widget>
                      </item>
-                     <item row="11" column="0">
+                     <item row="9" column="0" colspan="3">
+                      <widget class="Line" name="line">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="16" column="0">
                       <widget class="QLabel" name="label_71">
                        <property name="text">
                         <string>打印用时：</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QPushButton" name="print_start">
-                       <property name="text">
-                        <string>开始</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QPushButton" name="open_print_file">
-                       <property name="text">
-                        <string>选择文件</string>
                        </property>
                       </widget>
                      </item>
@@ -2825,63 +2835,67 @@
                        </property>
                       </widget>
                      </item>
-                     <item row="9" column="0">
-                      <widget class="QLabel" name="label_67">
-                       <property name="text">
-                        <string>上条命令：</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
+                     <item row="5" column="0">
                       <widget class="QLabel" name="label_39">
                        <property name="text">
                         <string>打印文件：</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="9" column="1" colspan="2">
-                      <widget class="QLineEdit" name="print_prev_cmd"/>
+                     <item row="0" column="0">
+                      <widget class="QPushButton" name="open_print_file">
+                       <property name="text">
+                        <string>选择文件</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="7" column="1" colspan="2">
+                     <item row="0" column="1">
+                      <widget class="QPushButton" name="print_start">
+                       <property name="text">
+                        <string>开始</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="14" column="0">
+                      <widget class="QLabel" name="label_67">
+                       <property name="text">
+                        <string>上条命令：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="12" column="1" colspan="2">
                       <widget class="QLineEdit" name="print_prev_prev_cmd"/>
                      </item>
-                     <item row="5" column="0">
+                     <item row="10" column="0">
                       <widget class="QLabel" name="label_69">
                        <property name="text">
                         <string>执行行号：</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="7" column="0">
+                     <item row="12" column="0">
                       <widget class="QLabel" name="label_43">
                        <property name="text">
                         <string>上上条命令：</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="5" column="1" colspan="2">
+                     <item row="14" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_prev_cmd"/>
+                     </item>
+                     <item row="10" column="1" colspan="2">
                       <widget class="QLineEdit" name="print_file_line_num">
                        <property name="enabled">
                         <bool>false</bool>
                        </property>
                       </widget>
                      </item>
-                     <item row="3" column="1" colspan="2">
+                     <item row="5" column="1" colspan="2">
                       <widget class="QLineEdit" name="print_file_name">
                        <property name="enabled">
                         <bool>true</bool>
                        </property>
                       </widget>
-                     </item>
-                     <item row="10" column="0">
-                      <widget class="QLabel" name="label_68">
-                       <property name="text">
-                        <string>正在执行：</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="10" column="1" colspan="2">
-                      <widget class="QLineEdit" name="print_cur_cmd"/>
                      </item>
                      <item row="1" column="0">
                       <widget class="QPushButton" name="print_manual_continue">
@@ -2897,6 +2911,16 @@
                        </property>
                       </widget>
                      </item>
+                     <item row="15" column="0">
+                      <widget class="QLabel" name="label_68">
+                       <property name="text">
+                        <string>正在执行：</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="15" column="1" colspan="2">
+                      <widget class="QLineEdit" name="print_cur_cmd"/>
+                     </item>
                      <item row="2" column="1" colspan="2">
                       <widget class="QCheckBox" name="print_auto_restart">
                        <property name="text">
@@ -2908,6 +2932,26 @@
                       <widget class="QLabel" name="print_restart_times">
                        <property name="text">
                         <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="1" colspan="2">
+                      <widget class="QSpinBox" name="print_run_to_line_num">
+                       <property name="minimum">
+                        <number>0</number>
+                       </property>
+                       <property name="maximum">
+                        <number>999999999</number>
+                       </property>
+                       <property name="value">
+                        <number>0</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="0">
+                      <widget class="QLabel" name="label_72">
+                       <property name="text">
+                        <string>暂停行号(断点)</string>
                        </property>
                       </widget>
                      </item>
@@ -4455,7 +4499,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>287</width>
+                  <width>278</width>
                   <height>563</height>
                  </rect>
                 </property>

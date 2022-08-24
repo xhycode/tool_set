@@ -69,10 +69,12 @@ class SnapControl(QThread, ModuleBase):
         self.print_work_status = PRINT_STATUS_IDLE
         self.print_line_num = 0
         self.print_restart_times = 0
+        self.print_file_lines = None
         self.print_cmd = ["", "", ""]
         ui.open_print_file.clicked.connect(self.open_print_file_event)
         ui.print_start.clicked.connect(self.start_print_event)
         ui.print_stop.clicked.connect(self.stop_print_event)
+        ui.print_jump_line.clicked.connect(self.print_jump_line_event)
         ui.print_manual_continue.clicked.connect(self.print_manual_continue_event)
         self.print_file_name = cfg.get(cfg.PRINT_FILE_NAME, '')
         ui.print_file_name.setText(self.print_file_name)
@@ -106,9 +108,7 @@ class SnapControl(QThread, ModuleBase):
             self.start_work_time = time.time()
             ui.print_start_btn_status_signal.emit("暂停", "background-color: #008000;font-weight:bold;")
             self.print_work_status = PRINT_STATUS_WORK
-            self.print_line_num = 0
             self.print_restart_times = 0
-            self.send_file_gcode()
             debug.info("开始打印工作")
             self.print_info_show_timer.start(0)
         else:
@@ -128,6 +128,8 @@ class SnapControl(QThread, ModuleBase):
     def start_print_event(self):
         if self.print_work_status == PRINT_STATUS_IDLE:
             self.start_print_work()
+            self.print_line_num = 0
+            self.send_file_gcode()
         elif self.print_work_status == PRINT_STATUS_WORK:
             self.pause_print_work()
         elif self.print_work_status == PRINT_STATUS_PAUSE:
@@ -139,6 +141,16 @@ class SnapControl(QThread, ModuleBase):
             ui.print_start_btn_status_signal.emit("开始", "background-color: #f0f0f0;font-weight:bold;")
             debug.info("停止打印")
             self.print_work_status = PRINT_STATUS_IDLE
+
+    def print_jump_line_event(self):
+        if not self.print_file_lines:
+            self.start_print_work()
+            if not self.print_file_lines:
+                return
+        self.print_line_num = ui.print_jump_line_num.value() - 1
+        self.print_work_status = PRINT_STATUS_WORK
+        self.send_file_gcode()
+        self.pause_print_work()
 
     def print_manual_continue_event(self):
         debug.err("这个功能还没有实现")
@@ -160,11 +172,16 @@ class SnapControl(QThread, ModuleBase):
                     cmd = self.print_file_lines[self.print_line_num].lstrip()
                     if len(cmd) <= 1 or len(cmd) > 96 or cmd[0] == ';':
                         self.print_line_num += 1
+                        if ui.print_run_to_line_num.value() == self.print_line_num:
+                            self.pause_print_work()
+                            break
                     else:
                         self.send_str(cmd)
                         self.print_cmd = self.print_cmd[1:]
                         self.print_cmd.append(cmd)
                         self.print_line_num += 1
+                        if ui.print_step_debug.checkState() or ui.print_run_to_line_num.value() == self.print_line_num:
+                            self.pause_print_work()
                         break
                 else:
                     debug.info("打印结束")
